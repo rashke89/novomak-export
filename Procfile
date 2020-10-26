@@ -1,1 +1,1 @@
-web: npm run build && cd frontend && npm install && npm run build
+web: node dist/server.js
