@@ -61,6 +61,7 @@ function productSaveReducer(state = { product: {} }, action) {
     case PRODUCT_SAVE_REQUEST:
       return { loading: true };
     case PRODUCT_SAVE_SUCCESS:
+      document.querySelector('#close-modal-btn').click();
       return { loading: false, success: true, product: action.payload };
     case PRODUCT_SAVE_FAIL:
       return { loading: false, error: action.payload };

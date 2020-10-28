@@ -47,7 +47,7 @@ function ProductsScreen(props) {
   }, [successSave, successDelete]);
 
   const openModal = (product) => {
-    setModalVisible(true);
+    // setModalVisible(true);
     setId(product._id);
     setName(product.name);
     setPrice(product.price);
@@ -59,8 +59,8 @@ function ProductsScreen(props) {
   };
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(
-      saveProduct({
+     dispatch(
+         saveProduct({
         _id: id,
         name,
         price,
@@ -99,10 +99,104 @@ function ProductsScreen(props) {
     <div className="content content-margined">
       <div className="product-header mb-4">
         <h3>Proizovdi</h3>
-        <button className="button primary" onClick={() => openModal({})}>
+        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={openModal}>
           Kreiraj proizovd
         </button>
       </div>
+
+        <div className="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal-dialog" role="document">
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <h2 className="modal-title" id="exampleModalLabel">Kreiraj proizvod</h2>
+                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div className="modal-body">
+                        <div className="form-modal">
+                            <form onSubmit={submitHandler}>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <label htmlFor="name">Ime</label>
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            value={name}
+                                            id="name"
+                                            onChange={(e) => setName(e.target.value)}
+                                        ></input>
+                                        <label htmlFor="price">Cena</label>
+                                        <input
+                                            type="text"
+                                            name="price"
+                                            value={price}
+                                            id="price"
+                                            onChange={(e) => setPrice(e.target.value)}
+                                        ></input>
+                                        <label htmlFor="image">Slika</label>
+                                        <input
+                                            type="text"
+                                            name="image"
+                                            value={image}
+                                            id="image"
+                                            onChange={(e) => setImage(e.target.value)}
+                                        ></input>
+                                        <input type="file"
+                                               className="w-100"
+                                               onChange={uploadFileHandler}></input>
+                                        {uploading && <div>Uploading...</div>}
+                                        <label htmlFor="brand">Brend</label>
+                                        <input
+                                            type="text"
+                                            name="brand"
+                                            value={brand}
+                                            id="brand"
+                                            onChange={(e) => setBrand(e.target.value)}
+                                        ></input>
+                                    </div>
+                                    <div className="col-md-6">
+
+                                        <label htmlFor="countInStock">Broj raspolozivih jedinica</label>
+                                        <input
+                                            type="text"
+                                            name="countInStock"
+                                            value={countInStock}
+                                            id="countInStock"
+                                            onChange={(e) => setCountInStock(e.target.value)}
+                                        ></input>
+                                        <label htmlFor="name">Kategorija</label>
+                                        <input
+                                            type="text"
+                                            name="category"
+                                            value={category}
+                                            id="category"
+                                            onChange={(e) => setCategory(e.target.value)}
+                                        ></input>
+                                        <label htmlFor="description">Opis</label>
+                                        <textarea
+                                            name="description"
+                                            value={description}
+                                            id="description"
+                                            className="w-100"
+                                            rows={6}
+                                            onChange={(e) => setDescription(e.target.value)}
+                                        ></textarea>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-secondary" id="close-modal-btn" data-dismiss="modal">Odustani</button>
+                        <button type="submit" className="btn btn-primary" onClick={submitHandler}>
+                            {id ? 'Izmeni' : 'Kreiraj'}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
       {modalVisible && (
         <div className="form">
           <form onSubmit={submitHandler}>
@@ -226,7 +320,7 @@ function ProductsScreen(props) {
                 <td>{product.category}</td>
                 <td>{product.brand}</td>
                 <td>
-                  <button className="button" onClick={() => openModal(product)}>
+                  <button type="button" data-toggle="modal" data-target="#exampleModal" className="button" onClick={() => openModal(product)}>
                     Edit
                   </button>{' '}
                   <button
