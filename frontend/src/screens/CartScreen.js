@@ -21,6 +21,7 @@ function CartScreen(props) {
   }, []);
 
   const checkoutHandler = () => {
+    return null;
     props.history.push("/signin?redirect=shipping");
   }
 
@@ -32,7 +33,7 @@ function CartScreen(props) {
             Korpa
           </h3>
           <div>
-            Price
+            Cena
           </div>
         </li>
         {
@@ -61,7 +62,7 @@ function CartScreen(props) {
                       )}
                     </select>
                     <button type="button" className="button" onClick={() => removeFromCartHandler(item.product)} >
-                      Delete
+                      Izbrisi
                     </button>
                   </div>
                 </div>
@@ -76,12 +77,12 @@ function CartScreen(props) {
     </div>
     <div className="cart-action">
       <h3>
-        Subtotal ( {cartItems.reduce((a, c) => a + c.qty, 0)} items)
+        Ukupno ( {cartItems.reduce((a, c) => a + c.qty, 0)} proizvoda)
         :
         {cartItems.reduce((a, c) => a + c.price * c.qty, 0)} rsd
       </h3>
       <button onClick={checkoutHandler} className="button primary full-width" disabled={cartItems.length === 0}>
-        Proceed to Checkout
+        Odradi Kupovinu
       </button>
 
     </div>

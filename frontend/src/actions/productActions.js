@@ -27,7 +27,7 @@ const listProducts = (
     // debugger
     dispatch({ type: PRODUCT_LIST_REQUEST });
     const { data } = await axios.get(
-      'https://novomak.herokuapp.com/api/products?category=' +
+      '/api/products?category=' +
         category +
         '&searchKeyword=' +
         searchKeyword +

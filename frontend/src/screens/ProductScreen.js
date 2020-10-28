@@ -73,23 +73,23 @@ function ProductScreen(props) {
                   </a>
                 </li>
                 <li>
-                  Price: <b>${product.price}</b>
+                  Cena: <b>${product.price}</b>
                 </li>
                 <li>
-                  Description:
+                  Opis:
                   <div>{product.description}</div>
                 </li>
               </ul>
             </div>
             <div className="details-action">
               <ul>
-                <li>Price: {product.price}</li>
+                <li>Cena: {product.price}</li>
                 <li>
                   Status:{' '}
                   {product.countInStock > 0 ? 'Na stanju' : 'Nema na stanju.'}
                 </li>
                 <li>
-                  Qty:{' '}
+                  Kolicina:{' '}
                   <select
                     value={qty}
                     onChange={(e) => {
@@ -109,7 +109,7 @@ function ProductScreen(props) {
                       onClick={handleAddToCart}
                       className="button primary"
                     >
-                      Add to Cart
+                     Dodaj u Korpu
                     </button>
                   )}
                 </li>
