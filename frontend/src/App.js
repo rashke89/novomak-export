@@ -8,6 +8,7 @@ import SigninScreen from './screens/SigninScreen';
 import { useSelector } from 'react-redux';
 import RegisterScreen from './screens/RegisterScreen';
 import ProductsScreen from './screens/ProductsScreen';
+import CategoriesScreen from './screens/CategoriesScreen';
 import ShippingScreen from './screens/ShippingScreen';
 import PaymentScreen from './screens/PaymentScreen';
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
@@ -39,14 +40,19 @@ function App() {
             {userInfo ? (
               <Link to="/profile">{userInfo.name}</Link>
             ) : (
-              <Link to="/signin">Uloguj se</Link>
+                <div></div>
             )}
             {userInfo && userInfo.isAdmin && (
               <div className="dropdown">
                 <a href="#">Admin</a>
                 <ul className="dropdown-content">
-                  <li>
+                  <li className="my-4">
                     <Link to="/orders">Porudzbine</Link>
+                  </li>
+                  <li className="my-4">
+                    <Link to="/kategorije">Kategorije</Link>
+                  </li>
+                  <li className="my-4">
                     <Link to="/products">Proizvodi</Link>
                   </li>
                 </ul>
@@ -75,6 +81,7 @@ function App() {
             <Route path="/profile" component={ProfileScreen} />
             <Route path="/order/:id" component={OrderScreen} />
             <Route path="/products" component={ProductsScreen} />
+            <Route path="/kategorije" component={CategoriesScreen} />
             <Route path="/shipping" component={ShippingScreen} />
             <Route path="/payment" component={PaymentScreen} />
             <Route path="/placeorder" component={PlaceOrderScreen} />

@@ -7,7 +7,7 @@ import {
   deleteProdcut,
 } from '../actions/productActions';
 
-function ProductsScreen(props) {
+function CategoriesScreen(props) {
   const [modalVisible, setModalVisible] = useState(false);
   const [id, setId] = useState('');
   const [name, setName] = useState('');
@@ -98,9 +98,9 @@ function ProductsScreen(props) {
   return (
     <div className="content content-margined">
       <div className="product-header mb-4">
-        <h3>Proizovdi</h3>
-        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={openModal}>
-          Kreiraj proizovd
+        <h3>Kategorije</h3>
+        <button type="button" className="btn btn-primary" onClick={null}>
+          Kreiraj kategoriju
         </button>
       </div>
 
@@ -108,7 +108,7 @@ function ProductsScreen(props) {
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h2 className="modal-title" id="exampleModalLabel">Kreiraj proizvod</h2>
+                        <h2 className="modal-title" id="exampleModalLabel">Kreiraj kategoriju</h2>
                         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -125,7 +125,7 @@ function ProductsScreen(props) {
                                             value={name}
                                             id="name"
                                             onChange={(e) => setName(e.target.value)}
-                                        ></input>
+                                        />
                                         <label htmlFor="price">Cena</label>
                                         <input
                                             type="text"
@@ -133,7 +133,7 @@ function ProductsScreen(props) {
                                             value={price}
                                             id="price"
                                             onChange={(e) => setPrice(e.target.value)}
-                                        ></input>
+                                        />
                                         <label htmlFor="image">Slika</label>
                                         <input
                                             type="text"
@@ -141,10 +141,10 @@ function ProductsScreen(props) {
                                             value={image}
                                             id="image"
                                             onChange={(e) => setImage(e.target.value)}
-                                        ></input>
+                                        />
                                         <input type="file"
                                                className="w-100"
-                                               onChange={uploadFileHandler}></input>
+                                               onChange={uploadFileHandler}/>
                                         {uploading && <div>Uploading...</div>}
                                         <label htmlFor="brand">Brend</label>
                                         <input
@@ -153,7 +153,7 @@ function ProductsScreen(props) {
                                             value={brand}
                                             id="brand"
                                             onChange={(e) => setBrand(e.target.value)}
-                                        ></input>
+                                        />
                                     </div>
                                     <div className="col-md-6">
 
@@ -164,7 +164,7 @@ function ProductsScreen(props) {
                                             value={countInStock}
                                             id="countInStock"
                                             onChange={(e) => setCountInStock(e.target.value)}
-                                        ></input>
+                                        />
                                         <label htmlFor="name">Kategorija</label>
                                         <input
                                             type="text"
@@ -172,7 +172,7 @@ function ProductsScreen(props) {
                                             value={category}
                                             id="category"
                                             onChange={(e) => setCategory(e.target.value)}
-                                        ></input>
+                                        />
                                         <label htmlFor="description">Opis</label>
                                         <textarea
                                             name="description"
@@ -181,7 +181,7 @@ function ProductsScreen(props) {
                                             className="w-100"
                                             rows={6}
                                             onChange={(e) => setDescription(e.target.value)}
-                                        ></textarea>
+                                        />
                                     </div>
                                 </div>
                             </form>
@@ -299,7 +299,7 @@ function ProductsScreen(props) {
         </div>
       )}
 
-      <div className="product-list">
+        {false ? <div className="product-list">
         <table className="table">
           <thead>
             <tr>
@@ -334,8 +334,8 @@ function ProductsScreen(props) {
             ))}
           </tbody>
         </table>
-      </div>
+      </div> : <h1>U izradi...</h1>}
     </div>
   );
 }
-export default ProductsScreen;
+export default CategoriesScreen;
