@@ -31,7 +31,7 @@ function App() {
       <div className="grid-container">
         <header className="header">
           <div className="brand">
-            <button onClick={openMenu}>&#9776;</button>
+            {/*<button onClick={openMenu}>&#9776;</button>*/}
             <Link to="/">LOGO</Link>
           </div>
           <div className="header-links">
@@ -49,9 +49,9 @@ function App() {
                   <li className="my-4">
                     <Link to="/orders">Porudzbine</Link>
                   </li>
-                  <li className="my-4">
-                    <Link to="/kategorije">Kategorije</Link>
-                  </li>
+                  {/*<li className="my-4">*/}
+                  {/*  <Link to="/kategorije">Kategorije</Link>*/}
+                  {/*</li>*/}
                   <li className="my-4">
                     <Link to="/products">Proizvodi</Link>
                   </li>

@@ -3,6 +3,7 @@ import multer from 'multer';
 import multerS3 from 'multer-s3';
 import aws from 'aws-sdk';
 import config from '../config';
+import {parseString} from 'xml2js';
 
 const storage = multer.diskStorage({
   destination(req, file, cb) {
@@ -18,6 +19,15 @@ const upload = multer({ storage });
 const router = express.Router();
 
 router.post('/', upload.single('image'), (req, res) => {
+  /*upload xml pokusaj*/
+  // console.log(req.file);
+  // parseString(req.file, function(error, data) {
+  //   if (error){
+  //     console.log('error....', error)
+  //   } else {
+  //     console.log(data);
+  //   }
+  // })
   res.send(`/${req.file.path}`);
 });
 

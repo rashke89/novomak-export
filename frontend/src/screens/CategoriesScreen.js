@@ -6,6 +6,7 @@ import {
   listProducts,
   deleteProdcut,
 } from '../actions/productActions';
+import {listCategories, saveCategory} from "../actions/categoryAction";
 
 function CategoriesScreen(props) {
   const [modalVisible, setModalVisible] = useState(false);
@@ -18,8 +19,8 @@ function CategoriesScreen(props) {
   const [countInStock, setCountInStock] = useState('');
   const [description, setDescription] = useState('');
   const [uploading, setUploading] = useState(false);
-  const productList = useSelector((state) => state.productList);
-  const { loading, products, error } = productList;
+  const categoryList = useSelector((state) => state.categoryList);
+  const { loading, categories, error } = categoryList;
 
   const productSave = useSelector((state) => state.productSave);
   const {
@@ -40,7 +41,7 @@ function CategoriesScreen(props) {
     if (successSave) {
       setModalVisible(false);
     }
-    dispatch(listProducts());
+    dispatch(listCategories());
     return () => {
       //
     };
@@ -60,14 +61,10 @@ function CategoriesScreen(props) {
   const submitHandler = (e) => {
     e.preventDefault();
      dispatch(
-         saveProduct({
+         saveCategory({
         _id: id,
         name,
-        price,
         image,
-        brand,
-        category,
-        countInStock,
         description,
       })
     );
@@ -77,17 +74,20 @@ function CategoriesScreen(props) {
   };
   const uploadFileHandler = (e) => {
     const file = e.target.files[0];
-    const bodyFormData = new FormData();
-    bodyFormData.append('image', file);
-    setUploading(true);
+      console.log(file);
+      const bodyFormData = new FormData();
+    bodyFormData.append('xml', file);
+      console.log(bodyFormData);
+      setUploading(true);
     axios
-      .post('/api/uploads', bodyFormData, {
+      .post('/api/xml', bodyFormData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       })
       .then((response) => {
-        setImage(response.data);
+          console.log('uploadovan XML...', response);
+          setImage(response.data);
         setUploading(false);
       })
       .catch((err) => {
@@ -99,7 +99,7 @@ function CategoriesScreen(props) {
     <div className="content content-margined">
       <div className="product-header mb-4">
         <h3>Kategorije</h3>
-        <button type="button" className="btn btn-primary" onClick={null}>
+        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={openModal}>
           Kreiraj kategoriju
         </button>
       </div>
@@ -126,14 +126,14 @@ function CategoriesScreen(props) {
                                             id="name"
                                             onChange={(e) => setName(e.target.value)}
                                         />
-                                        <label htmlFor="price">Cena</label>
-                                        <input
-                                            type="text"
-                                            name="price"
-                                            value={price}
-                                            id="price"
-                                            onChange={(e) => setPrice(e.target.value)}
-                                        />
+                                        {/*<label htmlFor="price">Cena</label>*/}
+                                        {/*<input*/}
+                                        {/*    type="text"*/}
+                                        {/*    name="price"*/}
+                                        {/*    value={price}*/}
+                                        {/*    id="price"*/}
+                                        {/*    onChange={(e) => setPrice(e.target.value)}*/}
+                                        {/*/>*/}
                                         <label htmlFor="image">Slika</label>
                                         <input
                                             type="text"
@@ -146,42 +146,42 @@ function CategoriesScreen(props) {
                                                className="w-100"
                                                onChange={uploadFileHandler}/>
                                         {uploading && <div>Uploading...</div>}
-                                        <label htmlFor="brand">Brend</label>
-                                        <input
-                                            type="text"
-                                            name="brand"
-                                            value={brand}
-                                            id="brand"
-                                            onChange={(e) => setBrand(e.target.value)}
-                                        />
+                                        {/*<label htmlFor="brand">Brend</label>*/}
+                                        {/*<input*/}
+                                        {/*    type="text"*/}
+                                        {/*    name="brand"*/}
+                                        {/*    value={brand}*/}
+                                        {/*    id="brand"*/}
+                                        {/*    onChange={(e) => setBrand(e.target.value)}*/}
+                                        {/*/>*/}
                                     </div>
                                     <div className="col-md-6">
 
-                                        <label htmlFor="countInStock">Broj raspolozivih jedinica</label>
-                                        <input
-                                            type="text"
-                                            name="countInStock"
-                                            value={countInStock}
-                                            id="countInStock"
-                                            onChange={(e) => setCountInStock(e.target.value)}
-                                        />
-                                        <label htmlFor="name">Kategorija</label>
-                                        <input
-                                            type="text"
-                                            name="category"
-                                            value={category}
-                                            id="category"
-                                            onChange={(e) => setCategory(e.target.value)}
-                                        />
-                                        <label htmlFor="description">Opis</label>
-                                        <textarea
-                                            name="description"
-                                            value={description}
-                                            id="description"
-                                            className="w-100"
-                                            rows={6}
-                                            onChange={(e) => setDescription(e.target.value)}
-                                        />
+                                        {/*<label htmlFor="countInStock">Broj raspolozivih jedinica</label>*/}
+                                        {/*<input*/}
+                                        {/*    type="text"*/}
+                                        {/*    name="countInStock"*/}
+                                        {/*    value={countInStock}*/}
+                                        {/*    id="countInStock"*/}
+                                        {/*    onChange={(e) => setCountInStock(e.target.value)}*/}
+                                        {/*/>*/}
+                                        {/*<label htmlFor="name">Kategorija</label>*/}
+                                        {/*<input*/}
+                                        {/*    type="text"*/}
+                                        {/*    name="category"*/}
+                                        {/*    value={category}*/}
+                                        {/*    id="category"*/}
+                                        {/*    onChange={(e) => setCategory(e.target.value)}*/}
+                                        {/*/>*/}
+                                        {/*<label htmlFor="description">Opis</label>*/}
+                                        {/*<textarea*/}
+                                        {/*    name="description"*/}
+                                        {/*    value={description}*/}
+                                        {/*    id="description"*/}
+                                        {/*    className="w-100"*/}
+                                        {/*    rows={6}*/}
+                                        {/*    onChange={(e) => setDescription(e.target.value)}*/}
+                                        {/*/>*/}
                                     </div>
                                 </div>
                             </form>
@@ -197,128 +197,20 @@ function CategoriesScreen(props) {
             </div>
         </div>
 
-      {modalVisible && (
-        <div className="form">
-          <form onSubmit={submitHandler}>
-            <ul className="form-container">
-              <li>
-                <h2>Kreiraj Proizovd</h2>
-              </li>
-              <li>
-                {loadingSave && <div>Loading...</div>}
-                {errorSave && <div>{errorSave}</div>}
-              </li>
-
-              <li>
-                <label htmlFor="name">Ime</label>
-                <input
-                  type="text"
-                  name="name"
-                  value={name}
-                  id="name"
-                  onChange={(e) => setName(e.target.value)}
-                ></input>
-              </li>
-              <li>
-                <label htmlFor="price">Cena</label>
-                <input
-                  type="text"
-                  name="price"
-                  value={price}
-                  id="price"
-                  onChange={(e) => setPrice(e.target.value)}
-                ></input>
-              </li>
-              <li>
-                <label htmlFor="image">Slika</label>
-                <input
-                  type="text"
-                  name="image"
-                  value={image}
-                  id="image"
-                  onChange={(e) => setImage(e.target.value)}
-                ></input>
-                <input type="file" onChange={uploadFileHandler}></input>
-                {uploading && <div>Uploading...</div>}
-              </li>
-              <li>
-                <label htmlFor="brand">Brend</label>
-                <input
-                  type="text"
-                  name="brand"
-                  value={brand}
-                  id="brand"
-                  onChange={(e) => setBrand(e.target.value)}
-                ></input>
-              </li>
-              <li>
-                <label htmlFor="countInStock">Broj raspolozivih jedinica</label>
-                <input
-                  type="text"
-                  name="countInStock"
-                  value={countInStock}
-                  id="countInStock"
-                  onChange={(e) => setCountInStock(e.target.value)}
-                ></input>
-              </li>
-              <li>
-                <label htmlFor="name">Kategorija</label>
-                <input
-                  type="text"
-                  name="category"
-                  value={category}
-                  id="category"
-                  onChange={(e) => setCategory(e.target.value)}
-                ></input>
-              </li>
-              <li>
-                <label htmlFor="description">Opis</label>
-                <textarea
-                  name="description"
-                  value={description}
-                  id="description"
-                  onChange={(e) => setDescription(e.target.value)}
-                ></textarea>
-              </li>
-              <li>
-                <button type="submit" className="button primary">
-                  {id ? 'Izmeni' : 'Kreiraj'}
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => setModalVisible(false)}
-                  className="button secondary"
-                >
-                  Nazad
-                </button>
-              </li>
-            </ul>
-          </form>
-        </div>
-      )}
-
-        {false ? <div className="product-list">
+        {<div className="product-list">
         <table className="table">
           <thead>
             <tr>
               <th>ID</th>
               <th>Ime</th>
-              <th>Cena</th>
-              <th>Kategorija</th>
-              <th>Brend</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            {products.map((product) => (
+            {categories.map((product) => (
               <tr key={product._id}>
                 <td className="align-center">{product._id}</td>
                 <td>{product.name}</td>
-                <td>{product.price}</td>
-                <td>{product.category}</td>
-                <td>{product.brand}</td>
                 <td>
                   <button type="button" data-toggle="modal" data-target="#exampleModal" className="button" onClick={() => openModal(product)}>
                     Edit
@@ -334,7 +226,7 @@ function CategoriesScreen(props) {
             ))}
           </tbody>
         </table>
-      </div> : <h1>U izradi...</h1>}
+      </div>}
     </div>
   );
 }

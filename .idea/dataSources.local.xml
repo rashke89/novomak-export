@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="amazona@localhost" uuid="65148aec-636c-48d0-b127-758a506a434c">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MONGO" exact-version="0" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>rashke89</user-name>
+      <schema-mapping />
+    </data-source>
+  </component>
+</project>

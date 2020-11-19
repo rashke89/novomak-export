@@ -23,6 +23,22 @@ const prodctSchema = new mongoose.Schema({
   reviews: [reviewSchema],
 });
 
-const productModel = mongoose.model('Product', prodctSchema);
+const prodctSchema_ = new mongoose.Schema({
+  ID: { type: String, required: false },
+  Sifra: { type: String, required: false },
+  Naziv: { type: String, required: true },
+  Lager: { type: String, required: false },
+  Sirina: { type: String, required: false },
+  Visina: { type: String, required: false },
+  Precnik: { type: String, required: false },
+  Kategorija: { type: String, required: true },
+  Sezona: { type: String, required: false },
+  Proizvodjac: { type: String, required: false },
+  Slika: { type: String, required: false },
+  Specifikacija: { type: String, required: false },
+  Cena: { type: String, default: 0, required: false },
+});
+
+const productModel = mongoose.model('Product', prodctSchema_);
 
 export default productModel;

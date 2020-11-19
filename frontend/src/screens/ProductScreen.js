@@ -45,7 +45,7 @@ function ProductScreen(props) {
   };
 
   return (
-    <div>
+    <div className="container">
       <div className="back-to-result">
         <Link to="/">Back to result</Link>
       </div>
@@ -55,38 +55,62 @@ function ProductScreen(props) {
         <div>{error} </div>
       ) : (
         <>
-          <div className="details">
-            <div className="details-image">
-              <img src={product.image} alt="product"></img>
+          <div className="details row">
+            <div className="details-image col-md-4">
+              <img className="img-fluid" src={product.Slika} alt="product"></img>
             </div>
-            <div className="details-info">
+            <div className="details-info col-md-4">
               <ul>
                 <li>
-                  <h4>{product.name}</h4>
+                  <h2>{product.Naziv}</h2>
                 </li>
+                {/*<li>*/}
+                {/*  <a href="#reviews">*/}
+                {/*    <Rating*/}
+                {/*      value={product.rating}*/}
+                {/*      text={product.numReviews + ' reviews'}*/}
+                {/*    />*/}
+                {/*  </a>*/}
+                {/*</li>*/}
                 <li>
-                  <a href="#reviews">
-                    <Rating
-                      value={product.rating}
-                      text={product.numReviews + ' reviews'}
-                    />
-                  </a>
-                </li>
-                <li>
-                  Cena: <b>${product.price}</b>
+                  Cena: <b>${product.Cena}</b>
                 </li>
                 <li>
                   Opis:
-                  <div>{product.description}</div>
+                  <span>{product.Specifikacija}</span>
+                </li>
+                <li>
+                  Kategorija:
+                  <span>{product.Kategorija}</span>
+                </li>
+                <li>
+                  Proizvodjac:
+                  <span>{product.Proizvodjac}</span>
+                </li>
+                <li>
+                  Sezona:
+                  <span>{product.Sezona}</span>
+                </li>
+                <li>
+                  Sirina:
+                  <span>{product.Sirina}</span>
+                </li>
+                <li>
+                  Visina:
+                  <span>{product.Visina}</span>
+                </li>
+                <li>
+                  Precnik:
+                  <span>{product.Precnik}</span>
                 </li>
               </ul>
             </div>
-            <div className="details-action">
+            <div className="details-action col-md-4">
               <ul>
                 <li>Cena: {product.price}</li>
                 <li>
                   Status:{' '}
-                  {product.countInStock > 0 ? 'Na stanju' : 'Nema na stanju.'}
+                  {product.Lager > 0 ? 'Na stanju' : 'Nema na stanju.'}
                 </li>
                 <li>
                   Kolicina:{' '}
@@ -96,7 +120,7 @@ function ProductScreen(props) {
                       setQty(e.target.value);
                     }}
                   >
-                    {[...Array(product.countInStock).keys()].map((x) => (
+                    {[...Array(product.Lager).keys()].map((x) => (
                       <option key={x + 1} value={x + 1}>
                         {x + 1}
                       </option>
@@ -104,7 +128,7 @@ function ProductScreen(props) {
                   </select>
                 </li>
                 <li>
-                  {product.countInStock > 0 && (
+                  {product.Lager > 0 && (
                     <button
                       onClick={handleAddToCart}
                       className="button primary"

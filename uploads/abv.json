@@ -1,0 +1,62 @@
+[
+  {
+    "id": "25305",
+    "key": "63053270",
+    "name": "18.4-30 SEHA SH-39 16PR",
+    "units": "8",
+    "width": "18.4",
+    "height": "",
+    "diameter": "30",
+    "category": "Agro/Industrijska",
+    "season": "Agro",
+    "manufacturer": "Seha",
+    "price": "70596.00",
+    "specification": "iskoriscenje:                                prianjanje:                                buka:                            ",
+    "image": "http://www.bakidoo.com/files/images/slike_proizvoda/63053270.jpg"
+  },
+  {
+    "id": "25281",
+    "key": "88490662",
+    "name": "235/55R19 PILOT SPORT 4 SUV",
+    "units": "1",
+    "width": "235",
+    "height": "55",
+    "diameter": "19",
+    "category": "4x4",
+    "season": "Letnja",
+    "manufacturer": "Michelin",
+    "price": "25836.00",
+    "specification": "iskoriscenje:C                                prianjanje:A                                buka:72                            ",
+    "image": "http://www.bakidoo.com/files/images/slike_proizvoda/88490662.jpg"
+  },
+  {
+    "id": "25280",
+    "key": "86514115",
+    "name": "275/70R22.5 Conti Urban HA3",
+    "units": "1",
+    "width": "275",
+    "height": "70",
+    "diameter": "22.5",
+    "category": "Teretna",
+    "season": "Bus",
+    "manufacturer": "Continental",
+    "price": "63912.00",
+    "specification": "iskoriscenje:D                                prianjanje:B                                buka:70                            ",
+    "image": "http://www.bakidoo.com/files/images/slike_proizvoda/86514115.jpg"
+  },
+  {
+    "id": "25273",
+    "key": "82015027",
+    "name": "215/60R16 WinGSnow G WH2 99H",
+    "units": "11",
+    "width": "215",
+    "height": "60",
+    "diameter": "16",
+    "category": "Putničke auto gume",
+    "season": "Zimska",
+    "manufacturer": "Nexen",
+    "price": "11268.00",
+    "specification": "iskoriscenje:C                                prianjanje:E                                buka:71                            ",
+    "image": "http://www.bakidoo.com/files/images/slike_proizvoda/82015027.jpg"
+  }
+]

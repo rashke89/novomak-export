@@ -8,16 +8,17 @@ router.get('/', async (req, res) => {
   const category = req.query.category ? { category: req.query.category } : {};
   const searchKeyword = req.query.searchKeyword
     ? {
-        name: {
+        Naziv: {
           $regex: req.query.searchKeyword,
           $options: 'i',
         },
       }
     : {};
+
   const sortOrder = req.query.sortOrder
     ? req.query.sortOrder === 'lowest'
-      ? { price: 1 }
-      : { price: -1 }
+      ? { Cena: 1 }
+      : { Cena: -1 }
     : { _id: -1 };
   const products = await Product.find({ ...category, ...searchKeyword }).sort(
     sortOrder
@@ -57,15 +58,21 @@ router.post('/:id/reviews', isAuth, async (req, res) => {
 });
 router.put('/:id', isAuth, async (req, res) => {
   const productId = req.params.id;
-  const product = await Product.findById(productId);
+  let product = await Product.findById(productId);
   if (product) {
-    product.name = req.body.name;
-    product.price = req.body.price;
-    product.image = req.body.image;
-    product.brand = req.body.brand;
-    product.category = req.body.category;
-    product.countInStock = req.body.countInStock;
-    product.description = req.body.description;
+    product.Sifra= req.body.key;
+    product.Naziv= req.body.name;
+    product.Lager= req.body.countInStock;
+    product.Sirina= req.body.width;
+    product.Visina= req.body.height;
+    product.Precnik= req.body.diameter;
+    product.Kategorija= req.body.category;
+    product.Sezona= req.body.season;
+    product.Proizvodjac= req.body.manufacturer;
+    product.Slika= req.body.image;
+    product.Specifikacija= req.body.description;
+    product.Cena= req.body.price;
+
     const updatedProduct = await product.save();
     if (updatedProduct) {
       return res
@@ -87,16 +94,20 @@ router.delete('/:id', isAuth, isAdmin, async (req, res) => {
 });
 
 router.post('/', isAuth, async (req, res) => {
+  console.log(req.body);
   const product = new Product({
-    name: req.body.name,
-    price: req.body.price,
-    image: req.body.image,
-    brand: req.body.brand,
-    category: req.body.category,
-    countInStock: req.body.countInStock,
-    description: req.body.description,
-    rating: req.body.rating,
-    numReviews: req.body.numReviews,
+    Sifra: req.body.key,
+    Naziv: req.body.name,
+    Lager: req.body.countInStock,
+    Sirina: req.body.width,
+    Visina: req.body.height,
+    Precnik: req.body.diameter,
+    Kategorija: req.body.category,
+    Sezona: req.body.season,
+    Proizvodjac: req.body.manufacturer,
+    Slika: req.body.image,
+    Specifikacija: req.body.description,
+    Cena: req.body.price
   });
   const newProduct = await product.save();
   if (newProduct) {

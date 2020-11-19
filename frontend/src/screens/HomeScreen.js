@@ -67,21 +67,21 @@ function HomeScreen(props) {
                                     <div className="product">
                                         {/*<Link to={'/product/' + product._id}>*/}
                                         <a >
-                                            <div style={{'backgroundImage': `url(${product.image})`}} className="-bg-image">
+                                            <div style={{'backgroundImage': `url(${product.Slika})`}} className="-bg-image">
 
                                             </div>
                                         </a>
                                             <div className="product-name px-3">
-                                                <Link to={'/product/' + product._id}>{product.name}</Link>
+                                                <Link to={'/product/' + product._id}>{product.Naziv}</Link>
                                             </div>
-                                            <div className="product-brand px-3">{product.brand}</div>
-                                            <div className="product-description px-3">{product.description}</div>
-                                            <div className="product-price px-3">{product.price} rsd</div>
+                                            <div className="product-brand px-3">{product.Proizvodjac}</div>
+                                            <div className="product-description px-3">{product.Specifikacija}</div>
+                                            <div className="product-price px-3">{product.Cena} rsd</div>
                                             <div className="product-rating px-3">
-                                                <Rating
-                                                    value={product.rating}
-                                                    text={product.numReviews + ' reviews'}
-                                                />
+                                                {/*<Rating*/}
+                                                {/*    value={product.rating}*/}
+                                                {/*    text={product.numReviews + ' reviews'}*/}
+                                                {/*/>*/}
                                             </div>
 
                                     </div>

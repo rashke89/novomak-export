@@ -126,5 +126,6 @@ export {
   detailsProduct,
   saveProduct,
   deleteProdcut,
-  saveProductReview,
+  saveProductReview
+
 };

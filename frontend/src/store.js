@@ -22,6 +22,7 @@ import {
   orderListReducer,
   orderDeleteReducer,
 } from './reducers/orderReducers';
+import {categoryListReducer} from "./reducers/categoryReducers";
 
 const cartItems = Cookie.getJSON('cartItems') || [];
 const userInfo = Cookie.getJSON('userInfo') || null;
@@ -32,6 +33,7 @@ const initialState = {
 };
 const reducer = combineReducers({
   productList: productListReducer,
+  categoryList: categoryListReducer,
   productDetails: productDetailsReducer,
   cart: cartReducer,
   userSignin: userSigninReducer,
