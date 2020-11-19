@@ -73,7 +73,7 @@ function ProductScreen(props) {
                 {/*  </a>*/}
                 {/*</li>*/}
                 <li>
-                  Cena: <b>${product.Cena}</b>
+                  Cena: <b>{product.Cena} rsd</b>
                 </li>
                 <li>
                   Opis:
