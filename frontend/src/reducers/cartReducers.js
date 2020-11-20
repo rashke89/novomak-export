@@ -4,7 +4,8 @@ function cartReducer(state = { cartItems: [], shipping: {}, payment: {} }, actio
   switch (action.type) {
     case CART_ADD_ITEM:
       const item = action.payload;
-      const product = state.cartItems.find(x => x.product === item.product);
+      console.log(state);
+      const product = state.cartItems.find(x => x._id === item._id);
       if (product) {
         return {
           cartItems:
@@ -13,7 +14,7 @@ function cartReducer(state = { cartItems: [], shipping: {}, payment: {} }, actio
       }
       return { cartItems: [...state.cartItems, item] };
     case CART_REMOVE_ITEM:
-      return { cartItems: state.cartItems.filter(x => x.product !== action.payload) };
+      return { cartItems: state.cartItems.filter(x => x._id !== action.payload) };
     case CART_SAVE_SHIPPING:
       return { ...state, shipping: action.payload };
     case CART_SAVE_PAYMENT:

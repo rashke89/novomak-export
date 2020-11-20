@@ -4,14 +4,17 @@ import axios from 'axios';
 import {useSelector, useDispatch} from 'react-redux';
 import {listProducts} from '../actions/productActions';
 import Rating from '../components/Rating';
-import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
+import Pagination from "react-js-pagination";
 
 function HomeScreen(props) {
     const [searchKeyword, setSearchKeyword] = useState('');
     const [sortOrder, setSortOrder] = useState('');
     const category = props.match.params.id ? props.match.params.id : '';
     const productList = useSelector((state) => state.productList);
-    const {products, loading, error} = productList;
+    const [page, setPage] = useState(1);
+    const [totalPerPage, setTotalPerPage] = useState(32);
+    const {products, loading, error, totalItems} = productList;
     const dispatch = useDispatch();
     let history = useHistory();
     useEffect(() => {
@@ -22,14 +25,19 @@ function HomeScreen(props) {
         };
     }, [category]);
 
+
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch(listProducts(category, searchKeyword, sortOrder));
+        setPage(1);
+        dispatch(listProducts(category, searchKeyword, sortOrder, 1));
     };
     const sortHandler = (e) => {
-        console.log(e.target.value);
         setSortOrder(e.target.value);
-        dispatch(listProducts(category, searchKeyword, e.target.value));
+        dispatch(listProducts(category, searchKeyword, e.target.value, page));
+    };
+    const handlePagination = (num) => {
+        setPage(num);
+        dispatch(listProducts(category, searchKeyword, sortOrder, num));
     };
 
     return (
@@ -56,12 +64,12 @@ function HomeScreen(props) {
                 </li>
             </ul>
             {loading ? (
-                <div>Loading...</div>
+                <div>Ucitavanje...</div>
             ) : error ? (
                 <div>{error}</div>
             ) : (
-                <div className="container products">
-                    <div className="row">
+                <div className="container ">
+                    <div className="row products">
                         {products.map((product) => (
                                 <div className="col-md-3 my-3 product-wrapper" key={product._id} onClick={event => history.push(`/product/${product._id}`)}>
                                     <div className="product">
@@ -87,6 +95,21 @@ function HomeScreen(props) {
                                     </div>
                                 </div>
                         ))}
+
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div className="pagination-wrapper">
+                                {totalItems && <Pagination
+                                    activePage={page}
+                                    itemsCountPerPage={totalPerPage}
+                                    totalItemsCount={totalItems}
+                                    pageRangeDisplayed={5}
+                                    onChange={handlePagination}
+                                />}
+                            </div>
+
+                        </div>
                     </div>
 
                 </div>

@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
   const category = req.query.category ? { category: req.query.category } : {};
+  const page = req.query.page;
   const searchKeyword = req.query.searchKeyword
     ? {
         Naziv: {
@@ -20,10 +21,11 @@ router.get('/', async (req, res) => {
       ? { Cena: 1 }
       : { Cena: -1 }
     : { _id: -1 };
+  const totalItems = await Product.find({ ...category, ...searchKeyword }).countDocuments();
   const products = await Product.find({ ...category, ...searchKeyword }).sort(
     sortOrder
-  );
-  res.send(products);
+  ).skip(32*(page-1)).limit(32);
+  res.send({products, totalItems});
 });
 
 router.get('/:id', async (req, res) => {
@@ -71,7 +73,7 @@ router.put('/:id', isAuth, async (req, res) => {
     product.Proizvodjac= req.body.manufacturer;
     product.Slika= req.body.image;
     product.Specifikacija= req.body.description;
-    product.Cena= req.body.price;
+    product.Cena= Number(req.body.price);
 
     const updatedProduct = await product.save();
     if (updatedProduct) {
@@ -94,7 +96,6 @@ router.delete('/:id', isAuth, isAdmin, async (req, res) => {
 });
 
 router.post('/', isAuth, async (req, res) => {
-  console.log(req.body);
   const product = new Product({
     Sifra: req.body.key,
     Naziv: req.body.name,
@@ -107,7 +108,7 @@ router.post('/', isAuth, async (req, res) => {
     Proizvodjac: req.body.manufacturer,
     Slika: req.body.image,
     Specifikacija: req.body.description,
-    Cena: req.body.price
+    Cena: Number(req.body.price)
   });
   const newProduct = await product.save();
   if (newProduct) {

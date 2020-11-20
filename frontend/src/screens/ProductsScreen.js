@@ -6,6 +6,7 @@ import {
     listProducts,
     deleteProdcut,
 } from '../actions/productActions';
+import Pagination from "react-js-pagination";
 
 function ProductsScreen(props) {
     const [modalVisible, setModalVisible] = useState(false);
@@ -27,7 +28,10 @@ function ProductsScreen(props) {
     const [xmlApiStatus, setXmlApiStatus] = useState('');
     const [uploading, setUploading] = useState(false);
     const productList = useSelector((state) => state.productList);
-    const {loading, products, error} = productList;
+    const {loading, products, error, totalItems} = productList;
+    const [page, setPage] = useState(1);
+    const [totalPerPage, setTotalPerPage] = useState(32);
+    const [searchKeyword, setSearchKeyword] = useState('');
 
     const productSave = useSelector((state) => state.productSave);
     const {
@@ -48,7 +52,7 @@ function ProductsScreen(props) {
         if (successSave) {
             setModalVisible(false);
         }
-        dispatch(listProducts());
+        dispatch(listProducts('', searchKeyword, '', 1));
         return () => {
             //
         };
@@ -69,6 +73,11 @@ function ProductsScreen(props) {
         setWidth(product.Sirina || '');
         setHeight(product.Visina || '');
         setDiameter(product.Precnik || '');
+    };
+    const submitSearchHandler = (e) => {
+        e.preventDefault();
+        setPage(1);
+        dispatch(listProducts('', searchKeyword, '', 1));
     };
     const submitHandler = (e) => {
         e.preventDefault();
@@ -91,6 +100,10 @@ function ProductsScreen(props) {
             })
         );
     };
+    const handlePagination = (num) => {
+        setPage(num);
+        dispatch(listProducts('', searchKeyword, '', num));
+    };
     const deleteHandler = (product) => {
         dispatch(deleteProdcut(product._id));
     };
@@ -98,7 +111,6 @@ function ProductsScreen(props) {
         const file = e.target.files[0];
         const bodyFormData = new FormData();
         bodyFormData.append('image', file);
-        console.log(bodyFormData);
         setUploading(true);
         axios
             .post('/api/uploads', bodyFormData, {
@@ -132,7 +144,7 @@ function ProductsScreen(props) {
                 setUploading(false);
                 var closeEl = document.querySelector('.-xml-close');
                 setTimeout(() => {
-                    dispatch(listProducts());
+                    dispatch(listProducts('', searchKeyword, '', page));
                     closeEl.click();
                 }, 3000)
             })
@@ -150,7 +162,14 @@ function ProductsScreen(props) {
             <div className="product-header mb-4">
                 <h2>Proizovdi</h2>
                 <div>
-                    <button type="button" className="btn btn-primary mx-3" data-toggle="modal" data-target="#exampleModal" onClick={() => openModal({})}>
+                    <form className={'d-inline-block'} onSubmit={submitSearchHandler}>
+                        <input
+                            name="searchKeyword"
+                            onChange={(e) => setSearchKeyword(e.target.value)}
+                        />
+                        <button type="submit">Search</button>
+                    </form>
+                    <button type="button" className="btn btn-primary mx-5" data-toggle="modal" data-target="#exampleModal" onClick={() => openModal({})}>
                         Kreiraj proizovd
                     </button>
                     <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
@@ -470,6 +489,20 @@ function ProductsScreen(props) {
                     ))}
                     </tbody>
                 </table>
+            </div>
+            <div className="row">
+                <div className="col-md-12">
+                    <div className="pagination-wrapper">
+                        {totalItems && <Pagination
+                            activePage={page}
+                            itemsCountPerPage={totalPerPage}
+                            totalItemsCount={totalItems}
+                            pageRangeDisplayed={5}
+                            onChange={handlePagination}
+                        />}
+                    </div>
+
+                </div>
             </div>
         </div>
     );

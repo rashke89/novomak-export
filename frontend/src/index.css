@@ -66,10 +66,23 @@ a {
 a:hover {
   color: #ff8000;
 }
+/*Pagination*/
+.pagination-wrapper {
+  margin: 15px 0;
+  display: flex;
+  justify-content: center;
+}
+.pagination-wrapper .pagination li {
+  padding: 4px 8px;
+}
+
+.pagination-wrapper .pagination li.active {
+  background-color: aquamarine;
+}
 /* Home Screen */
 .products {
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   flex-wrap: wrap;
 }

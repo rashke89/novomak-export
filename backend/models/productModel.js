@@ -36,7 +36,7 @@ const prodctSchema_ = new mongoose.Schema({
   Proizvodjac: { type: String, required: false },
   Slika: { type: String, required: false },
   Specifikacija: { type: String, required: false },
-  Cena: { type: String, default: 0, required: false },
+  Cena: { type: Number, default: 0, required: false },
 });
 
 const productModel = mongoose.model('Product', prodctSchema_);

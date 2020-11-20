@@ -11,7 +11,11 @@ function ProductScreen(props) {
   const [comment, setComment] = useState('');
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
-  const productDetails = useSelector((state) => state.productDetails);
+  const productDetails = useSelector((state) => {
+    console.log(state);
+
+    return state.productDetails
+  });
   const { product, loading, error } = productDetails;
   const productReviewSave = useSelector((state) => state.productReviewSave);
   const { success: productSaveSuccess } = productReviewSave;
@@ -24,6 +28,7 @@ function ProductScreen(props) {
       setComment('');
       dispatch({ type: PRODUCT_REVIEW_SAVE_RESET });
     }
+    console.log(product);
     dispatch(detailsProduct(props.match.params.id));
     return () => {
       //
@@ -64,20 +69,8 @@ function ProductScreen(props) {
                 <li>
                   <h2>{product.Naziv}</h2>
                 </li>
-                {/*<li>*/}
-                {/*  <a href="#reviews">*/}
-                {/*    <Rating*/}
-                {/*      value={product.rating}*/}
-                {/*      text={product.numReviews + ' reviews'}*/}
-                {/*    />*/}
-                {/*  </a>*/}
-                {/*</li>*/}
                 <li>
                   Cena: <b>{product.Cena} rsd</b>
-                </li>
-                <li>
-                  Opis:
-                  <span>{product.Specifikacija}</span>
                 </li>
                 <li>
                   Kategorija:
@@ -103,11 +96,15 @@ function ProductScreen(props) {
                   Precnik:
                   <span>{product.Precnik}</span>
                 </li>
+                <li>
+                  Opis:
+                  <span>{product.Specifikacija}</span>
+                </li>
               </ul>
             </div>
             <div className="details-action col-md-4">
               <ul>
-                <li>Cena: {product.price}</li>
+                <li>Cena: {product.Cena} rsd</li>
                 <li>
                   Status:{' '}
                   {product.Lager > 0 ? 'Na stanju' : 'Nema na stanju.'}
@@ -120,7 +117,7 @@ function ProductScreen(props) {
                       setQty(e.target.value);
                     }}
                   >
-                    {[...Array(product.Lager).keys()].map((x) => (
+                    {Array.from(Array(product.Lager).keys()).map((x) => (
                       <option key={x + 1} value={x + 1}>
                         {x + 1}
                       </option>

@@ -21,18 +21,14 @@ import Axios from 'axios';
 const listProducts = (
   category = '',
   searchKeyword = '',
-  sortOrder = ''
+  sortOrder = '',
+  page = 1
 ) => async (dispatch) => {
   try {
     // debugger
     dispatch({ type: PRODUCT_LIST_REQUEST });
     const { data } = await axios.get(
-      '/api/products?category=' +
-        category +
-        '&searchKeyword=' +
-        searchKeyword +
-        '&sortOrder=' +
-        sortOrder
+      `/api/products?category=${category}&searchKeyword=${searchKeyword}&sortOrder=${sortOrder}&page=${page}`
     );
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
   } catch (error) {

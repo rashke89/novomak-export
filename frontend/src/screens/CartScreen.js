@@ -18,6 +18,7 @@ function CartScreen(props) {
     if (productId) {
       dispatch(addToCart(productId, qty));
     }
+    console.log(cartItems);
   }, []);
 
   const checkoutHandler = () => {
@@ -39,36 +40,36 @@ function CartScreen(props) {
         {
           cartItems.length === 0 ?
             <div>
-              Cart is empty
+              Korpa je prazna
           </div>
             :
             cartItems.map((item, id) =>
               <li key={id}>
                 <div className="cart-image">
-                  <img src={item.image} alt="product" />
+                  <img src={item.Slika} alt="product" />
                 </div>
-                <div className="cart-name">
+                <div className="cart-name mb-3">
                   <div>
-                    <Link to={"/product/" + item.product}>
-                      {item.name}
+                    <Link to={"/product/" + item._id}>
+                      {item.Naziv}
                     </Link>
 
                   </div>
                   <div>
-                    Qty:
+                    Broj proizvoda:
                   <select value={item.qty} onChange={(e) => dispatch(addToCart(item.product, e.target.value))}>
-                      {[...Array(item.countInStock).keys()].map(x =>
+                      {[...Array(item.Lager).keys()].map(x =>
                         <option key={x + 1} value={x + 1}>{x + 1}</option>
                       )}
                     </select>
 
-                    <button type="button" className="button" onClick={() => removeFromCartHandler(item.product)} >
+                    <button type="button" className="button ml-3" onClick={() => removeFromCartHandler(item._id)} >
                       Izbrisi
                     </button>
                   </div>
                 </div>
                 <div className="cart-price">
-                  {item.price} rsd
+                  {item.Cena} rsd
                 </div>
               </li>
             )
@@ -78,11 +79,10 @@ function CartScreen(props) {
     </div>
     <div className="cart-action">
       <h3>
-        Ukupno ( {cartItems.reduce((a, c) => a + c.qty, 0)} proizvoda)
-        :
-        {cartItems.reduce((a, c) => a + c.price * c.qty, 0)} rsd
+        Ukupno ({cartItems.reduce((a, c) => a + c.qty, 0)} proizvoda): <br/>
+        {cartItems.reduce((a, c) => a + c.Cena * c.qty, 0)} rsd
       </h3>
-      <button onClick={checkoutHandler} className="button primary full-width" disabled={cartItems.length === 0}>
+      <button onClick={checkoutHandler} className="button primary full-width mt-5" disabled={cartItems.length === 0}>
         Odradi Kupovinu
       </button>
 

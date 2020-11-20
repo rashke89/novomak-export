@@ -22,7 +22,7 @@ function productListReducer(state = { products: [] }, action) {
     case PRODUCT_LIST_REQUEST:
       return { loading: true, products: [] };
     case PRODUCT_LIST_SUCCESS:
-      return { loading: false, products: action.payload };
+      return { loading: false, products: action.payload.products, totalItems: action.payload.totalItems };
     case PRODUCT_LIST_FAIL:
       return { loading: false, error: action.payload };
     default:
@@ -35,7 +35,13 @@ function productDetailsReducer(state = { product: { reviews: [] } }, action) {
     case PRODUCT_DETAILS_REQUEST:
       return { loading: true };
     case PRODUCT_DETAILS_SUCCESS:
-      return { loading: false, product: action.payload };
+      let productObj = {
+        ...action.payload,
+        Lager: Number(action.payload.Lager)
+      }
+      return {
+        loading: false,
+        product:  productObj};
     case PRODUCT_DETAILS_FAIL:
       return { loading: false, error: action.payload };
     default:
