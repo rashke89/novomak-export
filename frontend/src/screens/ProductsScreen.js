@@ -317,7 +317,7 @@ function ProductsScreen(props) {
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h2 className="modal-title" id="exampleModalLabel">Kreiraj kategoriju</h2>
+                            <h2 className="modal-title" id="exampleModalLabel">Ubaci XML fajl</h2>
                             <button type="button" className="close -xml-close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>

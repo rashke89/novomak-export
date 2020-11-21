@@ -54,79 +54,157 @@ function HomeScreen(props) {
                 </div>
             </section>
             <section className="filter-wrapper container">
-                <div className="row">
-                    <div className="col-md-12">
-                        <ul className="filter">
-                            <li>
-                                <form onSubmit={submitHandler}>
-                                    <input
-                                        name="searchKeyword"
-                                        onChange={(e) => setSearchKeyword(e.target.value)}
-                                    />
-                                    <button type="submit">Search</button>
-                                </form>
-                            </li>
-                            <li>
-                                Sortiraj po:{' '}
-                                <select name="sortOrder" onChange={sortHandler}>
-                                    <option value="">Novije</option>
-                                    <option value="lowest">Cena rastuce</option>
-                                    <option value="highest">Cena opadajuce</option>
-                                </select>
-                            </li>
-                            <li>
-                                <select name="sortOrder" onChange={sortHandler}>
-                                    <option value="">-- Sirina --</option>
-                                    {widths?.map(item => {
-                                        return <option value={item.name} key={item.name}>{item.name}</option>
-                                    })}
-                                </select>
-                            </li>
-                            <li>
-                                <select name="sortOrder" onChange={sortHandler}>
-                                    <option value="">-- Visina --</option>
-                                    {heights?.map(item => {
-                                        return <option value={item.name} key={item.name}>{item.name}</option>
-                                    })}
-                                </select>
-                            </li>
-                            <li>
-                                <select name="sortOrder" onChange={sortHandler}>
-                                    <option value="">-- Precnik --</option>
-                                    {diameters?.map(item => {
-                                        return <option value={item.name} key={item.name}>{item.name}</option>
-                                    })}
-                                </select>
-                            </li>
-                        </ul>
+                <div className="row m-0">
+                    <div className="col-md-12 p-0">
+                        <div className="container p-0">
+                            <div className="row filter">
+                                <div className="col-sm-6 col-md-3 my-3">
+                                    <form onSubmit={submitHandler}>
+                                        <input
+                                            name="searchKeyword"
+                                            onChange={(e) => setSearchKeyword(e.target.value)}
+                                        />
+                                        <button type="submit">Search</button>
+                                    </form>
+                                </div>
+                                <div className=" col-sm-6 col-md-3 sort my-3">
+                                    <span className="mr-1">
+                                        Sortiraj:
+                                    </span>
+
+                                    <select name="sortOrder" onChange={sortHandler}>
+                                        <option value="">Novije</option>
+                                        <option value="lowest">Cena rastuce</option>
+                                        <option value="highest">Cena opadajuce</option>
+                                    </select>
+                                </div>
+                                <div className="col-md-2 col-sm-6 my-3">
+                                    <select name="sortOrder" onChange={sortHandler}>
+                                        <option value="">-- Sirina --</option>
+                                        {widths?.map(item => {
+                                            return <option value={item.name} key={item.name}>{item.name}</option>
+                                        })}
+                                    </select>
+                                </div>
+                                <div className="col-md-2 col-sm-6 my-3">
+                                    <select name="sortOrder" onChange={sortHandler}>
+                                        <option value="">-- Visina --</option>
+                                        {heights?.map(item => {
+                                            return <option value={item.name} key={item.name}>{item.name}</option>
+                                        })}
+                                    </select>
+                                </div>
+                                <div className="col-md-2 col-sm-6 my-3">
+                                    <select name="sortOrder" onChange={sortHandler}>
+                                        <option value="">-- Precnik --</option>
+                                        {diameters?.map(item => {
+                                            return <option value={item.name} key={item.name}>{item.name}</option>
+                                        })}
+                                    </select>
+                                </div>
+                                <div className="col-md-4 col-sm-6 my-3">
+                                    <select name="sortOrder" onChange={sortHandler}>
+                                        <option value="">-- Kategorija --</option>
+                                        {categories?.map(item => {
+                                            return <option value={item.name} key={item.name}>{item.name}</option>
+                                        })}
+                                    </select>
+                                </div>
+                                <div className="col-md-4 col-sm-6 my-3">
+                                    <select name="sortOrder" onChange={sortHandler}>
+                                        <option value="">-- Proizvodjac --</option>
+                                        {manufacturers?.map(item => {
+                                            return <option value={item.name} key={item.name}>{item.name}</option>
+                                        })}
+                                    </select>
+                                </div>
+                                <div className="col-md-4 col-sm-6 my-3">
+                                    <select name="sortOrder" onChange={sortHandler}>
+                                        <option value="">-- Sezona --</option>
+                                        {seasons?.map(item => {
+                                            return <option value={item.name} key={item.name}>{item.name}</option>
+                                        })}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        {/*<ul className="filter">*/}
+                        {/*    <li>*/}
+                        {/*        <form onSubmit={submitHandler}>*/}
+                        {/*            <input*/}
+                        {/*                name="searchKeyword"*/}
+                        {/*                onChange={(e) => setSearchKeyword(e.target.value)}*/}
+                        {/*            />*/}
+                        {/*            <button type="submit">Search</button>*/}
+                        {/*        </form>*/}
+                        {/*    </li>*/}
+                        {/*    <li>*/}
+                        {/*        Sortiraj po:{' '}*/}
+                        {/*        <select name="sortOrder" onChange={sortHandler}>*/}
+                        {/*            <option value="">Novije</option>*/}
+                        {/*            <option value="lowest">Cena rastuce</option>*/}
+                        {/*            <option value="highest">Cena opadajuce</option>*/}
+                        {/*        </select>*/}
+                        {/*    </li>*/}
+                        {/*    <li>*/}
+                        {/*        <select name="sortOrder" onChange={sortHandler}>*/}
+                        {/*            <option value="">-- Sirina --</option>*/}
+                        {/*            {widths?.map(item => {*/}
+                        {/*                return <option value={item.name} key={item.name}>{item.name}</option>*/}
+                        {/*            })}*/}
+                        {/*        </select>*/}
+                        {/*    </li>*/}
+                        {/*    <li>*/}
+                        {/*        <select name="sortOrder" onChange={sortHandler}>*/}
+                        {/*            <option value="">-- Visina --</option>*/}
+                        {/*            {heights?.map(item => {*/}
+                        {/*                return <option value={item.name} key={item.name}>{item.name}</option>*/}
+                        {/*            })}*/}
+                        {/*        </select>*/}
+                        {/*    </li>*/}
+                        {/*    <li>*/}
+                        {/*        <select name="sortOrder" onChange={sortHandler}>*/}
+                        {/*            <option value="">-- Precnik --</option>*/}
+                        {/*            {diameters?.map(item => {*/}
+                        {/*                return <option value={item.name} key={item.name}>{item.name}</option>*/}
+                        {/*            })}*/}
+                        {/*        </select>*/}
+                        {/*    </li>*/}
+                        {/*</ul>*/}
                     </div>
                     <div className="col-md-12">
-                        <ul className="filter">
-                            <li>
-                                <select name="sortOrder" onChange={sortHandler}>
-                                    <option value="">-- Kategorija --</option>
-                                    {categories?.map(item => {
-                                        return <option value={item.name} key={item.name}>{item.name}</option>
-                                    })}
-                                </select>
-                            </li>
-                            <li>
-                                <select name="sortOrder" onChange={sortHandler}>
-                                    <option value="">-- Proizvodjac --</option>
-                                    {manufacturers?.map(item => {
-                                        return <option value={item.name} key={item.name}>{item.name}</option>
-                                    })}
-                                </select>
-                            </li>
-                            <li>
-                                <select name="sortOrder" onChange={sortHandler}>
-                                    <option value="">-- Sezona --</option>
-                                    {seasons?.map(item => {
-                                        return <option value={item.name} key={item.name}>{item.name}</option>
-                                    })}
-                                </select>
-                            </li>
-                        </ul>
+                        <div className="container">
+                            <div className="row filter">
+
+                            </div>
+                        </div>
+
+                        {/*<ul className="filter">*/}
+                        {/*    <li>*/}
+                        {/*        <select name="sortOrder" onChange={sortHandler}>*/}
+                        {/*            <option value="">-- Kategorija --</option>*/}
+                        {/*            {categories?.map(item => {*/}
+                        {/*                return <option value={item.name} key={item.name}>{item.name}</option>*/}
+                        {/*            })}*/}
+                        {/*        </select>*/}
+                        {/*    </li>*/}
+                        {/*    <li>*/}
+                        {/*        <select name="sortOrder" onChange={sortHandler}>*/}
+                        {/*            <option value="">-- Proizvodjac --</option>*/}
+                        {/*            {manufacturers?.map(item => {*/}
+                        {/*                return <option value={item.name} key={item.name}>{item.name}</option>*/}
+                        {/*            })}*/}
+                        {/*        </select>*/}
+                        {/*    </li>*/}
+                        {/*    <li>*/}
+                        {/*        <select name="sortOrder" onChange={sortHandler}>*/}
+                        {/*            <option value="">-- Sezona --</option>*/}
+                        {/*            {seasons?.map(item => {*/}
+                        {/*                return <option value={item.name} key={item.name}>{item.name}</option>*/}
+                        {/*            })}*/}
+                        {/*        </select>*/}
+                        {/*    </li>*/}
+                        {/*</ul>*/}
                     </div>
                 </div>
 
@@ -139,10 +217,10 @@ function HomeScreen(props) {
             ) : (
                 <>
 
-                    <div className=" ">
+                    <div className="">
                         <div className=" products">
                             {products.map((product) => (
-                                <div className="col-md-3 my-3 product-wrapper" key={product._id} onClick={event => history.push(`/product/${product._id}`)}>
+                                <div className="col-lg-3 col-md-6 my-3 product-wrapper" key={product._id} onClick={event => history.push(`/product/${product._id}`)}>
                                     <div className="product">
                                         {/*<Link to={'/product/' + product._id}>*/}
                                         <a>

@@ -33,61 +33,64 @@ const listCategories = (
     }
 };
 const saveCategory = (category) => async (dispatch, getState) => {
-    try {
-        dispatch({type: CATEGORY_SAVE_REQUEST, payload: category});
-        const {
-            userSignin: {userInfo},
-        } = getState();
-        if (!category._id) {
-            const {data} = await Axios.post('/api/category', category, {
-                headers: {
-                    Authorization: 'Bearer ' + userInfo.token,
-                },
-            });
-            dispatch({type: CATEGORY_SAVE_SUCCESS, payload: data});
-        } else {
-            console.log('uso je u else....');
-            // const { data } = await Axios.put(
-            //     '/api/products/' + product._id,
-            //     product,
-            //     {
-            //       headers: {
-            //         Authorization: 'Bearer ' + userInfo.token,
-            //       },
-            //     }
-            // );
-            // dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: data });
-        }
-    } catch (error) {
-        dispatch({type: CATEGORY_SAVE_FAIL, payload: error.message});
-    }
-};
-
-// const detailsCategory = (productId) => async (dispatch) => {
-//   try {
-//     dispatch({ type: PRODUCT_DETAILS_REQUEST, payload: productId });
-//     const { data } = await axios.get('/api/products/' + productId);
-//     dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data });
-//   } catch (error) {
-//     dispatch({ type: PRODUCT_DETAILS_FAIL, payload: error.message });
-//   }
-// };
-
-const deleteCategory = (categoryId) => async (dispatch, getState) => {
-    try {
-        const {
-            userSignin: {userInfo},
-        } = getState();
-        dispatch({type: CATEGORY_DELETE_REQUEST, payload: categoryId});
-        const {data} = await axios.delete('/api/category/' + categoryId, {
+    // try {
+    dispatch({type: CATEGORY_SAVE_REQUEST, payload: category});
+    const {
+        userSignin: {userInfo},
+    } = getState();
+    if (!category._id) {
+        Axios.post(`/api/category`, category, {
             headers: {
                 Authorization: 'Bearer ' + userInfo.token,
             },
-        });
-        dispatch({type: CATEGORY_DELETE_SUCCESS, payload: data, success: true});
-    } catch (error) {
-        dispatch({type: CATEGORY_DELETE_FAIL, payload: error.message});
+        })
+            .then(data => {
+                dispatch({type: CATEGORY_SAVE_SUCCESS, payload: data.data})
+            })
+            .catch(error => {
+                dispatch({type: CATEGORY_SAVE_FAIL, payload: error.response.data});
+            })
+            .finally(() => {
+                dispatch(listCategories())
+            });
+    } else {
+        Axios.put(
+            `/api/category/${category.selectedCategory}/${category._id || 0}`,
+            category,
+            {
+                headers: {
+                    Authorization: 'Bearer ' + userInfo.token,
+                },
+            })
+            .then(data => {
+                dispatch({type: CATEGORY_SAVE_SUCCESS, payload: data.data})
+            })
+            .catch(error => {
+                dispatch({type: CATEGORY_SAVE_FAIL, payload: error.response.data});
+            })
+            .finally(() => {
+                dispatch(listCategories())
+            });
     }
+};
+
+const deleteCategory = (category) => async (dispatch, getState) => {
+    const {
+        userSignin: {userInfo},
+    } = getState();
+    dispatch({type: CATEGORY_DELETE_REQUEST, payload: category.id});
+    axios.delete(`/api/category/${category.selectedCategory}/${category.id}`, {
+        headers: {
+            Authorization: 'Bearer ' + userInfo.token,
+        },
+    })
+        .then((data) => {
+            dispatch({type: CATEGORY_DELETE_SUCCESS, payload: data.data})
+        })
+        .catch(error => dispatch({type: CATEGORY_DELETE_FAIL, payload: error.response.data}))
+        .finally(() => {
+            dispatch(listCategories())
+        });
 };
 
 export {

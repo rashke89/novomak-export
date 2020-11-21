@@ -12,6 +12,7 @@ import {
   CATEGORY_DELETE_SUCCESS,
   CATEGORY_DELETE_FAIL,
 } from '../constants/categoryConstants';
+import {listCategories} from "../actions/categoryAction";
 
 function categoryListReducer(state = { categories: [] }, action) {
   switch (action.type) {
@@ -57,10 +58,14 @@ function categorySaveReducer(state = { category: {} }, action) {
     case CATEGORY_SAVE_REQUEST:
       return { loading: true };
     case CATEGORY_SAVE_SUCCESS:
-      document.querySelector('#close-modal-btn').click();
+        setTimeout(() => {
+          document.querySelector('#close-modal-btn').click();
+        }, 3000);
+      console.log('ovo je action...',{ loading: false, success: true, category: action.payload });
       return { loading: false, success: true, category: action.payload };
     case CATEGORY_SAVE_FAIL:
-      return { loading: false, error: action.payload };
+      console.log(action);
+      return { loading: false, success: false, category: action.payload };
     default:
       return state;
   }
