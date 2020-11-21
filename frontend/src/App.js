@@ -33,7 +33,9 @@ function App() {
         <header className="header">
           <div className="brand">
             {/*<button onClick={openMenu}>&#9776;</button>*/}
-            <Link to="/">LOGO</Link>
+            <Link to="/">
+              <img src="http://www.novomak-export.com/wp-content/uploads/2013/06/novomak-logo2.png" alt=""/>
+            </Link>
           </div>
           <div className="header-links">
             {/*<a >Korpa</a>*/}
