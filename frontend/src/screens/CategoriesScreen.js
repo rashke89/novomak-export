@@ -15,12 +15,15 @@ function CategoriesScreen(props) {
   const [price, setPrice] = useState('');
   const [image, setImage] = useState('');
   const [brand, setBrand] = useState('');
-  const [category, setCategory] = useState('');
+
+  const [selectedCategory, setSelectedCategory] = useState('categories');
   const [countInStock, setCountInStock] = useState('');
   const [description, setDescription] = useState('');
   const [uploading, setUploading] = useState(false);
-  const categoryList = useSelector((state) => state.categoryList);
-  const { loading, categories, error } = categoryList;
+  const categoryList = useSelector((state) => state.categoryList.categories);
+  // const { loading, categories, error } = categoryList;
+    const {categories, diameters, manufacturers, heights, widths, seasons} = categoryList;
+    const [renderList, setRenderList] = useState(categories);
 
   const productSave = useSelector((state) => state.productSave);
   const {
@@ -42,21 +45,29 @@ function CategoriesScreen(props) {
       setModalVisible(false);
     }
     dispatch(listCategories());
+      setRenderList(categories);
     return () => {
       //
     };
   }, [successSave, successDelete]);
 
+  useEffect(() => {
+      setRenderList(categories);
+    return () => {
+      //
+    };
+  }, [categories]);
+
   const openModal = (product) => {
     // setModalVisible(true);
     setId(product._id);
     setName(product.name);
-    setPrice(product.price);
-    setDescription(product.description);
-    setImage(product.image);
-    setBrand(product.brand);
-    setCategory(product.category);
-    setCountInStock(product.countInStock);
+    // setPrice(product.price);
+    // setDescription(product.description);
+    // setImage(product.image);
+    // setBrand(product.brand);
+    // setCategory(product.category);
+    // setCountInStock(product.countInStock);
   };
   const submitHandler = (e) => {
     e.preventDefault();
@@ -70,14 +81,13 @@ function CategoriesScreen(props) {
     );
   };
   const deleteHandler = (product) => {
+      return;
     dispatch(deleteProdcut(product._id));
   };
   const uploadFileHandler = (e) => {
     const file = e.target.files[0];
-      console.log(file);
       const bodyFormData = new FormData();
     bodyFormData.append('xml', file);
-      console.log(bodyFormData);
       setUploading(true);
     axios
       .post('/api/xml', bodyFormData, {
@@ -95,16 +105,40 @@ function CategoriesScreen(props) {
         setUploading(false);
       });
   };
+  const onChoseCategory = (categoryName) => {
+      setRenderList(categoryList[categoryName])
+      setSelectedCategory(categoryName);
+  }
   return (
     <div className="content content-margined">
       <div className="product-header mb-4">
-        <h3>Kategorije</h3>
+        {/*<h3>Kategorije</h3>*/}
+          <ul className="nav header-list">
+              <li className="nav-item" onClick={e => onChoseCategory('categories')}>
+                  <span className={`nav-link ${selectedCategory === 'categories' && 'active'}`}>Kategorije</span>
+              </li>
+              <li className="nav-item" onClick={e => onChoseCategory('manufacturers')}>
+                  <span className={`nav-link ${selectedCategory === 'manufacturers' && 'active'}`}>Proizvodjaci</span>
+              </li>
+              <li className="nav-item" onClick={e => onChoseCategory('seasons')}>
+                  <span className={`nav-link ${selectedCategory === 'seasons' && 'active'}`} >Sezone</span>
+              </li>
+              <li className="nav-item" onClick={e => onChoseCategory('widths')}>
+                  <span className={`nav-link ${selectedCategory === 'widths' && 'active'}`}>Sirina</span>
+              </li>
+              <li className="nav-item" onClick={e => onChoseCategory('heights')}>
+                  <span className={`nav-link ${selectedCategory === 'heights' && 'active'}`}>Visina</span>
+              </li>
+              <li className="nav-item" onClick={e => onChoseCategory('diameters')}>
+                  <span className={`nav-link ${selectedCategory === 'diameters' && 'active'}`}>Precnik</span>
+              </li>
+          </ul>
         <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={openModal}>
           Kreiraj kategoriju
         </button>
       </div>
 
-        <div className="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade bd-example-modal-lg" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                     <div className="modal-header">
@@ -118,70 +152,19 @@ function CategoriesScreen(props) {
                             <form onSubmit={submitHandler}>
                                 <div className="row">
                                     <div className="col-md-6">
-                                        <label htmlFor="name">Ime</label>
-                                        <input
-                                            type="text"
-                                            name="name"
-                                            value={name}
-                                            id="name"
-                                            onChange={(e) => setName(e.target.value)}
-                                        />
-                                        {/*<label htmlFor="price">Cena</label>*/}
+                                        In progress...
+                                        {/*<label htmlFor="name">Ime</label>*/}
                                         {/*<input*/}
                                         {/*    type="text"*/}
-                                        {/*    name="price"*/}
-                                        {/*    value={price}*/}
-                                        {/*    id="price"*/}
-                                        {/*    onChange={(e) => setPrice(e.target.value)}*/}
+                                        {/*    name="name"*/}
+                                        {/*    value={name}*/}
+                                        {/*    id="name"*/}
+                                        {/*    onChange={(e) => setName(e.target.value)}*/}
                                         {/*/>*/}
-                                        <label htmlFor="image">Slika</label>
-                                        <input
-                                            type="text"
-                                            name="image"
-                                            value={image}
-                                            id="image"
-                                            onChange={(e) => setImage(e.target.value)}
-                                        />
-                                        <input type="file"
-                                               className="w-100"
-                                               onChange={uploadFileHandler}/>
-                                        {uploading && <div>Uploading...</div>}
-                                        {/*<label htmlFor="brand">Brend</label>*/}
-                                        {/*<input*/}
-                                        {/*    type="text"*/}
-                                        {/*    name="brand"*/}
-                                        {/*    value={brand}*/}
-                                        {/*    id="brand"*/}
-                                        {/*    onChange={(e) => setBrand(e.target.value)}*/}
-                                        {/*/>*/}
+
                                     </div>
                                     <div className="col-md-6">
 
-                                        {/*<label htmlFor="countInStock">Broj raspolozivih jedinica</label>*/}
-                                        {/*<input*/}
-                                        {/*    type="text"*/}
-                                        {/*    name="countInStock"*/}
-                                        {/*    value={countInStock}*/}
-                                        {/*    id="countInStock"*/}
-                                        {/*    onChange={(e) => setCountInStock(e.target.value)}*/}
-                                        {/*/>*/}
-                                        {/*<label htmlFor="name">Kategorija</label>*/}
-                                        {/*<input*/}
-                                        {/*    type="text"*/}
-                                        {/*    name="category"*/}
-                                        {/*    value={category}*/}
-                                        {/*    id="category"*/}
-                                        {/*    onChange={(e) => setCategory(e.target.value)}*/}
-                                        {/*/>*/}
-                                        {/*<label htmlFor="description">Opis</label>*/}
-                                        {/*<textarea*/}
-                                        {/*    name="description"*/}
-                                        {/*    value={description}*/}
-                                        {/*    id="description"*/}
-                                        {/*    className="w-100"*/}
-                                        {/*    rows={6}*/}
-                                        {/*    onChange={(e) => setDescription(e.target.value)}*/}
-                                        {/*/>*/}
                                     </div>
                                 </div>
                             </form>
@@ -189,9 +172,9 @@ function CategoriesScreen(props) {
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" id="close-modal-btn" data-dismiss="modal">Odustani</button>
-                        <button type="submit" className="btn btn-primary" onClick={submitHandler}>
-                            {id ? 'Izmeni' : 'Kreiraj'}
-                        </button>
+                        {/*<button type="submit" className="btn btn-primary" onClick={submitHandler}>*/}
+                        {/*    {id ? 'Izmeni' : 'Kreiraj'}*/}
+                        {/*</button>*/}
                     </div>
                 </div>
             </div>
@@ -207,7 +190,7 @@ function CategoriesScreen(props) {
             </tr>
           </thead>
           <tbody>
-            {categories.map((product) => (
+            {renderList?.map((product) => (
               <tr key={product._id}>
                 <td className="align-center">{product._id}</td>
                 <td>{product.name}</td>

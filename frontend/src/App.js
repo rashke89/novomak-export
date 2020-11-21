@@ -15,6 +15,7 @@ import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import OrderScreen from './screens/OrderScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import OrdersScreen from './screens/OrdersScreen';
+import Carousel from "./components/carousel";
 
 function App() {
   const userSignin = useSelector((state) => state.userSignin);
@@ -49,9 +50,9 @@ function App() {
                   <li className="my-4">
                     <Link to="/orders">Porudzbine</Link>
                   </li>
-                  {/*<li className="my-4">*/}
-                  {/*  <Link to="/kategorije">Kategorije</Link>*/}
-                  {/*</li>*/}
+                  <li className="my-4">
+                    <Link to="/kategorije">Kategorije</Link>
+                  </li>
                   <li className="my-4">
                     <Link to="/products">Proizvodi</Link>
                   </li>
@@ -75,6 +76,7 @@ function App() {
             </li>
           </ul>
         </aside>
+
         <main className="main container">
           <div className="content">
             <Route path="/orders" component={OrdersScreen} />

@@ -1,6 +1,12 @@
 import express from 'express';
 import Product from '../models/productModel';
 import { isAuth, isAdmin } from '../util';
+import manufacturerModel from "../models/manufacturerModel";
+import seasonModel from "../models/seasonModel";
+import categoryModel from "../models/categoryModel";
+import widthModel from "../models/widthModel";
+import heightModel from "../models/heightModel";
+import diameterModel from "../models/diameterModel";
 
 const router = express.Router();
 
@@ -21,6 +27,7 @@ router.get('/', async (req, res) => {
       ? { Cena: 1 }
       : { Cena: -1 }
     : { _id: -1 };
+  const Visina = 225;
   const totalItems = await Product.find({ ...category, ...searchKeyword }).countDocuments();
   const products = await Product.find({ ...category, ...searchKeyword }).sort(
     sortOrder
@@ -77,6 +84,42 @@ router.put('/:id', isAuth, async (req, res) => {
 
     const updatedProduct = await product.save();
     if (updatedProduct) {
+      updatedProduct.Proizvodjac && manufacturerModel.findOne({name: updatedProduct.Proizvodjac}, (findErr, findData) => {
+        if (!findErr && !findData) {
+          let newCat = new manufacturerModel({name: updatedProduct.Proizvodjac});
+          newCat.save();
+        }
+      });
+      updatedProduct.Sezona && seasonModel.findOne({name: updatedProduct.Sezona}, (findErr, findData) => {
+        if (!findErr && !findData) {
+          let newCat = new seasonModel({name: updatedProduct.Sezona});
+          newCat.save();
+        }
+      });
+      updatedProduct.Kategorija && categoryModel.findOne({name: updatedProduct.Kategorija}, (findErr, findData) => {
+        if (!findErr && !findData) {
+          let newCat = new categoryModel({name: updatedProduct.Kategorija});
+          newCat.save();
+        }
+      });
+      updatedProduct.Sirina && widthModel.findOne({name: updatedProduct.Sirina}, (findErr, findData) => {
+        if (!findErr && !findData) {
+          let newCat = new widthModel({name: updatedProduct.Sirina});
+          newCat.save();
+        }
+      });
+      updatedProduct.Visina && heightModel.findOne({name: updatedProduct.Visina}, (findErr, findData) => {
+        if (!findErr && !findData) {
+          let newCat = new heightModel({name: updatedProduct.Visina});
+          newCat.save();
+        }
+      });
+      updatedProduct.Precnik && diameterModel.findOne({name: updatedProduct.Precnik}, (findErr, findData) => {
+        if (!findErr && !findData) {
+          let newCat = new diameterModel({name: updatedProduct.Precnik});
+          newCat.save();
+        }
+      });
       return res
         .status(200)
         .send({ message: 'Product Updated', data: updatedProduct });
@@ -111,7 +154,44 @@ router.post('/', isAuth, async (req, res) => {
     Cena: Number(req.body.price)
   });
   const newProduct = await product.save();
+
   if (newProduct) {
+    newProduct.Proizvodjac && manufacturerModel.findOne({name: newProduct.Proizvodjac}, (findErr, findData) => {
+      if (!findErr && !findData) {
+        let newCat = new manufacturerModel({name: newProduct.Proizvodjac});
+        newCat.save();
+      }
+    });
+    newProduct.Sezona && seasonModel.findOne({name: newProduct.Sezona}, (findErr, findData) => {
+      if (!findErr && !findData) {
+        let newCat = new seasonModel({name: newProduct.Sezona});
+        newCat.save();
+      }
+    });
+    newProduct.Kategorija && categoryModel.findOne({name: newProduct.Kategorija}, (findErr, findData) => {
+      if (!findErr && !findData) {
+        let newCat = new categoryModel({name: newProduct.Kategorija});
+        newCat.save();
+      }
+    });
+    newProduct.Sirina && widthModel.findOne({name: newProduct.Sirina}, (findErr, findData) => {
+      if (!findErr && !findData) {
+        let newCat = new widthModel({name: newProduct.Sirina});
+        newCat.save();
+      }
+    });
+    newProduct.Visina && heightModel.findOne({name: newProduct.Visina}, (findErr, findData) => {
+      if (!findErr && !findData) {
+        let newCat = new heightModel({name: newProduct.Visina});
+        newCat.save();
+      }
+    });
+    newProduct.Precnik && diameterModel.findOne({name: newProduct.Precnik}, (findErr, findData) => {
+      if (!findErr && !findData) {
+        let newCat = new diameterModel({name: newProduct.Precnik});
+        newCat.save();
+      }
+    });
     return res
       .status(201)
       .send({ message: 'New Product Created', data: newProduct });

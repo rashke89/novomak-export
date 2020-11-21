@@ -8,6 +8,12 @@ import util from 'util';
 import jp from 'jsonpath';
 const {JSONPath} = require('jsonpath-plus');
 import Product from '../models/productModel';
+import widthModel from '../models/widthModel';
+import heightModel from "../models/heightModel";
+import diameterModel from "../models/diameterModel";
+import manufacturerModel from "../models/manufacturerModel";
+import seasonModel from "../models/seasonModel";
+import categoryModel from "../models/categoryModel";
 // var inspect = require('eyes').inspector({maxLength: false})
 
 const router = express.Router();
@@ -142,6 +148,90 @@ router.post('/',  upload.single('xml'), async (req, res) => {
                         let product = new Product({...item});
                         let pr = product.save();
                     });
+                    let sirina = [...new Set(productList.map(item => item.Sirina))];
+                    let visina = [...new Set(productList.map(item => item.Visina))];
+                    let precnik = [...new Set(productList.map(item => item.Precnik))];
+                    let kategorija = [...new Set(productList.map(item => item.Kategorija))];
+                    let sezona = [...new Set(productList.map(item => item.Sezona))];
+                    let proizvodjac = [...new Set(productList.map(item => item.Proizvodjac))];
+                    if (proizvodjac && proizvodjac.length) {
+                        proizvodjac.forEach(item => {
+                            if (!item) {
+                                return;
+                            }
+                            manufacturerModel.findOne({name: item}, (findErr, findData) => {
+                                if (!findErr && !findData) {
+                                    let newCat = new manufacturerModel({name: item})
+                                    newCat.save();
+                                }
+                            })
+                        })
+                    }
+                    if (sezona && sezona.length) {
+                        sezona.forEach(item => {
+                            if (!item) {
+                                return;
+                            }
+                            seasonModel.findOne({name: item}, (findErr, findData) => {
+                                if (!findErr && !findData) {
+                                    let newCat = new seasonModel({name: item})
+                                    newCat.save();
+                                }
+                            })
+                        })
+                    }
+                    if (kategorija && kategorija.length) {
+                        kategorija.forEach(item => {
+                            if (!item) {
+                                return;
+                            }
+                            categoryModel.findOne({name: item}, (findErr, findData) => {
+                                if (!findErr && !findData) {
+                                    let newCat = new categoryModel({name: item})
+                                    newCat.save();
+                                }
+                            })
+                        })
+                    }
+                    if (sirina && sirina.length) {
+                        sirina.forEach(item => {
+                            if (!item) {
+                                return;
+                            }
+                            widthModel.findOne({name: item}, (findErr, findData) => {
+                                if (!findErr && !findData) {
+                                    let newCat = new widthModel({name: item})
+                                    newCat.save();
+                                }
+                            })
+                        })
+                    }
+                    if (visina && visina.length) {
+                        visina.forEach(item => {
+                            if (!item) {
+                                return;
+                            }
+                            heightModel.findOne({name: item}, (findErr, findData) => {
+                                if (!findErr && !findData) {
+                                    let newCat = new heightModel({name: item})
+                                    newCat.save();
+                                }
+                            })
+                        })
+                    }
+                    if (precnik && precnik.length) {
+                        precnik.forEach(item => {
+                            if (!item) {
+                                return;
+                            }
+                            diameterModel.findOne({name: item}, (findErr, findData) => {
+                                if (!findErr && !findData) {
+                                    let newCat = new diameterModel({name: item})
+                                    newCat.save();
+                                }
+                            })
+                        })
+                    }
 
                     fs.writeFile(`./uploads/${lastUploadedFile}.json`, JSON.stringify(productList), function (err, data) {
                         if (err) return console.log(err);

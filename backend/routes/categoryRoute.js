@@ -1,13 +1,23 @@
 import express from 'express';
 import Category from '../models/categoryModel'
 import { isAuth, isAdmin } from '../util';
+import diameterModel from "../models/diameterModel";
+import manufacturerModel from "../models/manufacturerModel";
+import heightModel from "../models/heightModel";
+import widthModel from "../models/widthModel";
+import seasonModel from "../models/seasonModel";
 
 const router = express.Router();
 
 /*Get all categories*/
 router.get('/', async (req, res) => {
-    const products = await Category.find();
-    res.send(products);
+    const categories = await Category.find();
+    const diameters = await diameterModel.find();
+    const manufacturers = await manufacturerModel.find();
+    const heights = await heightModel.find();
+    const widths = await widthModel.find();
+    const seasons = await seasonModel.find();
+    res.send({categories, diameters, manufacturers, heights, widths, seasons});
 });
 //
 // router.get('/:id', async (req, res) => {
