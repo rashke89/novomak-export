@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { detailsProduct, saveProductReview } from '../actions/productActions';
 import Rating from '../components/Rating';
 import { PRODUCT_REVIEW_SAVE_RESET } from '../constants/productConstants';
+import {addToCart} from "../actions/cartActions";
 
 function ProductScreen(props) {
   const [qty, setQty] = useState(1);
@@ -11,11 +12,7 @@ function ProductScreen(props) {
   const [comment, setComment] = useState('');
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
-  const productDetails = useSelector((state) => {
-    console.log(state);
-
-    return state.productDetails
-  });
+  const productDetails = useSelector((state) => state.productDetails);
   const { product, loading, error } = productDetails;
   const productReviewSave = useSelector((state) => state.productReviewSave);
   const { success: productSaveSuccess } = productReviewSave;
@@ -28,7 +25,6 @@ function ProductScreen(props) {
       setComment('');
       dispatch({ type: PRODUCT_REVIEW_SAVE_RESET });
     }
-    console.log(product);
     dispatch(detailsProduct(props.match.params.id));
     return () => {
       //
@@ -46,13 +42,17 @@ function ProductScreen(props) {
     );
   };
   const handleAddToCart = () => {
-    props.history.push('/cart/' + props.match.params.id + '?qty=' + qty);
+    dispatch(addToCart(product._id, qty));
+    props.history.push('/cart/');
   };
 
   return (
     <div className="container">
       <div className="back-to-result">
-        <Link to="/">Nazad</Link>
+        <Link to={{
+          pathname: '/',
+          state: { comeFromProduct: true }
+        }}>Nazad</Link>
       </div>
       {loading ? (
         <div>Loading...</div>
@@ -60,7 +60,7 @@ function ProductScreen(props) {
         <div>{error} </div>
       ) : (
         <>
-          <div className="details row">
+          {product?.ID ? <div className="details row">
             <div className="details-image col-md-4">
               <img className="img-fluid" src={product.Slika} alt="product"></img>
             </div>
@@ -109,34 +109,35 @@ function ProductScreen(props) {
                   Status:{' '}
                   {product.Lager > 0 ? 'Na stanju' : 'Nema na stanju.'}
                 </li>
-                <li>
+                {product.Lager > 0 ? <li>
                   Kolicina:{' '}
-                  <select
-                    value={qty}
-                    onChange={(e) => {
-                      setQty(e.target.value);
-                    }}
+                   <select
+                      value={qty}
+                      onChange={(e) => {
+                        setQty(e.target.value);
+                      }}
                   >
                     {Array.from(Array(product.Lager).keys()).map((x) => (
-                      <option key={x + 1} value={x + 1}>
-                        {x + 1}
-                      </option>
+                        <option key={x + 1} value={x + 1}>
+                          {x + 1}
+                        </option>
                     ))}
                   </select>
-                </li>
+                </li> : ''}
                 <li>
                   {product.Lager > 0 && (
-                    <button
-                      onClick={handleAddToCart}
-                      className="button primary"
-                    >
-                     Dodaj u Korpu
-                    </button>
+                      <button
+                          onClick={handleAddToCart}
+                          className="button primary"
+                      >
+                        Dodaj u Korpu
+                      </button>
                   )}
                 </li>
               </ul>
             </div>
-          </div>
+          </div> : ''}
+
           {/*<div className="content-margined">*/}
           {/*  <h2>Reviews</h2>*/}
           {/*  {!product.reviews.length && <div>There is no review</div>}*/}

@@ -6,7 +6,7 @@ import {
   productDetailsReducer,
   productSaveReducer,
   productDeleteReducer,
-  productReviewSaveReducer,
+  productReviewSaveReducer, filterReducer,
 } from './reducers/productReducers';
 import { cartReducer } from './reducers/cartReducers';
 import {
@@ -50,6 +50,7 @@ const reducer = combineReducers({
   myOrderList: myOrderListReducer,
   orderList: orderListReducer,
   orderDelete: orderDeleteReducer,
+  filter: filterReducer
 });
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(

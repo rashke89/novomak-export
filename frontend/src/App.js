@@ -15,18 +15,17 @@ import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import OrderScreen from './screens/OrderScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import OrdersScreen from './screens/OrdersScreen';
-import Carousel from "./components/carousel";
 
 function App() {
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
 
-  const openMenu = () => {
-    document.querySelector('.sidebar').classList.add('open');
-  };
-  const closeMenu = () => {
-    document.querySelector('.sidebar').classList.remove('open');
-  };
+  // const openMenu = () => {
+  //   document.querySelector('.sidebar').classList.add('open');
+  // };
+  // const closeMenu = () => {
+  //   document.querySelector('.sidebar').classList.remove('open');
+  // };
   return (
     <BrowserRouter>
       <div className="grid-container">
@@ -40,17 +39,17 @@ function App() {
           <div className="header-links">
             {/*<a >Korpa</a>*/}
             <Link to="/cart">korpa</Link>
-            {userInfo ? (
-              <Link to="/profile">{userInfo.name}</Link>
-            ) : (
-                <div></div>
-            )}
+            {/*{userInfo ? (*/}
+            {/*  <Link to="/profile">{userInfo.name}</Link>*/}
+            {/*) : (*/}
+            {/*    <div></div>*/}
+            {/*)}*/}
             {userInfo && userInfo.isAdmin && (
               <div className="dropdown">
-                <a href="#">Admin</a>
+                <a href="#">{userInfo.name}</a>
                 <ul className="dropdown-content">
                   <li className="my-4">
-                    <Link to="/orders">Porudzbine</Link>
+                    <Link to="/profile">Porudzbine</Link>
                   </li>
                   <li className="my-4">
                     <Link to="/kategorije">Kategorije</Link>
@@ -63,21 +62,21 @@ function App() {
             )}
           </div>
         </header>
-        <aside className="sidebar">
-          <h3 className="my-3">Kategorije</h3>
-          <button className="sidebar-close-button" onClick={closeMenu}>
-            x
-          </button>
-          <ul className="categories">
-            <li>
-              <Link to="/category/Gume">Gume</Link>
-            </li>
+        {/*<aside className="sidebar">*/}
+        {/*  <h3 className="my-3">Kategorije</h3>*/}
+        {/*  <button className="sidebar-close-button" onClick={closeMenu}>*/}
+        {/*    x*/}
+        {/*  </button>*/}
+        {/*  <ul className="categories">*/}
+        {/*    <li>*/}
+        {/*      <Link to="/category/Gume">Gume</Link>*/}
+        {/*    </li>*/}
 
-            <li>
-              {/*<Link to="/category/Shirts">Shirts</Link>*/}
-            </li>
-          </ul>
-        </aside>
+        {/*    <li>*/}
+        {/*      /!*<Link to="/category/Shirts">Shirts</Link>*!/*/}
+        {/*    </li>*/}
+        {/*  </ul>*/}
+        {/*</aside>*/}
 
         <main className="main container">
           <div className="content">

@@ -14,8 +14,9 @@ import {
   PRODUCT_REVIEW_SAVE_SUCCESS,
   PRODUCT_REVIEW_SAVE_REQUEST,
   PRODUCT_REVIEW_SAVE_FAIL,
-  PRODUCT_REVIEW_SAVE_RESET,
+  PRODUCT_REVIEW_SAVE_RESET, PRODUCT_FILTER_UPDATE,
 } from '../constants/productConstants';
+import Cookie from "js-cookie";
 
 function productListReducer(state = { products: [] }, action) {
   switch (action.type) {
@@ -37,8 +38,9 @@ function productDetailsReducer(state = { product: { reviews: [] } }, action) {
     case PRODUCT_DETAILS_SUCCESS:
       let productObj = {
         ...action.payload,
-        Lager: Number(action.payload.Lager)
-      }
+        Lager: action.payload.Lager && !isNaN(action.payload.Lager) ? Number(action.payload.Lager) : Number(action.payload.Lager.match(/\d+/)[0])
+      };
+
       return {
         loading: false,
         product:  productObj};
@@ -90,10 +92,20 @@ function productReviewSaveReducer(state = {}, action) {
   }
 }
 
+function filterReducer(state = {}, action) {
+  switch (action.type) {
+    case PRODUCT_FILTER_UPDATE:
+      return { ...action.payload };
+    default:
+      return state;
+  }
+}
+
 export {
   productListReducer,
   productDetailsReducer,
   productSaveReducer,
   productDeleteReducer,
   productReviewSaveReducer,
+  filterReducer
 };

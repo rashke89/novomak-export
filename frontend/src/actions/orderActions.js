@@ -19,11 +19,11 @@ const createOrder = (order) => async (dispatch, getState) => {
   }
 }
 
-const listMyOrders = () => async (dispatch, getState) => {
+const listMyOrders = (page, searchKeyword) => async (dispatch, getState) => {
   try {
     dispatch({ type: MY_ORDER_LIST_REQUEST });
     const { userSignin: { userInfo } } = getState();
-    const { data } = await Axios.get("/api/orders/mine", {
+    const { data } = await Axios.get(`/api/orders/mine?page=${page}&search=${searchKeyword}`, {
       headers:
         { Authorization: 'Bearer ' + userInfo.token }
     });
@@ -31,7 +31,7 @@ const listMyOrders = () => async (dispatch, getState) => {
   } catch (error) {
     dispatch({ type: MY_ORDER_LIST_FAIL, payload: error.message });
   }
-}
+};
 
 const listOrders = () => async (dispatch, getState) => {
 
@@ -89,4 +89,5 @@ const deleteOrder = (orderId) => async (dispatch, getState) => {
     dispatch({ type: ORDER_DELETE_FAIL, payload: error.message });
   }
 }
+
 export { createOrder, detailsOrder, payOrder, listMyOrders, listOrders, deleteOrder };

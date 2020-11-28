@@ -95,7 +95,7 @@ function ProductsScreen(props) {
                 image,
                 brand,
                 category,
-                countInStock,
+                countInStock: countInStock || 0,
                 description,
             })
         );
@@ -335,8 +335,8 @@ function ProductsScreen(props) {
                                                    onChange={uploadXmlFileHandler}/>
                                             {uploading && <div>Uploading...</div>}
                                         </div>
-                                        {xmlApiMsg && <div className="col-md-12 text-white mt-3">
-                                            <p className={xmlApiStatus > 250 ? 'bg-danger p-3' : 'bg-success p-3'}>
+                                        {xmlApiMsg && <div className="col-md-12 mt-3">
+                                            <p className={xmlApiStatus > 250 ? 'error-text p-3' : 'success-text p-3'}>
                                                 STATUS ubacivanja XML fajla: {xmlApiMsg}
                                             </p>
                                         </div>}

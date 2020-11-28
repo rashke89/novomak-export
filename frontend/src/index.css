@@ -10,6 +10,10 @@ body {
 button {
   font-size: 1.6rem;
 }
+button.btn-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 .full-width {
   width: 100%;
 }
@@ -26,6 +30,15 @@ button {
   grid-template-columns: 1fr;
   grid-template-rows: 5rem 1fr 5rem;
   height: 100%;
+}
+.head-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+.head-section input{
+  width: 300px;
 }
 .header {
   grid-area: header;
@@ -119,23 +132,49 @@ a:hover {
   height: 50rem;
   border-bottom: 0.1rem #c0c0c0 solid;
 }
+.products .info-text {
+  margin: 0 auto;
+  margin-top: 15px;
+}
 .product-wrapper {
   height: auto;
   padding: 0 10px;
 }
-.product {
+/*.product {*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  justify-content: space-between;*/
+/*  height: 420px;*/
+/*  !*border: 1px solid gainsboro;*!*/
+/*  border-radius: 8px;*/
+/*  overflow: hidden;*/
+/*  box-shadow: 2px 3px 7px -2px grey;*/
+/*}*/
+.product > a {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 420px;
-  /*border: 1px solid gainsboro;*/
+  padding-bottom: 5px;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 2px 3px 7px -2px grey;
+  color: black;
+}
+.product > a:hover {
+  text-decoration: none;
+}
+.product > a:hover .-bg-image {
+  transform: scale(1.2);
+  transition: all .5s;
+}
+.product > a:hover .product-name {
+  color: #ff8000;
 }
 .content {
 }
 .product-name {
+  color: #007bff;
   font-size: 2rem;
   font-weight: bold;
 }
@@ -154,8 +193,9 @@ a:hover {
 .product-rating {
   margin-bottom: 1rem;
 }
-.product a {
+.product .link {
   height: 280px;
+  min-height: 280px;
   overflow: hidden;
 }
 
@@ -248,6 +288,11 @@ a > .rating > span:last-child {
 .details-action {
   flex: 1 1 30rem;
 }
+.details-action select{
+  border-radius: .5rem;
+  padding: 1rem;
+  background: white;
+}
 .details-info li span {
   margin-left: 10px;
 }
@@ -292,6 +337,27 @@ a > .rating > span:last-child {
 .text-center {
   text-align: center;
 }
+.info-text {
+  background: #cff1ff;
+  border-left: 4px solid blue;
+  padding: 7px;
+}
+.error-text {
+  background: #ffcfcf;
+  border-left: 4px solid red;
+  padding: 7px;
+}
+.success-text {
+  background: #cfffd8;
+  border-left: 4px solid #00ff44;
+  padding: 7px;
+}
+.not-valid {
+  border-color: red;
+}
+button:focus, button:active {
+  outline: none;
+}
 /* Cart */
 
 .cart {
@@ -301,13 +367,16 @@ a > .rating > span:last-child {
   align-items: flex-start;
 }
 .cart-list {
-  flex: 3 1 60rem;
+  flex: 1 60rem;
+}
+.cart-action .form-modal input {
+  margin: 5px 0;
 }
 .cart-action {
   flex: 1 1 20rem;
   background-color: #f0f0f0;
   border-radius: 0.5rem;
-  padding: 1rem;
+  padding: 20px;
 }
 .cart-list-container {
   padding: 0;
@@ -323,19 +392,26 @@ a > .rating > span:last-child {
   border-bottom: 0.1rem #c0c0c0 solid;
 }
 .cart-list-container li img {
-  max-width: 10rem;
-  max-height: 10rem;
+  max-width: 15rem;
+  max-height: 15rem;
 }
 .cart-list-container li:first-child {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
 }
 .cart-image {
   flex: 1 1;
+  margin-right: 10px;
+  min-width: 150px;
+  text-align: center;
 }
 .cart-name {
   flex: 8 1;
+}
+.cart-name select {
+  border-radius: .5rem;
+  padding: 1rem;
+  background-color: white;
 }
 .cart-price {
   flex: 1 1;
@@ -455,16 +531,18 @@ tbody > tr:nth-child(odd) {
   flex-wrap: wrap;
   padding: 1rem;
   justify-content: space-between;
+  margin-top: 20px;
 }
 .placeorder-info {
-  flex: 3 1 60rem;
+  flex: 2 1 60rem;
 }
 .placeorder-action {
   flex: 1 1 20rem;
   border: 0.1rem #c0c0c0 solid;
   border-radius: 0.5rem;
   background-color: #fcfcfc;
-  padding: 1rem;
+  padding: 20px;
+  height: fit-content;
 }
 .placeorder-info > div {
   border: 0.1rem #c0c0c0 solid;
@@ -499,6 +577,10 @@ tbody > tr:nth-child(odd) {
 .profile {
   display: flex;
   flex-wrap: wrap;
+  margin-top: 20px;
+}
+.profile .form {
+  align-items: normal;
 }
 
 .profile-info {
@@ -634,5 +716,9 @@ tbody > tr:nth-child(odd) {
   }
   .col-sm-6 {
     width: 50%;
+  }
+  .cart-list-container li img {
+    max-width: 10rem;
+    max-height: 10rem;
   }
 }

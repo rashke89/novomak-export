@@ -29,7 +29,6 @@ router.get("/", isAuth, async (req, res) => {
 router.get("/mine", isAuth, async (req, res) => {
     let page = req.query.page;
     let searchKeyword = req.query.search || '';
-    console.log(req.query);
     let totalItems = await Order.find().countDocuments();
     let orders;
     if (searchKeyword) {
@@ -64,8 +63,6 @@ router.get("/mine", isAuth, async (req, res) => {
 
 router.get("/:id", async (req, res) => {
     const order = await Order.findOne({_id: req.params.id});
-    console.log(req.params);
-    console.log(order);
     if (order) {
         res.send(order);
     } else {

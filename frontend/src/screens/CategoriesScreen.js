@@ -13,17 +13,10 @@ function CategoriesScreen(props) {
     const [modalVisible, setModalVisible] = useState(false);
     const [id, setId] = useState('');
     const [name, setName] = useState('');
-    const [price, setPrice] = useState('');
-    const [image, setImage] = useState('');
-    const [brand, setBrand] = useState('');
-
+    const [discount, setDiscount] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('categories');
-    const [countInStock, setCountInStock] = useState('');
-    const [description, setDescription] = useState('');
-    const [uploading, setUploading] = useState(false);
     const categoryList = useSelector((state) => state.categoryList.categories);
     const categorySave = useSelector((state) => state.categorySave);
-    // const { loading, categories, error } = categoryList;
     const {categories, diameters, manufacturers, heights, widths, seasons} = categoryList;
     const [renderList, setRenderList] = useState(categories);
 
@@ -43,9 +36,9 @@ function CategoriesScreen(props) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (successSave) {
-            setModalVisible(false);
-        }
+        // if (successSave) {
+        //     setModalVisible(false);
+        // }
         dispatch(listCategories());
         setRenderList(categories);
         return () => {
@@ -63,6 +56,10 @@ function CategoriesScreen(props) {
     const openModal = (product) => {
         setId(product._id);
         setName(product.name);
+        if (product?.discount)
+            setDiscount(product.discount);
+        else
+            setDiscount('')
     };
     const submitHandler = (e) => {
         e.preventDefault();
@@ -71,6 +68,7 @@ function CategoriesScreen(props) {
                 _id: id,
                 selectedCategory,
                 name,
+                discount
             })
         );
     };
@@ -125,7 +123,7 @@ function CategoriesScreen(props) {
                             <div className="form-modal">
                                 <form onSubmit={submitHandler}>
                                     <div className="row">
-                                        <div className="col-md-6">
+                                        <div className={`${selectedCategory === 'categories' ? 'col-md-6' : 'col-md-12'}`}>
                                             <label htmlFor="name">Ime</label>
                                             <input
                                                 type="text"
@@ -136,9 +134,19 @@ function CategoriesScreen(props) {
                                             />
 
                                         </div>
-                                        <div className="col-md-6">
-                                            {categorySave && categorySave.hasOwnProperty('loading') && !categorySave.loading && <div className="col-md-12 text-white mt-3">
-                                                <p className={!categorySave?.success ? 'bg-danger p-3' : 'bg-success p-3'}>
+                                        {selectedCategory === 'categories' && <div className="col-md-6">
+                                            <label htmlFor="brand">Rabat (%)</label>
+                                            <input
+                                                type="number"
+                                                name="brand"
+                                                value={discount}
+                                                id="brand"
+                                                onChange={(e) => setDiscount(e.target.value)}
+                                            ></input>
+                                        </div>}
+                                        <div className="col-md-12">
+                                            {categorySave && categorySave.hasOwnProperty('loading') && !categorySave.loading && <div className="col-md-12 mt-3">
+                                                <p className={!categorySave?.success ? 'error-text p-3' : 'success-text p-3'}>
                                                     [STATUS] {id ? 'izmena' : 'kreiranje'} kategorije: {categorySave?.category?.message}
                                                 </p>
                                             </div>}
@@ -164,7 +172,7 @@ function CategoriesScreen(props) {
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Ime</th>
+                        <th>Naziv</th>
                         <th></th>
                     </tr>
                     </thead>

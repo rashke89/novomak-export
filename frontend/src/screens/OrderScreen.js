@@ -7,7 +7,10 @@ function OrderScreen(props) {
 
   const orderPay = useSelector(state => state.orderPay);
   const { loading: loadingPay, success: successPay, error: errorPay } = orderPay;
+  const orderDetails = useSelector(state => state.orderDetails);
+  const { loading, order, error } = orderDetails;
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (successPay) {
       props.history.push("/profile");
@@ -22,60 +25,34 @@ function OrderScreen(props) {
     dispatch(payOrder(order, paymentResult));
   }
 
-  const orderDetails = useSelector(state => state.orderDetails);
-  const { loading, order, error } = orderDetails;
+
 
   return loading ? <div>Loading ...</div> : error ? <div>{error}</div> :
 
     <div>
       <div className="placeorder">
+        <div className="w-100 px-3 mb-4">
+          <h3>Detalji porudzbine ID: {order._id}</h3>
+        </div>
         <div className="placeorder-info">
           <div>
-            <h3>
-              Shipping
-          </h3>
-            <div>
-              {order.shipping.address}, {order.shipping.city},
-          {order.shipping.postalCode}, {order.shipping.country},
-          </div>
-            <div>
-              {order.isDelivered ? "Delivered at " + order.deliveredAt : "Not Delivered."}
-            </div>
-          </div>
-          <div>
-            <h3>Payment</h3>
-            <div>
-              Payment Method: {order.payment.paymentMethod}
-            </div>
-            <div>
-              {order.isPaid ? "Paid at " + order.paidAt : "Not Paid."}
-            </div>
-          </div>
-          <div>
             <ul className="cart-list-container">
-              <li>
-                <h3>
-                  Shopping Cart
-          </h3>
-                <div>
-                  Price
-          </div>
-              </li>
+
               {
                 order.orderItems.length === 0 ?
                   <div>
-                    Cart is empty
+                    Ova porudzbina nema selektovanih proizvoda.
           </div>
                   :
-                  order.orderItems.map(item =>
-                    <li key={item._id}>
+                  order.orderItems.map((item, index) =>
+                    <li key={index}>
                       <div className="cart-image">
-                        <img src={item.image} alt="product" />
+                        <img src={item.Slika} alt="product" />
                       </div>
                       <div className="cart-name">
                         <div>
                           <Link to={"/product/" + item.product}>
-                            {item.name}
+                            {item.Naziv}
                           </Link>
 
                         </div>
@@ -84,7 +61,7 @@ function OrderScreen(props) {
                         </div>
                       </div>
                       <div className="cart-price">
-                        {item.price} rsd
+                        {item.Cena} rsd
                       </div>
                     </li>
                   )
@@ -96,33 +73,42 @@ function OrderScreen(props) {
         </div>
         <div className="placeorder-action">
           <ul>
-            <li className="placeorder-actions-payment">
-              {loadingPay && <div>Finishing Payment...</div>}
-              {!order.isPaid &&
-                <PaypalButton
-                  amount={order.totalPrice}
-                  onSuccess={handleSuccessPayment} />
-              }
+            <li>
+              <h2>Podaci:</h2>
             </li>
             <li>
-              <h3>Order Summary</h3>
+              <div>Datum:</div>
+              <div>{new Date(order.createdAt).toLocaleString()}</div>
             </li>
             <li>
-              <div>Items</div>
-              <div>{order.itemsPrice} rsd</div>
+              <div>Ime i prezime:</div>
+              <div>{order.user?.name} {order.user?.lastName}</div>
             </li>
             <li>
-              <div>Shipping</div>
-              <div>{order.shippingPrice} rsd</div>
+              <div>E-mail:</div>
+              <div>{order.user?.email}</div>
             </li>
             <li>
-              <div>Tax</div>
-              <div>{order.taxPrice} rsd</div>
+              <div>Adresa:</div>
+              <div>{order.user?.address}</div>
             </li>
             <li>
-              <div>Order Total</div>
-              <div>{order.totalPrice} rsd</div>
+              <div>Grad:</div>
+              <div>{order.user?.city}</div>
             </li>
+            <li>
+              <div>Telefon:</div>
+              <div>{order.user?.phone}</div>
+            </li>
+            <li>
+              <div className="mr-3">Napomena:</div>
+              <div>{order.user?.note}</div>
+            </li>
+            <li>
+              <div>Ukupna cena:</div>
+              <div>{order.priceSum} rsd</div>
+            </li>
+
           </ul>
 
 
