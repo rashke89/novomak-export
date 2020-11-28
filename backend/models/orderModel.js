@@ -11,30 +11,32 @@ const paymentSchema = {
 };
 
 const orderItemSchema = new mongoose.Schema({
-  name: { type: String, required: true },
+  Naziv: { type: String, required: true },
   qty: { type: Number, required: true },
-  image: { type: String, required: true },
-  price: { type: String, required: true },
+  Slika: { type: String, required: true },
+  Cena: { type: String, required: true },
   product: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Product',
-    required: true
-  },
+    required: false
+  }
+});
+
+const userSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  fullName: { type: String, required: true },
+  lastName: { type: String, required: true },
+  email: { type: String, required: true },
+  phone: { type: String, required: true },
+  address: { type: String, required: true },
+  city: { type: String, required: true },
+  note: { type: String, required: false }
 });
 
 const orderSchema = new mongoose.Schema({
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  user: userSchema,
   orderItems: [orderItemSchema],
-  shipping: shippingSchema,
-  payment: paymentSchema,
-  itemsPrice: { type: Number },
-  taxPrice: { type: Number },
-  shippingPrice: { type: Number },
-  totalPrice: { type: Number },
-  isPaid: { type: Boolean, default: false },
-  paidAt: { type: Date },
-  isDelivered: { type: Boolean, default: false },
-  deliveredAt: { type: Date },
+  priceSum: {type: Number, required: true}
 }, {
   timestamps: true
 });

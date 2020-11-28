@@ -63,6 +63,7 @@ router.put('/:category/:id', isAuth, async (req, res) => {
                     return res.status(500).send({message: `Greska prilikom izmene kategorije. Kategorija ne postoji. Naziv kategorije: ${req.body.name}`});
                 }
                 data.name = req.body.name;
+                data.discount = req.body.discount;
                 data.save().then((savedItem) => {
                     if (savedItem) {
                         return res
@@ -274,7 +275,7 @@ router.post('/', isAuth, async (req, res) => {
     let newItem;
     switch (category) {
         case 'categories':
-            newItem = new categoryModel({name});
+            newItem = new categoryModel({name, discount: req.body.discount});
             newItem.save()
                 .then((savedItem) => {
                     if (savedItem) {

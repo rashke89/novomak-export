@@ -11,7 +11,11 @@ import diameterModel from "../models/diameterModel";
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  const category = req.query.category ? { category: req.query.category } : {};
+  const category = req.headers.category ? { Kategorija: req.headers.category } : {};
+  const filter = JSON.parse(req.headers['filter']) || {};
+  delete filter?.searchKeyword;
+  delete filter?.sortOrder;
+  delete filter?.page;
   const page = req.query.page;
   const searchKeyword = req.query.searchKeyword
     ? {
@@ -27,9 +31,8 @@ router.get('/', async (req, res) => {
       ? { Cena: 1 }
       : { Cena: -1 }
     : { _id: -1 };
-  const Visina = 225;
-  const totalItems = await Product.find({ ...category, ...searchKeyword }).countDocuments();
-  const products = await Product.find({ ...category, ...searchKeyword }).sort(
+  const totalItems = await Product.find({ ...category, ...searchKeyword, ...filter}).countDocuments();
+  const products = await Product.find({ ...category, ...searchKeyword, ...filter }).sort(
     sortOrder
   ).skip(32*(page-1)).limit(32);
   res.send({products, totalItems});
@@ -38,6 +41,10 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   const product = await Product.findOne({ _id: req.params.id });
   if (product) {
+    let foundCategory = await categoryModel.findOne({name: product.Kategorija});
+    if (foundCategory && foundCategory?.discount) {
+      product.Cena = product.Cena - ((product.Cena * Number(foundCategory.discount)) / 100).toFixed(2);
+    }
     res.send(product);
   } else {
     res.status(404).send({ message: 'Product Not Found.' });
