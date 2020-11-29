@@ -10,20 +10,20 @@ const transport = nodemailer.createTransport({
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-        user: 'mijatrale@gmail.com', // generated ethereal user
-        pass: '531329Ra', // generated ethereal password
+        user: 'novomak.export.prodaja@gmail.com', // generated ethereal user
+        pass: 'novomak.export2020', // generated ethereal password
     },
 });
 
 let mailOption = {
-    from: 'mijatrale@gmail.com',
-    to: 'rashke89@gmail.com',
-    subject: 'test',
+    from: 'novomak.export.prodaja@gmail.com',
+    to: 'novomakexport@yahoo.com',
+    subject: '',
     html: ``
 };
 
 router.get("/", isAuth, async (req, res) => {
-    const orders = await Order.find({})
+    const orders = await Order.find({});
     res.send(orders);
 });
 router.get("/mine", isAuth, async (req, res) => {
@@ -41,10 +41,10 @@ router.get("/mine", isAuth, async (req, res) => {
             }).countDocuments();
         } else {
             orders = await Order.find({
-                        'user.fullName': {
-                            $regex: searchKeyword,
-                            $options: 'i',
-                        }
+                'user.fullName': {
+                    $regex: searchKeyword,
+                    $options: 'i',
+                }
             }).sort({createdAt: -1}).skip(30 * (page - 1)).limit(30);
             totalItems = await Order.find({
                 'user.fullName': {
@@ -109,9 +109,11 @@ router.post("/submit", async (req, res) => {
 
     const newOrderCreated = await newOrder.save();
     if (newOrderCreated) {
-        mailOption.text = 'prodaoooo';
-        console.log(newOrderCreated);
-        mailOption.html = `<h4>Porudzbina: ${newOrderCreated._id}</h4>
+
+        /*Mail for novomak*/
+        mailOption.text = `Porudzbina: ${newOrderCreated._id}`;
+        mailOption.subject = `Porudzbina: ${newOrderCreated._id}`;
+        mailOption.html = `<h3>Porudzbina: ${newOrderCreated._id}</h3>
 <br/>
 <p>Korisnik: ${newOrderCreated.user.name} ${newOrderCreated.user.lastName}</p>
 <p>E-mail: ${newOrderCreated.user.email}</p>
@@ -120,7 +122,7 @@ router.post("/submit", async (req, res) => {
 <p>Napomena: ${newOrderCreated.user.note}</p>
 <h4>Proizvodi:</h4>
 ${newOrderCreated.orderItems.map(item => {
-            let link = `http://localhost:3000/product/${item._id}`
+            let link = `https://novomak.herokuapp.com/product/${item._id}`;
             return `<p>
       <div style="width: 70px; height: auto; display: inline-block">
         <img src=${item.Slika} alt="Slika proizvoda" style="width: 100%; height: auto" />
@@ -139,26 +141,29 @@ ${newOrderCreated.orderItems.map(item => {
         Proizvod: <a href=${link}>Link</a>
       </span>
     </div>
+    <hr>
     
   </p>`
         })}
 <br>
 
-<h4>Ukupno za naplatu: ${newOrderCreated.priceSum} rsd</h4>
-`;
+<h4>Ukupno za naplatu: ${newOrderCreated.priceSum} rsd</h4>`;
 
+
+        /*Mail for customer*/
         transport.sendMail(mailOption, (err, data) => {
             if (err)
                 console.log(err);
             else {
+                mailOption.subject = 'Novomak Export Porudzbina';
                 mailOption.to = newOrderCreated.user.email;
                 mailOption.html = `<h4>Porudzbina: ${newOrderCreated._id}</h4>
 <br/>
-<p>Postovani ${newOrderCreated.user.name} ${newOrderCreated.user.lastName}, Vasa porudzbina je primljena i trenutno je u obradi.</p>
+<p>Postovani <span style="text-transform: capitalize;">${newOrderCreated.user.fullName}</span> , Vasa porudzbina je primljena i trenutno je u obradi.</p>
 
 <h4>Proizvodi:</h4>
 ${newOrderCreated.orderItems.map(item => {
-                    let link = `http://localhost:3000/product/${item._id}`
+                    let link = `https://novomak.herokuapp.com/product/${item._id}`;
                     return `<p>
       <div style="width: 70px; height: auto; display: inline-block">
         <img src=${item.Slika} alt="Slika proizvoda" style="width: 100%; height: auto" />
@@ -177,15 +182,16 @@ ${newOrderCreated.orderItems.map(item => {
         Proizvod: <a href=${link}>Link</a>
       </span>
     </div>
-    
+    <hr>
   </p>`
                 })}
 <br>
 
 <h4>Ukupno za naplatu: ${newOrderCreated.priceSum} rsd</h4>
+<p>Ukoliko imate dodatnih pitanja, slobodno nas kontaktirajte.</p>
 <img src="http://www.novomak-export.com/wp-content/uploads/2013/06/novomak-logo2.png" alt="Novomak logo" />
 <p>Telefon: 022/314-740</p>
-`;
+<p>Kralja Petra I Karađorđevića 78, Stara Pazova 22300</p>`;
                 transport.sendMail(mailOption);
             }
         });
