@@ -114,7 +114,6 @@ router.post("/submit", async (req, res) => {
         mailOption.text = `Porudzbina: ${newOrderCreated._id}`;
         mailOption.subject = `Porudzbina: ${newOrderCreated._id}`;
         mailOption.html = `<h3>Porudzbina: ${newOrderCreated._id}</h3>
-<br/>
 <p>Korisnik: ${newOrderCreated.user.name} ${newOrderCreated.user.lastName}</p>
 <p>E-mail: ${newOrderCreated.user.email}</p>
 <p>Telefon: ${newOrderCreated.user.phone}</p>
@@ -142,10 +141,8 @@ ${newOrderCreated.orderItems.map(item => {
       </span>
     </div>
     <hr>
-    
   </p>`
         })}
-<br>
 
 <h4>Ukupno za naplatu: ${newOrderCreated.priceSum} rsd</h4>`;
 
@@ -158,7 +155,6 @@ ${newOrderCreated.orderItems.map(item => {
                 mailOption.subject = 'Novomak Export Porudzbina';
                 mailOption.to = newOrderCreated.user.email;
                 mailOption.html = `<h4>Porudzbina: ${newOrderCreated._id}</h4>
-<br/>
 <p>Postovani <span style="text-transform: capitalize;">${newOrderCreated.user.fullName}</span> , Vasa porudzbina je primljena i trenutno je u obradi.</p>
 
 <h4>Proizvodi:</h4>
@@ -185,8 +181,6 @@ ${newOrderCreated.orderItems.map(item => {
     <hr>
   </p>`
                 })}
-<br>
-
 <h4>Ukupno za naplatu: ${newOrderCreated.priceSum} rsd</h4>
 <p>Ukoliko imate dodatnih pitanja, slobodno nas kontaktirajte.</p>
 <img src="http://www.novomak-export.com/wp-content/uploads/2013/06/novomak-logo2.png" alt="Novomak logo" />

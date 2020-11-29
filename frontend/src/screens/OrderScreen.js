@@ -82,7 +82,7 @@ function OrderScreen(props) {
             </li>
             <li>
               <div>Ime i prezime:</div>
-              <div>{order.user?.name} {order.user?.lastName}</div>
+              <div className="text-capitalize">{order.user?.fullName}</div>
             </li>
             <li>
               <div>E-mail:</div>
