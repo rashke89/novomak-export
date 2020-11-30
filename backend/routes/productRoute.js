@@ -10,9 +10,9 @@ import diameterModel from "../models/diameterModel";
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
+router.post('/', async (req, res) => {
   const category = req.headers.category ? { Kategorija: req.headers.category } : {};
-  const filter = JSON.parse(req.headers['filter']) || {};
+  const filter = req.body;
   delete filter?.searchKeyword;
   delete filter?.sortOrder;
   delete filter?.page;
@@ -145,7 +145,7 @@ router.delete('/:id', isAuth, isAdmin, async (req, res) => {
   }
 });
 
-router.post('/', isAuth, async (req, res) => {
+router.post('/new', isAuth, async (req, res) => {
   const product = new Product({
     Sifra: req.body.key,
     Naziv: req.body.name,
