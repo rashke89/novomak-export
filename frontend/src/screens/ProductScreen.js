@@ -25,6 +25,12 @@ function ProductScreen(props) {
       setComment('');
       dispatch({ type: PRODUCT_REVIEW_SAVE_RESET });
     }
+    let options = {
+      behavior: 'smooth'
+    }
+    setTimeout(() => {
+      document.getElementsByClassName('header')[0].scrollIntoView(options)
+    }, 500)
     dispatch(detailsProduct(props.match.params.id));
     return () => {
       //
@@ -49,10 +55,7 @@ function ProductScreen(props) {
   return (
     <div className="container">
       <div className="back-to-result">
-        <Link to={{
-          pathname: '/',
-          state: { comeFromProduct: true }
-        }}>Nazad</Link>
+        <p onClick={props.history.goBack}>Nazad</p>
       </div>
       {loading ? (
         <div>Loading...</div>

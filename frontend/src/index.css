@@ -86,7 +86,20 @@ button.btn-disabled {
     height: fit-content;
     padding: 20px;
 }
-
+.footer ul {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+}
+.footer ul li {
+    margin: 7px 20px;
+    font-size: 18px;
+    color: #fff;
+}
+.footer ul li:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
 .footer .col-md-12 {
     display: flex;
     justify-content: space-between;
@@ -103,6 +116,11 @@ button.btn-disabled {
 
 .footer .contact p {
     margin: 5px 0;
+}
+.footer .contact p svg{
+    width: 15px;
+    margin-right: 10px;
+    vertical-align: text-top;
 }
 
 .footer .contact a {
@@ -442,6 +460,13 @@ a > .rating > span:last-child {
     padding: 7px;
 }
 
+.footer-headline {
+    background: #20a4f3;
+    border-left: 4px solid #59f8e8;
+    padding: 7px 15px;
+    width: max-content;
+}
+
 .not-valid {
     border-color: red;
 }
@@ -754,7 +779,60 @@ tbody > tr:nth-child(odd) {
     opacity: .8;
     cursor: pointer;
 }
-
+/*category screen*/
+.category-screen-wrapper {
+    padding: 20px 0;
+}
+.category-screen-wrapper .product > a {
+    height: 380px;
+}
+.category-screen-wrapper .product-name {
+    font-size: 18px;
+}
+.category-screen-wrapper .product-wrapper {
+    display: inline-block;
+}
+.category-screen-wrapper .filter {
+    display: block;
+}
+.category-screen-wrapper .sort-order-right {
+    width: 100%;
+    padding: 4px;
+    border-radius: 5px;
+}
+.category-screen-wrapper .selected-filter-wrapper {
+    display: flex;
+    flex-flow: row wrap;
+}
+.category-screen-wrapper .product .link {
+    min-height: 240px;
+    height: 240px;
+}
+.category-screen-wrapper .selected-filter {
+    background-color: #cff1ff;
+    color: black;
+    width: max-content;
+    padding: 6px 12px;
+    border-radius: 8px;
+    margin-right: 15px;
+    margin-bottom: 10px;
+}
+.category-screen-wrapper .selected-filter svg {
+    width: 15px;
+    height: 15px;
+    margin-left: 10px;
+}
+.category-screen-wrapper .selected-filter svg:hover {
+cursor: pointer;
+    opacity: .8;
+}
+.category-screen-wrapper .filter input,
+.category-screen-wrapper .filter button,
+.category-screen-wrapper .filter select {
+    border: 1px solid #203040;
+    margin: 5px 0;
+    background-color: #f5f5f5;
+}
 /* filter */
 .filter-wrapper {
     background-color: #203040;
