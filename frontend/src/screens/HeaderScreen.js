@@ -95,7 +95,7 @@ function HeaderScreen(props) {
             <div className="product-header mb-4">
                 <h3>Headers</h3>
                 <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={e => openModal({text: '', position: '0', button: '', _id: '', link: ''})}>
-                    Kreiraj kategoriju
+                    Kreiraj header
                 </button>
             </div>
 
