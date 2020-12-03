@@ -43,10 +43,11 @@ const register = (name, email, password) => async (dispatch) => {
   } catch (error) {
     dispatch({ type: USER_REGISTER_FAIL, payload: error.message });
   }
-}
+};
 
 const logout = () => (dispatch) => {
   Cookie.remove("userInfo");
   dispatch({ type: USER_LOGOUT })
-}
+};
+
 export { signin, register, logout, update };

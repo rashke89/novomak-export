@@ -51,7 +51,7 @@ function OrderScreen(props) {
                       </div>
                       <div className="cart-name">
                         <div>
-                          <Link to={"/product/" + item.product}>
+                          <Link to={"/proizvod/" + item.product}>
                             {item.Naziv}
                           </Link>
 

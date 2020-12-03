@@ -96,7 +96,7 @@ function CartScreen(props) {
                 </div>
                 <div className="cart-name mb-3">
                   <div>
-                    <Link to={"/product/" + item._id}>
+                    <Link to={"/proizvod/" + item._id}>
                       {item.Naziv}
                     </Link>
 

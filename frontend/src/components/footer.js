@@ -14,12 +14,13 @@ export default function Footer(props) {
     const goToCategory = (category) => {
         let options = {
             behavior: 'smooth'
-        }
+        };
+        let name = category.name.replace(/\/+/g, '').replace(/[/,+\/.+\/:+\/;+\/"+\/'+\/*+\/!+\/?+]+/g, '').replace(/\s+/g, '-').toLowerCase();
         setTimeout(() => {
-            document.getElementsByClassName('category-screen-wrapper')[0].scrollIntoView(options)
+            document.getElementById('home-section').scrollIntoView(options)
         }, 500)
         dispatch(updateFilter({'Kategorija': category.name}));
-        history.push(`/kategorija/${category._id}`);
+        history.push(`/kategorija/${category._id}/${name}`);
     }
 
     return <footer className="footer">

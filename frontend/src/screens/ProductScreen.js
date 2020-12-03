@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { detailsProduct, saveProductReview } from '../actions/productActions';
 import Rating from '../components/Rating';
@@ -17,7 +17,7 @@ function ProductScreen(props) {
   const productReviewSave = useSelector((state) => state.productReviewSave);
   const { success: productSaveSuccess } = productReviewSave;
   const dispatch = useDispatch();
-
+  let history = useHistory();
   useEffect(() => {
     if (productSaveSuccess) {
       alert('Review submitted successfully.');
@@ -51,11 +51,14 @@ function ProductScreen(props) {
     dispatch(addToCart(product._id, qty));
     props.history.push('/cart/');
   };
-
+  const goBack = () => {
+    props.history.goBack();
+    console.log(window.history);
+  };
   return (
     <div className="container">
       <div className="back-to-result">
-        <p onClick={props.history.goBack}>Nazad</p>
+        <p onClick={e => goBack()}>Nazad</p>
       </div>
       {loading ? (
         <div>Loading...</div>

@@ -18,7 +18,7 @@ const upload = multer({ storage });
 
 const router = express.Router();
 
-router.post('/', upload.single('image'), (req, res) => {
+router.post('/header', upload.single('image'), (req, res) => {
   /*upload xml pokusaj*/
   // console.log(req.file);
   // parseString(req.file, function(error, data) {

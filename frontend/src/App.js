@@ -17,6 +17,7 @@ import ProfileScreen from './screens/ProfileScreen';
 import OrdersScreen from './screens/OrdersScreen';
 import Footer from "./components/footer";
 import {listCategories} from "./actions/categoryAction";
+import HeaderScreen from "./screens/HeaderScreen";
 
 function App() {
   const userSignin = useSelector((state) => state.userSignin);
@@ -63,6 +64,9 @@ function App() {
                   <li className="my-4">
                     <Link to="/products">Proizvodi</Link>
                   </li>
+                  <li className="my-4">
+                    <Link to="/header">Header</Link>
+                  </li>
                 </ul>
               </div>
             )}
@@ -96,9 +100,10 @@ function App() {
             <Route path="/placeorder" component={PlaceOrderScreen} />
             <Route path="/signin" component={SigninScreen} />
             <Route path="/register" component={RegisterScreen} />
-            <Route path="/product/:id" component={ProductScreen} />
+            <Route path="/proizvod/:id" component={ProductScreen} />
             <Route path="/cart/:id?" component={CartScreen} />
             <Route path="/kategorija/:id" component={HomeScreen} />
+            <Route path="/header" component={HeaderScreen} />
             <Route path="/" exact={true} component={HomeScreen} />
           </div>
         </main>

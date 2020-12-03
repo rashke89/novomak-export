@@ -183,14 +183,14 @@ function CategoriesScreen(props) {
                             <td>{product.name}</td>
                             <td>
                                 <button type="button" data-toggle="modal" data-target="#exampleModal" className="button" onClick={() => openModal(product)}>
-                                    Edit
+                                    Izmeni
                                 </button>
                                 {' '}
                                 <button
                                     className="button"
                                     onClick={() => deleteHandler(product)}
                                 >
-                                    Delete
+                                    Obrisi
                                 </button>
                             </td>
                         </tr>

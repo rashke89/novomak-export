@@ -121,7 +121,7 @@ router.post("/submit", async (req, res) => {
 <p>Napomena: ${newOrderCreated.user.note}</p>
 <h4>Proizvodi:</h4>
 ${newOrderCreated.orderItems.map(item => {
-            let link = `https://novomak.herokuapp.com/product/${item._id}`;
+            let link = `https://novomak.herokuapp.com/proizvod/${item._id}`;
             return `<p>
       <div style="width: 70px; height: auto; display: inline-block">
         <img src=${item.Slika} alt="Slika proizvoda" style="width: 100%; height: auto" />
@@ -159,7 +159,7 @@ ${newOrderCreated.orderItems.map(item => {
 
 <h4>Proizvodi:</h4>
 ${newOrderCreated.orderItems.map(item => {
-                    let link = `https://novomak.herokuapp.com/product/${item._id}`;
+                    let link = `https://novomak.herokuapp.com/proizvod/${item._id}`;
                     return `<p>
       <div style="width: 70px; height: auto; display: inline-block">
         <img src=${item.Slika} alt="Slika proizvoda" style="width: 100%; height: auto" />

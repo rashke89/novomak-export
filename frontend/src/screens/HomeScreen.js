@@ -74,6 +74,12 @@ function HomeScreen(props) {
         dispatch(listProducts(category, searchKeyword, e.target.value, page, filter));
     };
     const handlePagination = (num) => {
+        let options = {
+            behavior: 'smooth'
+        };
+        setTimeout(() => {
+            document.getElementById('home-section').scrollIntoView(options)
+        }, 500)
         setPage(num);
         dispatch(updateFilter({...filter, page: num}));
         dispatch(listProducts(category, searchKeyword, sortOrder, num, filter));
@@ -104,7 +110,7 @@ function HomeScreen(props) {
         setPage(1);
         dispatch(updateFilter({...newFilterObj}));
         dispatch(listProducts(category, searchKeyword, sortOrder, 1, newFilterObj));
-    }
+    };
 
     return (
         <>
@@ -114,6 +120,7 @@ function HomeScreen(props) {
                 </div>
             </section>
 
+            <div id="home-section"></div>
 
             {loading ? (
                 <div>Ucitavanje...</div>
@@ -211,11 +218,11 @@ function HomeScreen(props) {
 
                     </section>}
                     {categories?.length && category ? <div className="row category-screen-wrapper">
-                        <div className="col-md-3 filter">
+                        <div className="col-md-3 col-sm-12 filter">
                             <div className="col-sm-12">
                                 <h2 className="info-text">Filter</h2>
                             </div>
-                            <div className="col-sm-12">
+                            <div className="col-sm-12 col-md-12">
                                 <form onSubmit={submitHandler} className="search-input">
                                     <input
                                         placeholder="Pretraga..."
@@ -232,31 +239,7 @@ function HomeScreen(props) {
                                     </svg>
                                 </form>
                             </div>
-                            <div className="col-md-12">
-                                <select name="Sirina" value={filter.Sirina} onChange={filterHandler}>
-                                    <option value="">-- Sirina --</option>
-                                    {widths?.map(item => {
-                                        return <option value={item.name} key={item.name}>{item.name}</option>
-                                    })}
-                                </select>
-                            </div>
-                            <div className="col-md-12">
-                                <select name="Visina" value={filter.Visina} onChange={filterHandler}>
-                                    <option value="">-- Visina --</option>
-                                    {heights?.map(item => {
-                                        return <option value={item.name} key={item.name}>{item.name}</option>
-                                    })}
-                                </select>
-                            </div>
-                            <div className="col-md-12">
-                                <select name="Precnik" value={filter.Precnik} onChange={filterHandler}>
-                                    <option value="">-- Precnik --</option>
-                                    {diameters?.map(item => {
-                                        return <option value={item.name} key={item.name}>{item.name}</option>
-                                    })}
-                                </select>
-                            </div>
-                            <div className="col-md-12">
+                            <div className="col-sm-6 col-md-12">
                                 <select name="Kategorija" value={filter.Kategorija} onChange={filterHandler}>
                                     <option value="">-- Kategorija --</option>
                                     {categories?.map(item => {
@@ -264,7 +247,31 @@ function HomeScreen(props) {
                                     })}
                                 </select>
                             </div>
-                            <div className="col-md-12">
+                            <div className="col-sm-6 col-md-12">
+                                <select name="Sirina" value={filter.Sirina} onChange={filterHandler}>
+                                    <option value="">-- Sirina --</option>
+                                    {widths?.map(item => {
+                                        return <option value={item.name} key={item.name}>{item.name}</option>
+                                    })}
+                                </select>
+                            </div>
+                            <div className="col-sm-6 col-md-12">
+                                <select name="Visina" value={filter.Visina} onChange={filterHandler}>
+                                    <option value="">-- Visina --</option>
+                                    {heights?.map(item => {
+                                        return <option value={item.name} key={item.name}>{item.name}</option>
+                                    })}
+                                </select>
+                            </div>
+                            <div className="col-sm-6 col-md-12">
+                                <select name="Precnik" value={filter.Precnik} onChange={filterHandler}>
+                                    <option value="">-- Precnik --</option>
+                                    {diameters?.map(item => {
+                                        return <option value={item.name} key={item.name}>{item.name}</option>
+                                    })}
+                                </select>
+                            </div>
+                            <div className="col-sm-6 col-md-12">
                                 <select name="Proizvodjac" value={filter.Proizvodjac} onChange={filterHandler}>
                                     <option value="">-- Proizvodjac --</option>
                                     {manufacturers?.map(item => {
@@ -272,7 +279,7 @@ function HomeScreen(props) {
                                     })}
                                 </select>
                             </div>
-                            <div className="col-md-12">
+                            <div className="col-sm-6 col-md-12">
                                 <select name="Sezona" value={filter.Sezona} onChange={filterHandler}>
                                     <option value="">-- Sezona --</option>
                                     {seasons?.map(item => {
@@ -281,9 +288,9 @@ function HomeScreen(props) {
                                 </select>
                             </div>
                         </div>
-                        <div className="col-md-9">
+                        <div className="col-md-9 col-sm-12 category-products">
                             <div className="row">
-                                <div className="col-md-9 selected-filter-wrapper">
+                                <div className="col-md-9 col-sm-12 selected-filter-wrapper">
                                     {filter ? Object.keys(filter).map(key => {
                                         if (key !== 'page' && key !== 'searchKeyword' && key !== 'sortOrder') {
                                             return <div className="selected-filter" key={key}>{key}: {filter[key]}
@@ -307,7 +314,7 @@ function HomeScreen(props) {
 
                                     }) : ''}
                                 </div>
-                                <div className="col-md-3">
+                                <div className="col-md-3 col-sm-12">
                                     <select className="sort-order-right" name="sortOrder" value={sortOrder} onChange={sortHandler}>
                                         <option value="">Novije</option>
                                         <option value="lowest">Cena rastuce</option>
@@ -317,9 +324,9 @@ function HomeScreen(props) {
                             </div>
                             <div className="row">
                                 {categories && products.length ? products.map((product) => (
-                                    <div className="col-lg-3 col-md-6 my-3 product-wrapper" key={product._id} onClick={event => history.push(`/product/${product._id}`)}>
+                                    <div className="col-lg-3 col-md-6 my-3 product-wrapper" key={product._id} onClick={event => history.push(`/proizvod/${product._id}`)}>
                                         <div className="product">
-                                            <Link to={'/product/' + product._id}>
+                                            <Link to={'/proizvod/' + product._id}>
                                                 <div className="link">
                                                     <div style={{'backgroundImage': `url(${product.Slika})`}} className="-bg-image">
 
@@ -355,9 +362,9 @@ function HomeScreen(props) {
                     </div> : <div className="">
                         <div className=" products">
                             {categories && products.length ? products.map((product) => (
-                                <div className="col-lg-3 col-md-6 my-3 product-wrapper" key={product._id} onClick={event => history.push(`/product/${product._id}`)}>
+                                <div className="col-lg-3 col-md-6 my-3 product-wrapper" key={product._id} onClick={event => history.push(`/proizvod/${product._id}`)}>
                                     <div className="product">
-                                        <Link to={'/product/' + product._id}>
+                                        <Link to={'/proizvod/' + product._id}>
                                             <div className="link">
                                                 <div style={{'backgroundImage': `url(${product.Slika})`}} className="-bg-image">
 

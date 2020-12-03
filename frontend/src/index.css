@@ -86,20 +86,24 @@ button.btn-disabled {
     height: fit-content;
     padding: 20px;
 }
+
 .footer ul {
     display: flex;
     flex-wrap: wrap;
     padding: 0;
 }
+
 .footer ul li {
     margin: 7px 20px;
     font-size: 18px;
     color: #fff;
 }
+
 .footer ul li:hover {
     opacity: 0.8;
     cursor: pointer;
 }
+
 .footer .col-md-12 {
     display: flex;
     justify-content: space-between;
@@ -117,7 +121,8 @@ button.btn-disabled {
 .footer .contact p {
     margin: 5px 0;
 }
-.footer .contact p svg{
+
+.footer .contact p svg {
     width: 15px;
     margin-right: 10px;
     vertical-align: text-top;
@@ -404,6 +409,12 @@ a > .rating > span:last-child {
 
 .back-to-result {
     padding: 1rem;
+    color: #0000ff;
+}
+
+.back-to-result:hover {
+    opacity: 0.8;
+    cursor: pointer;
 }
 
 .details-action {
@@ -779,35 +790,44 @@ tbody > tr:nth-child(odd) {
     opacity: .8;
     cursor: pointer;
 }
+
 /*category screen*/
 .category-screen-wrapper {
     padding: 20px 0;
 }
+
 .category-screen-wrapper .product > a {
     height: 380px;
 }
+
 .category-screen-wrapper .product-name {
     font-size: 18px;
 }
+
 .category-screen-wrapper .product-wrapper {
     display: inline-block;
 }
+
 .category-screen-wrapper .filter {
     display: block;
 }
+
 .category-screen-wrapper .sort-order-right {
     width: 100%;
     padding: 4px;
     border-radius: 5px;
 }
+
 .category-screen-wrapper .selected-filter-wrapper {
     display: flex;
     flex-flow: row wrap;
 }
+
 .category-screen-wrapper .product .link {
     min-height: 240px;
     height: 240px;
 }
+
 .category-screen-wrapper .selected-filter {
     background-color: #cff1ff;
     color: black;
@@ -817,15 +837,18 @@ tbody > tr:nth-child(odd) {
     margin-right: 15px;
     margin-bottom: 10px;
 }
+
 .category-screen-wrapper .selected-filter svg {
     width: 15px;
     height: 15px;
     margin-left: 10px;
 }
+
 .category-screen-wrapper .selected-filter svg:hover {
-cursor: pointer;
+    cursor: pointer;
     opacity: .8;
 }
+
 .category-screen-wrapper .filter input,
 .category-screen-wrapper .filter button,
 .category-screen-wrapper .filter select {
@@ -833,6 +856,7 @@ cursor: pointer;
     margin: 5px 0;
     background-color: #f5f5f5;
 }
+
 /* filter */
 .filter-wrapper {
     background-color: #203040;
@@ -922,6 +946,52 @@ cursor: pointer;
     background-position: center;
 }
 
+/*headers*/
+.headers-modal select {
+    padding: 1rem;
+    border: 0.1rem #c0c0c0 solid;
+    border-radius: 0.5rem;
+    width: 100%;
+}
+.headers-list img {
+    width: 200px;
+}
+
+.carousel-inner .col-md-12 {
+    display: flex;
+    align-items: center;
+}
+.carousel-inner .content.right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.carousel-inner .content h1 {
+    font-size: 42px;
+    background-color: rgba(255,255,255,0.6);
+    border-left: 5px solid #203040;
+    padding: 8px 20px;
+}
+.carousel-inner .content a {
+    color: #007bff;
+    width: max-content;
+    border: 2px solid #203040;
+    padding: 8px 15px;
+    background-color: rgba(255,255,255,0.6);
+    display: block;
+    margin-top: 15px;
+    font-size: 20px;
+}
+.carousel-inner .content a:hover {
+    text-decoration: none;
+    border-radius: 8px;
+    opacity: 0.8;
+    transition: all 0.3s;
+}
+.carousel a {
+    width: 10%;
+}
+
 @media only screen and (max-width: 768px) {
     .-carousel {
         margin: 0 -15px;
@@ -962,6 +1032,7 @@ cursor: pointer;
 
     .col-sm-6 {
         width: 50%;
+        display: inline-block;
     }
 
     .cart-list-container li img {
@@ -984,5 +1055,26 @@ cursor: pointer;
 
     .footer .contact {
         text-align: center;
+        margin-top: 20px;
+    }
+
+    .category-screen-wrapper {
+        margin: 0;
+    }
+
+    .category-screen-wrapper .category-products .row {
+        margin: 0;
+    }
+
+    .category-screen-wrapper .category-products .col-sm-12 {
+        padding: 0;
+    }
+
+    .category-screen-wrapper .product-wrapper {
+        padding: 0;
+    }
+
+    .category-screen-wrapper .selected-filter {
+        margin-top: 5px;
     }
 }
