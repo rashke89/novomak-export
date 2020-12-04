@@ -73,6 +73,7 @@ button.btn-disabled {
 
 .header-links a:hover {
     color: #ff8000;
+    border-bottom: 3px solid #ff8000;
 }
 
 .main {
@@ -471,9 +472,8 @@ a > .rating > span:last-child {
     padding: 7px;
 }
 
-.footer-headline {
-    background: #20a4f3;
-    border-left: 4px solid #59f8e8;
+.footer .info-text {
+    color: #000;
     padding: 7px 15px;
     width: max-content;
 }
@@ -991,6 +991,44 @@ tbody > tr:nth-child(odd) {
 .carousel a {
     width: 10%;
 }
+
+.about-us-wrapper .info-text {
+    width: max-content;
+}
+.about-us-text p {
+    font-size: 20px;
+    line-height: 25px;
+    margin-bottom: 20px;
+}
+.about-us-img {
+    border-radius: 10px;
+}
+.quote-wrapper blockquote {
+    border-top: 2px solid #203040;
+    border-bottom: 2px solid #203040;
+    padding: 50px;
+    font-size: 35px;
+    text-align: right;
+    padding-left: 120px;
+}
+.quote-wrapper svg {
+    width: 100px;
+    position: absolute;
+    height: 100px;
+    top: calc(50% - 50px);
+    color: #203040;
+}
+.about-us-wrapper .contact svg {
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+    margin-bottom: 15px;
+    vertical-align: -webkit-baseline-middle;
+}
+.about-us-wrapper .contact p {
+    margin-bottom: 20px;
+}
+
 
 @media only screen and (max-width: 768px) {
     .-carousel {

@@ -27,7 +27,7 @@ export default function Footer(props) {
         <div className="container">
             <div className="row align-items-center">
                 <div className="col-md-6">
-                    <h3 className="footer-headline">Glanve kategorije</h3>
+                    <h3 className="info-text">Glanve kategorije</h3>
                     <ul>
                         {categories?.length ?
                         categories.map(item => {

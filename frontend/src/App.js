@@ -18,6 +18,7 @@ import OrdersScreen from './screens/OrdersScreen';
 import Footer from "./components/footer";
 import {listCategories} from "./actions/categoryAction";
 import HeaderScreen from "./screens/HeaderScreen";
+import AboutUsScreen from "./screens/AboutUsScreen";
 
 function App() {
   const userSignin = useSelector((state) => state.userSignin);
@@ -46,6 +47,8 @@ function App() {
           <div className="header-links">
             {/*<a >Korpa</a>*/}
             <Link to="/cart">korpa</Link>
+            <Link to="/o-nama">o nama</Link>
+            <Link to="/o-nama/kontakt">kontakt</Link>
             {/*{userInfo ? (*/}
             {/*  <Link to="/profile">{userInfo.name}</Link>*/}
             {/*) : (*/}
@@ -104,6 +107,8 @@ function App() {
             <Route path="/cart/:id?" component={CartScreen} />
             <Route path="/kategorija/:id" component={HomeScreen} />
             <Route path="/header" component={HeaderScreen} />
+            <Route path="/o-nama" exact={true} component={AboutUsScreen} />
+            <Route path="/o-nama/:contact" component={AboutUsScreen} />
             <Route path="/" exact={true} component={HomeScreen} />
           </div>
         </main>
