@@ -968,16 +968,16 @@ tbody > tr:nth-child(odd) {
 }
 .carousel-inner .content h1 {
     font-size: 42px;
-    background-color: rgba(255,255,255,0.6);
-    border-left: 5px solid #203040;
+    background-color: rgba(255,255,255,0.8);
+    border-left: 5px solid #007bff;
     padding: 8px 20px;
 }
 .carousel-inner .content a {
     color: #007bff;
     width: max-content;
-    border: 2px solid #203040;
+    border: 2px solid #007bff;
     padding: 8px 15px;
-    background-color: rgba(255,255,255,0.6);
+    background-color: rgba(255,255,255,0.8);
     display: block;
     margin-top: 15px;
     font-size: 20px;
@@ -1019,14 +1019,17 @@ tbody > tr:nth-child(odd) {
     color: #203040;
 }
 .about-us-wrapper .contact svg {
-    width: 30px;
-    height: 30px;
-    margin-right: 20px;
+    width: 40px;
+    height: 40px;
     margin-bottom: 15px;
-    vertical-align: -webkit-baseline-middle;
+    color: #9c9c9c;
 }
 .about-us-wrapper .contact p {
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: gray;
 }
 
 
@@ -1039,10 +1042,22 @@ tbody > tr:nth-child(odd) {
     .-carousel .carousel-inner {
         height: 300px;
     }
+    .-carousel a {
+        width: 5%;
+    }
+    .carousel-inner .content a {
+        font-size: 18px;
+    }
+    .carousel-inner .content h1 {
+        font-size: 32px;
+    }
 
     .-carousel .carousel-wrapper {
         margin-left: 0;
         left: 0;
+    }
+    .-carousel .carousel-wrapper .row {
+        margin: 0;
     }
 
     .header {
@@ -1114,5 +1129,28 @@ tbody > tr:nth-child(odd) {
 
     .category-screen-wrapper .selected-filter {
         margin-top: 5px;
+    }
+
+    .about-us-wrapper {
+        width: 100vw;
+    }
+    .about-us-wrapper .cart-action {
+        margin: 10px;
+    }
+    .quote-wrapper blockquote {
+        padding-bottom: 30px;
+        font-size: 28px;
+        text-align: center;
+        padding-top: 100px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .quote-wrapper svg {
+        width: 70px;
+        position: absolute;
+        height: 70px;
+        top: 15px;
+        color: #203040;
+        left: calc(50% - 35px);
     }
 }

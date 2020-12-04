@@ -18,7 +18,7 @@ export default function Carousel(props) {
                 console.log(error);
             })
     };
-    return <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
+    return <div id="carouselExampleIndicators" className="carousel slide" data-interval="false">
         <ol className="carousel-indicators">
             {headers?.length ?
                 headers.map((item, index) => {
