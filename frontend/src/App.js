@@ -46,6 +46,7 @@ function App() {
           </div>
           <div className="header-links">
             {/*<a >Korpa</a>*/}
+            <Link to="/kategorija/shop">shop</Link>
             <Link to="/cart">korpa</Link>
             <Link to="/o-nama">o nama</Link>
             <Link to="/o-nama/kontakt">kontakt</Link>

@@ -41,8 +41,15 @@ function HomeScreen(props) {
         // dispatch(listCategories());
 
         if (categories?.length && category) {
-            let findCategory = categories.find(item => item._id === category);
-            let newFilter = {...filter, page: 1, Kategorija: findCategory.name};
+            let findCategory;
+            let newFilter;
+            console.log(filter);
+            if (category !== 'shop') {
+                findCategory = categories.find(item => item._id === category);
+                newFilter  = {...filter, page: 1, Kategorija: findCategory.name}
+            } else {
+                newFilter = {...filter, page: 1}
+            }
             dispatch(updateFilter(newFilter));
             dispatch(listProducts('', filter.searchKeyword, filter.sortOrder, filter.page, newFilter))
         }
@@ -65,13 +72,13 @@ function HomeScreen(props) {
         e.preventDefault();
         setPage(1);
         dispatch(updateFilter({...filter, page: 1, searchKeyword}));
-        dispatch(listProducts(category, searchKeyword, sortOrder, 1, filter));
+        category && dispatch(listProducts(category, searchKeyword, sortOrder, 1, filter));
     };
     const sortHandler = (e) => {
         setSortOrder(e.target.value);
         setPage(1);
         dispatch(updateFilter({...filter, page: 1, sortOrder}));
-        dispatch(listProducts(category, searchKeyword, e.target.value, page, filter));
+        category && dispatch(listProducts(category, searchKeyword, e.target.value, page, filter));
     };
     const handlePagination = (num) => {
         let options = {
@@ -82,7 +89,7 @@ function HomeScreen(props) {
         }, 500)
         setPage(num);
         dispatch(updateFilter({...filter, page: num}));
-        dispatch(listProducts(category, searchKeyword, sortOrder, num, filter));
+        category && dispatch(listProducts(category, searchKeyword, sortOrder, num, filter));
     };
     const formatPrice = (product) => {
         let foundCategory = categories.find(item => item.name === product.Kategorija);
@@ -102,7 +109,7 @@ function HomeScreen(props) {
             delete newFilterObj[e.target.name];
         setPage(1);
         dispatch(updateFilter({...newFilterObj}));
-        dispatch(listProducts(category, searchKeyword, sortOrder, 1, newFilterObj));
+        category && dispatch(listProducts(category, searchKeyword, sortOrder, 1, newFilterObj));
     };
     const removeFilter = (filterName) => {
         let newFilterObj = {...filter, page: 1};
@@ -110,6 +117,18 @@ function HomeScreen(props) {
         setPage(1);
         dispatch(updateFilter({...newFilterObj}));
         dispatch(listProducts(category, searchKeyword, sortOrder, 1, newFilterObj));
+    };
+    const handleSearch = () => {
+        console.log(searchKeyword);
+        console.log(filter);
+        let newFilterObj;
+        if (searchKeyword) {
+            newFilterObj = {...filter, searchKeyword}
+        } else {
+            newFilterObj = {...filter}
+        }
+        dispatch(updateFilter({...newFilterObj}));
+        history.push(`/kategorija/shop`)
     };
 
     return (
@@ -186,7 +205,7 @@ function HomeScreen(props) {
                                                 })}
                                             </select>
                                         </div>
-                                        <div className="col-md-4 col-sm-6 my-3">
+                                        <div className="col-md-3 col-sm-6 my-3">
                                             <select name="Kategorija" value={filter.Kategorija} onChange={filterHandler}>
                                                 <option value="">-- Kategorija --</option>
                                                 {categories?.map(item => {
@@ -194,7 +213,7 @@ function HomeScreen(props) {
                                                 })}
                                             </select>
                                         </div>
-                                        <div className="col-md-4 col-sm-6 my-3">
+                                        <div className="col-md-3 col-sm-6 my-3">
                                             <select name="Proizvodjac" value={filter.Proizvodjac} onChange={filterHandler}>
                                                 <option value="">-- Proizvodjac --</option>
                                                 {manufacturers?.map(item => {
@@ -202,13 +221,16 @@ function HomeScreen(props) {
                                                 })}
                                             </select>
                                         </div>
-                                        <div className="col-md-4 col-sm-6 my-3">
+                                        <div className="col-md-3 col-sm-6 my-3">
                                             <select name="Sezona" value={filter.Sezona} onChange={filterHandler}>
                                                 <option value="">-- Sezona --</option>
                                                 {seasons?.map(item => {
                                                     return <option value={item.name} key={item.name}>{item.name}</option>
                                                 })}
                                             </select>
+                                        </div>
+                                        <div className="col-md-3 col-sm-12 my-3">
+                                            <button className="search-btn" type="button" onClick={handleSearch}>Pretrazi</button>
                                         </div>
                                     </div>
                                 </div>
@@ -359,44 +381,150 @@ function HomeScreen(props) {
                             </div>
 
                         </div>
-                    </div> : <div className="">
-                        <div className=" products">
-                            {categories && products.length ? products.map((product) => (
-                                <div className="col-lg-3 col-md-6 my-3 product-wrapper" key={product._id} onClick={event => history.push(`/proizvod/${product._id}`)}>
-                                    <div className="product">
-                                        <Link to={'/proizvod/' + product._id}>
-                                            <div className="link">
-                                                <div style={{'backgroundImage': `url(${product.Slika})`}} className="-bg-image">
+                    </div> : <div className="home-screen-wrapper">
+                        <h1 className="info-text">Glavne kategorije</h1>
+                        <div className="main-categories">
 
-                                                </div>
-                                            </div>
-                                            <div className="product-name px-3">
-                                                {product.Naziv}
-                                            </div>
-                                            <div className="product-brand px-3">{product.Proizvodjac}</div>
-                                            <div className="product-description px-3">{product.Specifikacija}</div>
-                                            <div className="product-price px-3">{formatPrice(product)} rsd</div>
-                                        </Link>
-                                    </div>
-                                </div>
-                            )) : <h2 className="info-text">Nema rezultata.</h2>}
+                        {!categories?.length ? '' :
+<>
+    {categories.map(item => {
+        return <h2 key={item._id}>{item.name}</h2>
+    })}
+</>
 
+
+                        }
                         </div>
-                        <div className="row">
-                            <div className="col-md-12">
-                                <div className="pagination-wrapper">
-                                    {totalItems && products.length ? <Pagination
-                                        activePage={page}
-                                        itemsCountPerPage={totalPerPage}
-                                        totalItemsCount={totalItems}
-                                        pageRangeDisplayed={5}
-                                        onChange={handlePagination}
-                                    /> : ''}
-                                </div>
+                        {/*<div className=" products">*/}
+                        {/*    {false ? products.map((product) => (*/}
+                        {/*        <div className="col-lg-3 col-md-6 my-3 product-wrapper" key={product._id} onClick={event => history.push(`/proizvod/${product._id}`)}>*/}
+                        {/*            <div className="product">*/}
+                        {/*                <Link to={'/proizvod/' + product._id}>*/}
+                        {/*                    <div className="link">*/}
+                        {/*                        <div style={{'backgroundImage': `url(${product.Slika})`}} className="-bg-image">*/}
 
-                            </div>
+                        {/*                        </div>*/}
+                        {/*                    </div>*/}
+                        {/*                    <div className="product-name px-3">*/}
+                        {/*                        {product.Naziv}*/}
+                        {/*                    </div>*/}
+                        {/*                    <div className="product-brand px-3">{product.Proizvodjac}</div>*/}
+                        {/*                    <div className="product-description px-3">{product.Specifikacija}</div>*/}
+                        {/*                    <div className="product-price px-3">{formatPrice(product)} rsd</div>*/}
+                        {/*                </Link>*/}
+                        {/*            </div>*/}
+                        {/*        </div>*/}
+                        {/*    )) : <h2 className="info-text">Nema rezultata.</h2>}*/}
+
+                        {/*</div>*/}
+                        {/*<div className="row">*/}
+                        {/*    <div className="col-md-12">*/}
+                        {/*        <div className="pagination-wrapper">*/}
+                        {/*            {totalItems && products.length ? <Pagination*/}
+                        {/*                activePage={page}*/}
+                        {/*                itemsCountPerPage={totalPerPage}*/}
+                        {/*                totalItemsCount={totalItems}*/}
+                        {/*                pageRangeDisplayed={5}*/}
+                        {/*                onChange={handlePagination}*/}
+                        {/*            /> : ''}*/}
+                        {/*        </div>*/}
+
+                        {/*    </div>*/}
+                        {/*</div>*/}
+
+
+                        <div className="brand-wrapper">
+                            <h1 className="info-text">Zastupljeni brendovi</h1>
+                            <ul>
+
+                                <li><img className="alignnone size-full wp-image-4626"
+                                         src="http://www.novomak-export.com/wp-content/uploads/2013/06/goodyearlogo_kelena.jpg"
+                                         alt="goodyearlogo_kelena" width="250" height="50"/>
+                                </li>
+                                <li><img className="alignnone size-full wp-image-5045" src="http://www.novomak-export.com/wp-content/uploads/2013/06/dunlop-logo1.jpg" alt="dunlop-logo1"
+                                         width="200" height="45"/></li>
+                                <li><img
+                                    src="http://www.novomak-export.com/wp-content/uploads/2013/06/fulda.jpg" alt="fulda" width="188" height="30"/></li>
+                                <li><img className="alignnone size-full wp-image-4600"
+                                         src="http://www.novomak-export.com/wp-content/uploads/2013/06/savaLogo.png"
+                                         alt="savaLogo" width="115" height="30"/></li>
+                                <li><a href="http://www.novomak-export.com/wp-content/uploads/2013/06/Debica_DE-l.png"><img className="alignnone size-full wp-image-4602"
+                                                                                                                            src="http://www.novomak-export.com/wp-content/uploads/2013/06/Debica_DE-l.png"
+                                                                                                                            alt="Debica_DE-l" width="191" height="31"/></a></li>
+                                <li><img className="alignnone size-full wp-image-4624"
+                                         src="http://www.novomak-export.com/wp-content/uploads/2013/06/kelly-logo1.png"
+                                         alt="kelly-logo" width="232" height="40"/></li>
+                                <li><img className="alignnone size-full wp-image-4603"
+                                         src="http://www.novomak-export.com/wp-content/uploads/2013/06/Continental-logo.png"
+                                         alt="Continental-logo" width="184" height="30"/></li>
+                                <li><img className="alignnone size-full wp-image-4612"
+                                         src="http://www.novomak-export.com/wp-content/uploads/2013/06/Michelin_logo.png"
+                                         alt="Michelin_logo" width="200" height="63"/></li>
+                                <li><img className="alignnone size-full wp-image-4628"
+                                         src="http://www.novomak-export.com/wp-content/uploads/2013/06/bridgestone_logo.jpg"
+                                         alt="bridgestone_logo" width="233" height="37"/></li>
+                                <li><img className="alignnone size-full wp-image-4611"
+                                         src="http://www.novomak-export.com/wp-content/uploads/2013/06/firestone.png"
+                                         alt="firestone" width="212" height="34"/></li>
+                                <li><img
+                                    src="http://www.novomak-export.com/wp-content/uploads/2013/06/semperit-logo.png" alt="semperit-logo" width="258" height="31"/></li>
+                                <li><img
+                                    src="http://www.novomak-export.com/wp-content/uploads/2013/06/Barum_logo.png" alt="Barum_logo" width="178" height="31"/></li>
+                                <li><img className="alignnone size-full wp-image-4630"
+                                         src="http://www.novomak-export.com/wp-content/uploads/2013/06/Logo-Kormoran.jpg"
+                                         alt="Logo Kormoran" width="230" height="42"/></li>
+                                <li><img className="alignnone size-full wp-image-4616"
+                                         src="http://www.novomak-export.com/wp-content/uploads/2013/06/mitas.png"
+                                         alt="mitas" width="175" height="42"/></li>
+                                <li><img className="alignnone size-full wp-image-4618"
+                                         src="http://www.novomak-export.com/wp-content/uploads/2013/06/trayal_logo1.jpg"
+                                         alt="trayal_logo" width="159" height="33"/></li>
+                                <li><img
+                                    src="http://www.novomak-export.com/wp-content/uploads/2013/06/tigar-logo.jpg" alt="tigar-logo" width="150" height="33"/></li>
+
+                            </ul>
                         </div>
 
+                        <div className="highlight-products">
+                            <h1 className="info-text">Istaknuti proizvodi</h1>
+                        </div>
+
+                        {/*<div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">*/}
+                        {/*    <ol className="carousel-indicators">*/}
+                        {/*        {headers?.length ?*/}
+                        {/*            headers.map((item, index) => {*/}
+                        {/*                return <li key={index} data-target="#carouselExampleIndicators" data-slide-to="0" className={`${!index ? 'active' : ''}`}></li>*/}
+                        {/*            })*/}
+                        {/*            : ''}*/}
+                        {/*    </ol>*/}
+                        {/*    <div className="carousel-inner">*/}
+                        {/*        {headers?.length ?*/}
+                        {/*            headers.map((item, index) => {*/}
+                        {/*                return <div key={index} className={`carousel-item ${!index ? 'active' : ''}`} style={{'backgroundImage': `url('${item.image}')`}}>*/}
+                        {/*                    <div className="container h-100">*/}
+                        {/*                        <div className="row h-100">*/}
+                        {/*                            <div className="col-md-12 h-100" style={{'justifyContent': item.position == 1 ? 'flex-end' : ''}}>*/}
+                        {/*                                <div className={`content ${item.position == 1 ? 'right' : ''}`}>*/}
+                        {/*                                    <h1>{item.text}</h1>*/}
+                        {/*                                    <a href={item.link}>{item.button}</a>*/}
+                        {/*                                </div>*/}
+                        {/*                            </div>*/}
+                        {/*                        </div>*/}
+                        {/*                    </div>*/}
+
+                        {/*                </div>*/}
+                        {/*            })*/}
+                        {/*            : ''}*/}
+                        {/*    </div>*/}
+                        {/*    <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">*/}
+                        {/*        <span className="carousel-control-prev-icon" aria-hidden="true"></span>*/}
+                        {/*        <span className="sr-only">Previous</span>*/}
+                        {/*    </a>*/}
+                        {/*    <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">*/}
+                        {/*        <span className="carousel-control-next-icon" aria-hidden="true"></span>*/}
+                        {/*        <span className="sr-only">Next</span>*/}
+                        {/*    </a>*/}
+                        {/*</div>*/}
                     </div>}
 
                 </>
