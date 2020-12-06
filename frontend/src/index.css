@@ -456,7 +456,7 @@ a > .rating > span:last-child {
 
 .info-text {
     background: #cff1ff;
-    border-left: 4px solid blue;
+    border-left: 4px solid #007bff;
     padding: 7px;
 }
 
@@ -1050,17 +1050,37 @@ tbody > tr:nth-child(odd) {
     margin-top: 30px;
     margin-bottom: 60px;
 }
-.main-categories h2 {
-    margin: 10px 30px;
-    padding: 10px;
-    border-bottom: 3px solid #007bff;
+.main-categories .category-bg-image {
+    background-image: url("https://le-cdn.websites.hibu.com/8f8b35766e8947e2be0e167cbf9a4001/dms3rep/multi/opt/shutterstock_262895021-640w.jpg");
+    background-position: center;
+    background-size: cover;
+    margin: 20px;
+    /*border: 3px solid #007bff;*/
+    /*border-radius: 8px;*/
+    overflow: hidden;
 }
-.main-categories h2:hover {
+/*.main-categories .-bg-image {*/
+/*    background: linear-gradient(135deg, #24293d 0%, #24293d 25%, #23c0e9 50%, #272f4a 75%, #23c0e9 100%);*/
+/*}*/
+.layer {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 30px;
+    width: 100%;
+    height: 100%;
+}
+.main-categories h2 {
+    margin: 0;
+    color: white;
+    padding: 10px;
+    /*border-bottom: 3px solid #007bff;*/
+}
+.main-categories .layer:hover {
     cursor: pointer;
     opacity: 0.9;
     color: #fff;
-    background-color: #007bff;
+    background-color: rgba(0, 0, 0, 0.8);
     transition: 0.3s ease;
+    border-radius: 8px;
 }
 .brand-wrapper {
     margin: 60px 0;

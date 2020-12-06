@@ -18,10 +18,10 @@ export default function Footer(props) {
         let name = category.name.replace(/\/+/g, '').replace(/[/,+\/.+\/:+\/;+\/"+\/'+\/*+\/!+\/?+]+/g, '').replace(/\s+/g, '-').toLowerCase();
         setTimeout(() => {
             document.getElementById('home-section').scrollIntoView(options)
-        }, 500)
+        }, 500);
         dispatch(updateFilter({'Kategorija': category.name}));
         history.push(`/kategorija/${category._id}/${name}`);
-    }
+    };
 
     return <footer className="footer">
         <div className="container">

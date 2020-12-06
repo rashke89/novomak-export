@@ -130,6 +130,17 @@ function HomeScreen(props) {
         dispatch(updateFilter({...newFilterObj}));
         history.push(`/kategorija/shop`)
     };
+    const goToCategory = (category) => {
+        let options = {
+            behavior: 'smooth'
+        };
+        let name = category.name.replace(/\/+/g, '').replace(/[/,+\/.+\/:+\/;+\/"+\/'+\/*+\/!+\/?+]+/g, '').replace(/\s+/g, '-').toLowerCase();
+        setTimeout(() => {
+            document.getElementById('home-section').scrollIntoView(options)
+        }, 500);
+        dispatch(updateFilter({'Kategorija': category.name}));
+        history.push(`/kategorija/${category._id}/${name}`);
+    };
 
     return (
         <>
@@ -388,7 +399,11 @@ function HomeScreen(props) {
                         {!categories?.length ? '' :
 <>
     {categories.map(item => {
-        return <h2 key={item._id}>{item.name}</h2>
+        return <div key={item._id} className="category-bg-image" onClick={e => goToCategory(item)}>
+            <div className="layer">
+                <h2>{item.name}</h2>
+            </div>
+        </div>
     })}
 </>
 
