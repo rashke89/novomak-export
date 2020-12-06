@@ -359,7 +359,7 @@ function HomeScreen(props) {
                                 </div>
                             </div>
                             <div className="row">
-                                {categories && products.length ? products.map((product) => (
+                                {categories && products?.length ? products.map((product) => (
                                     <div className="col-lg-3 col-md-6 my-3 product-wrapper" key={product._id} onClick={event => history.push(`/proizvod/${product._id}`)}>
                                         <div className="product">
                                             <Link to={'/proizvod/' + product._id}>
