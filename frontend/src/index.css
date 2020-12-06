@@ -1003,6 +1003,26 @@ tbody > tr:nth-child(odd) {
 .carousel a {
     width: 10%;
 }
+.carousel .product > a {
+    width: 100%;
+}
+.indi-custom {
+    background: #007bff;
+    padding: 10px;
+    border-radius: 50%;
+    display: flex;
+}
+#carouselExampleIndicators1 .carousel-control-next, #carouselExampleIndicators1 .carousel-control-prev {
+    width: fit-content;
+    height: fit-content;
+    top: 50%;
+}
+#carouselExampleIndicators1 .carousel-control-next {
+    right: -30px !important;
+}
+#carouselExampleIndicators1 .carousel-control-prev {
+    left: -60px;
+}
 
 .about-us-wrapper .info-text {
     width: max-content;
@@ -1081,6 +1101,14 @@ tbody > tr:nth-child(odd) {
     background-color: rgba(0, 0, 0, 0.8);
     transition: 0.3s ease;
     border-radius: 8px;
+}
+.marked-inputs {
+    display: flex;
+    align-items: baseline;
+}
+.marked-inputs input {
+    width: max-content;
+    margin: 0 10px 0px 20px;
 }
 .brand-wrapper {
     margin: 60px 0;

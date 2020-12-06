@@ -14,7 +14,7 @@ import {
   PRODUCT_REVIEW_SAVE_SUCCESS,
   PRODUCT_REVIEW_SAVE_REQUEST,
   PRODUCT_REVIEW_SAVE_FAIL,
-  PRODUCT_REVIEW_SAVE_RESET, PRODUCT_FILTER_UPDATE,
+  PRODUCT_REVIEW_SAVE_RESET, PRODUCT_FILTER_UPDATE, PRODUCT_RANDOM_LIST_SUCCESS,
 } from '../constants/productConstants';
 import Cookie from "js-cookie";
 
@@ -24,6 +24,8 @@ function productListReducer(state = { products: [] }, action) {
       return { loading: true, products: [] };
     case PRODUCT_LIST_SUCCESS:
       return { loading: false, products: action.payload.products, totalItems: action.payload.totalItems, sirina:  action.payload.sirina};
+      case PRODUCT_RANDOM_LIST_SUCCESS:
+        return { loading: false, randomProducts: action.payload};
     case PRODUCT_LIST_FAIL:
       return { loading: false, error: action.payload };
     default:

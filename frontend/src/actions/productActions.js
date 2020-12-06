@@ -13,7 +13,7 @@ import {
     PRODUCT_DELETE_REQUEST,
     PRODUCT_REVIEW_SAVE_REQUEST,
     PRODUCT_REVIEW_SAVE_FAIL,
-    PRODUCT_REVIEW_SAVE_SUCCESS, PRODUCT_FILTER_UPDATE,
+    PRODUCT_REVIEW_SAVE_SUCCESS, PRODUCT_FILTER_UPDATE, PRODUCT_RANDOM_LIST_SUCCESS,
 } from '../constants/productConstants';
 import axios from 'axios';
 import Axios from 'axios';
@@ -34,6 +34,17 @@ const listProducts = (
         );
         dispatch({type: PRODUCT_LIST_SUCCESS, payload: data});
     } catch (error) {
+        dispatch({type: PRODUCT_LIST_FAIL, payload: error.message});
+    }
+};
+const randomProductsList = () => async (dispatch) => {
+    try {
+        dispatch({type: PRODUCT_LIST_REQUEST});
+        const {data} = await axios.get(
+            `/api/products/random/sve`,);
+        dispatch({type: PRODUCT_RANDOM_LIST_SUCCESS, payload: data});
+    } catch (error) {
+        console.log('error');
         dispatch({type: PRODUCT_LIST_FAIL, payload: error.message});
     }
 };
@@ -127,5 +138,6 @@ export {
     saveProduct,
     deleteProdcut,
     saveProductReview,
-    updateFilter
+    updateFilter,
+    randomProductsList
 };

@@ -32,6 +32,7 @@ function ProductsScreen(props) {
     const [page, setPage] = useState(1);
     const [totalPerPage, setTotalPerPage] = useState(32);
     const [searchKeyword, setSearchKeyword] = useState('');
+    const [marked, setMarked] = useState('0');
 
     const productSave = useSelector((state) => state.productSave);
     const {
@@ -59,6 +60,7 @@ function ProductsScreen(props) {
     }, [successSave, successDelete]);
 
     const openModal = (product) => {
+        console.log(product.Istaknut);
         // setModalVisible(true);
         setId(product._id || '');
         setKey(product.Sifra || '');
@@ -73,6 +75,7 @@ function ProductsScreen(props) {
         setWidth(product.Sirina || '');
         setHeight(product.Visina || '');
         setDiameter(product.Precnik || '');
+        setMarked(product.Istaknut);
     };
     const submitSearchHandler = (e) => {
         e.preventDefault();
@@ -97,6 +100,7 @@ function ProductsScreen(props) {
                 category,
                 countInStock: countInStock || 0,
                 description,
+                marked,
             })
         );
     };
@@ -156,7 +160,11 @@ function ProductsScreen(props) {
             }).finally(() => {
 
         });
-    }
+    };
+    const onChangeValue = (e) => {
+        console.log(e.target.value);
+        setMarked(e.target.value)
+    };
     return (
         <div className="content content-margined">
             <div className="product-header mb-4">
@@ -298,6 +306,12 @@ function ProductsScreen(props) {
                                                 rows={6}
                                                 onChange={(e) => setDescription(e.target.value)}
                                             ></textarea>
+
+                                            <div onChange={onChangeValue} className="marked-inputs">
+                                                <label>Istaknut</label>
+                                                <input type="radio" value="1" name="gender" checked={marked === '1'} /> Da
+                                                <input type="radio" value="0" name="gender" checked={marked === '0'}/> Ne
+                                            </div>
                                         </div>
                                     </div>
                                 </form>
@@ -466,7 +480,7 @@ function ProductsScreen(props) {
                     </tr>
                     </thead>
                     <tbody>
-                    {products.map((product) => (
+                    {products?.map((product) => (
                         <tr key={product._id}>
                             <td className="align-center">{product.Sifra}</td>
                             <td>{product.Naziv}</td>

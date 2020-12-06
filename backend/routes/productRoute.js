@@ -50,6 +50,20 @@ router.get('/:id', async (req, res) => {
     res.status(404).send({ message: 'Product Not Found.' });
   }
 });
+router.get('/random/sve', async (req, res) => {
+  try {
+    const product = await Product.find();
+    if (product && product.length) {
+      res.send(product.filter(item => item.Istaknut === '1'));
+    } else {
+      res.status(404).send({ message: 'Product Not Found.' });
+    }
+  } catch (e) {
+    console.log(e);
+    res.status(404).send({ message: 'Product Not Found.' });
+  }
+
+});
 router.post('/:id/reviews', isAuth, async (req, res) => {
   const product = await Product.findById(req.params.id);
   if (product) {
@@ -88,6 +102,7 @@ router.put('/:id', isAuth, async (req, res) => {
     product.Slika= req.body.image;
     product.Specifikacija= req.body.description;
     product.Cena= Number(req.body.price);
+    product.Istaknut= Number(req.body.marked);
 
     const updatedProduct = await product.save();
     if (updatedProduct) {
@@ -158,7 +173,8 @@ router.post('/new', isAuth, async (req, res) => {
     Proizvodjac: req.body.manufacturer,
     Slika: req.body.image,
     Specifikacija: req.body.description,
-    Cena: Number(req.body.price)
+    Cena: Number(req.body.price),
+    Istaknut: Number(req.body.marked)
   });
   const newProduct = await product.save();
 
