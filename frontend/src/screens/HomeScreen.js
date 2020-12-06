@@ -53,11 +53,14 @@ function HomeScreen(props) {
             dispatch(updateFilter(newFilter));
             dispatch(listProducts('', filter.searchKeyword, filter.sortOrder, filter.page, newFilter));
         }
-        console.log(randomProducts);
         return () => {
             //
         };
     }, [categories, category]);
+    useEffect(() => {
+        if (!category)
+            dispatch(randomProductsList());
+    }, [category])
 
     useEffect(() => {
         if (Object.keys(filter).length) {
@@ -66,8 +69,6 @@ function HomeScreen(props) {
             setPage(filter?.page);
             dispatch(listProducts('', filter.searchKeyword, filter.sortOrder, filter.page, filter));
         }
-        dispatch(randomProductsList());
-
     }, []);
 
 
@@ -122,8 +123,6 @@ function HomeScreen(props) {
         dispatch(listProducts(category, searchKeyword, sortOrder, 1, newFilterObj));
     };
     const handleSearch = () => {
-        console.log(searchKeyword);
-        console.log(filter);
         let newFilterObj;
         if (searchKeyword) {
             newFilterObj = {...filter, searchKeyword}
@@ -185,9 +184,9 @@ function HomeScreen(props) {
                                             </form>
                                         </div>
                                         <div className=" col-sm-6 col-md-3 sort my-3">
-                                    <span className="mr-1">
-                                        Sortiraj:
-                                    </span>
+                                    {/*<span className="mr-1">*/}
+                                    {/*    Sortiraj:*/}
+                                    {/*</span>*/}
 
                                             <select name="sortOrder" value={sortOrder} onChange={sortHandler}>
                                                 <option value="">Novije</option>
@@ -449,7 +448,55 @@ function HomeScreen(props) {
 
                         {/*    </div>*/}
                         {/*</div>*/}
+                        <div className="highlight-products">
+                            <h1 className="info-text">Istaknuti proizvodi</h1>
+                        </div>
 
+                        <div id="carouselExampleIndicators1" className="carousel slide my-5" data-ride="carousel">
+                            <ol className="carousel-indicators">
+                                {randomProducts?.length ?
+                                    randomProducts.map((item, index) => {
+                                        return <li key={index} data-target="#carouselExampleIndicators1" data-slide-to="0" className={`${!index ? 'active' : ''}`}></li>
+                                    })
+                                    : ''}
+                            </ol>
+                            <div className="carousel-inner row">
+                                {randomProducts?.length && categories ?
+                                    randomProducts.map((product, index) => {
+                                        return  <div className="col-lg-3 col-md-6 my-3 product-wrapper" key={product._id} onClick={event => history.push(`/proizvod/${product._id}`)}>
+                                            <div className="product">
+                                                <Link to={'/proizvod/' + product._id}>
+                                                    <div className="link">
+                                                        <div style={{'backgroundImage': `url(${product.Slika})`}} className="-bg-image">
+
+                                                        </div>
+                                                    </div>
+                                                    <div className="product-name px-3">
+                                                        {product.Naziv}
+                                                    </div>
+                                                    <div className="product-brand px-3">{product.Proizvodjac}</div>
+                                                    <div className="product-description px-3">{product.Specifikacija}</div>
+                                                    <div className="product-price px-3">{formatPrice(product)} rsd</div>
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    })
+                                    : ''}
+                            </div>
+                            <a className="carousel-control-prev" href="#carouselExampleIndicators1" role="button" data-slide="prev">
+                                <div className="indi-custom">
+                                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                                </div>
+                                <span className="sr-only">Previous</span>
+                            </a>
+                            <a className="carousel-control-next" href="#carouselExampleIndicators1" role="button" data-slide="next">
+                                <div className="indi-custom">
+                                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                                </div>
+
+                                <span className="sr-only">Next</span>
+                            </a>
+                        </div>
 
                         <div className="brand-wrapper">
                             <h1 className="info-text">Zastupljeni brendovi</h1>
@@ -503,55 +550,7 @@ function HomeScreen(props) {
                             </ul>
                         </div>
 
-                        <div className="highlight-products">
-                            <h1 className="info-text">Istaknuti proizvodi</h1>
-                        </div>
 
-                        <div id="carouselExampleIndicators1" className="carousel slide my-5" data-ride="carousel">
-                            <ol className="carousel-indicators">
-                                {randomProducts?.length ?
-                                    randomProducts.map((item, index) => {
-                                        return <li key={index} data-target="#carouselExampleIndicators1" data-slide-to="0" className={`${!index ? 'active' : ''}`}></li>
-                                    })
-                                    : ''}
-                            </ol>
-                            <div className="carousel-inner row">
-                                {randomProducts?.length && categories ?
-                                    randomProducts.map((product, index) => {
-                                        return  <div className="col-lg-3 col-md-6 my-3 product-wrapper" key={product._id} onClick={event => history.push(`/proizvod/${product._id}`)}>
-                                            <div className="product">
-                                                <Link to={'/proizvod/' + product._id}>
-                                                    <div className="link">
-                                                        <div style={{'backgroundImage': `url(${product.Slika})`}} className="-bg-image">
-
-                                                        </div>
-                                                    </div>
-                                                    <div className="product-name px-3">
-                                                        {product.Naziv}
-                                                    </div>
-                                                    <div className="product-brand px-3">{product.Proizvodjac}</div>
-                                                    <div className="product-description px-3">{product.Specifikacija}</div>
-                                                    <div className="product-price px-3">{formatPrice(product)} rsd</div>
-                                                </Link>
-                                            </div>
-                                        </div>
-                                    })
-                                    : ''}
-                            </div>
-                            <a className="carousel-control-prev" href="#carouselExampleIndicators1" role="button" data-slide="prev">
-                                <div className="indi-custom">
-                                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                                </div>
-                                <span className="sr-only">Previous</span>
-                            </a>
-                            <a className="carousel-control-next" href="#carouselExampleIndicators1" role="button" data-slide="next">
-                                <div className="indi-custom">
-                                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                                </div>
-
-                                <span className="sr-only">Next</span>
-                            </a>
-                        </div>
                     </div>}
 
                 </>
