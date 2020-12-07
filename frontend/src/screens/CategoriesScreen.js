@@ -13,6 +13,7 @@ function CategoriesScreen(props) {
     const [modalVisible, setModalVisible] = useState(false);
     const [id, setId] = useState('');
     const [name, setName] = useState('');
+    const [image, setImage] = useState('');
     const [discount, setDiscount] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('categories');
     const categoryList = useSelector((state) => state.categoryList.categories);
@@ -68,7 +69,8 @@ function CategoriesScreen(props) {
                 _id: id,
                 selectedCategory,
                 name,
-                discount
+                discount,
+                image
             })
         );
     };
@@ -78,7 +80,24 @@ function CategoriesScreen(props) {
     const onChoseCategory = (categoryName) => {
         setRenderList(categoryList[categoryName])
         setSelectedCategory(categoryName);
-    }
+    };
+    const uploadFileHandler = (e) => {
+        const file = e.target.files[0];
+        const bodyFormData = new FormData();
+        bodyFormData.append('image', file);
+        axios
+            .post('/api/uploads/category-image', bodyFormData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            })
+            .then((response) => {
+                setImage(response.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
     return (
         <div className="content content-margined">
             <div className="product-header mb-4">
@@ -143,6 +162,19 @@ function CategoriesScreen(props) {
                                                 id="brand"
                                                 onChange={(e) => setDiscount(e.target.value)}
                                             ></input>
+                                        </div>}
+                                        {selectedCategory === 'categories' && <div className="col-md-6">
+                                            <label htmlFor="image">Slika</label>
+                                            <input
+                                                type="text"
+                                                name="image"
+                                                value={image}
+                                                id="image"
+                                                onChange={(e) => setImage(e.target.value)}
+                                            ></input>
+                                            <input type="file"
+                                                   className="w-100"
+                                                   onChange={uploadFileHandler}></input>
                                         </div>}
                                         <div className="col-md-12">
                                             {categorySave && categorySave.hasOwnProperty('loading') && !categorySave.loading && <div className="col-md-12 mt-3">

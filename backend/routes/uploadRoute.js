@@ -19,15 +19,9 @@ const upload = multer({ storage });
 const router = express.Router();
 
 router.post('/header', upload.single('image'), (req, res) => {
-  /*upload xml pokusaj*/
-  // console.log(req.file);
-  // parseString(req.file, function(error, data) {
-  //   if (error){
-  //     console.log('error....', error)
-  //   } else {
-  //     console.log(data);
-  //   }
-  // })
+  res.send(`/${req.file.path}`);
+});
+router.post('/category-image', upload.single('image'), (req, res) => {
   res.send(`/${req.file.path}`);
 });
 

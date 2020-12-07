@@ -96,8 +96,12 @@ function HomeScreen(props) {
     const formatPrice = (product) => {
         let foundCategory = categories.find(item => item.name === product.Kategorija);
         if (foundCategory && foundCategory?.discount) {
-            product.staraCena = product.Cena;
-            return product.Cena = product.Cena - ((product.Cena * Number(foundCategory.discount)) / 100).toFixed(2);
+            if (foundCategory.discount < 0) {
+                product.staraCena = product.Cena;
+                return product.Cena = product.Cena - ((product.Cena * Number(Math.abs(foundCategory.discount))) / 100).toFixed(2);
+            } else if(foundCategory.discount > 0) {
+                return product.Cena = Number(product.Cena) + Number(((product.Cena * Number(foundCategory.discount)) / 100).toFixed(2));
+            }
         }
         return product.Cena;
     };
@@ -389,7 +393,6 @@ function HomeScreen(props) {
                                             onChange={handlePagination}
                                         /> : ''}
                                     </div>
-
                                 </div>
                             </div>
 
@@ -401,7 +404,8 @@ function HomeScreen(props) {
                         {!categories?.length ? '' :
 <>
     {categories.map(item => {
-        return <div key={item._id} className="category-bg-image" onClick={e => goToCategory(item)}>
+        let image = item?.image ? item.image : 'https://le-cdn.websites.hibu.com/8f8b35766e8947e2be0e167cbf9a4001/dms3rep/multi/opt/shutterstock_262895021-640w.jpg';
+        return <div key={item._id} className="category-bg-image" style={{"backgroundImage": `url('${image}')`}} onClick={e => goToCategory(item)}>
             <div className="layer">
                 <h2>{item.name}</h2>
             </div>

@@ -1038,7 +1038,7 @@ tbody > tr:nth-child(odd) {
     color: #fff;
     top: 10px;
     padding: 0 1.5rem;;
-    font-size: 22px;
+    font-size: 1.8rem;
 }
 .product-wrapper .action:after {
     content: "";
@@ -1110,7 +1110,7 @@ tbody > tr:nth-child(odd) {
     margin-bottom: 60px;
 }
 .main-categories .category-bg-image {
-    background-image: url("https://le-cdn.websites.hibu.com/8f8b35766e8947e2be0e167cbf9a4001/dms3rep/multi/opt/shutterstock_262895021-640w.jpg");
+    /*background-image: url("https://le-cdn.websites.hibu.com/8f8b35766e8947e2be0e167cbf9a4001/dms3rep/multi/opt/shutterstock_262895021-640w.jpg");*/
     background-position: center;
     background-size: cover;
     margin: 20px;
