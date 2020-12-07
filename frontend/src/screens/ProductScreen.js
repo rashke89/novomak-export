@@ -41,7 +41,6 @@ function ProductScreen(props) {
   useEffect(() => {
     if (categories?.length && product) {
       let foundCategory = categories.find(item => item.name === product.Kategorija);
-      console.log(foundCategory);
       if (foundCategory && foundCategory?.discount && foundCategory.discount < 0) {
         setHesAction(true)
       } else {

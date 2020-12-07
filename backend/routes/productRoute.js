@@ -42,23 +42,16 @@ router.get('/:id', async (req, res) => {
     const product = await Product.findOne({_id: req.params.id});
     if (product) {
         let foundCategory = await categoryModel.findOne({name: product.Kategorija});
-
         if (foundCategory && foundCategory?.discount) {
-          // console.log(foundCategory?.discount);
-          if (foundCategory.discount < 0) {
-            //     product['staraCena'] = product.Cena;
-            //     product.set({staraCena: product.Cena})
-            // console.log(product);
-            product.Cena = product.Cena - ((product.Cena * Number(Math.abs(foundCategory.discount))) / 100).toFixed(2);
-            res.send(product);
+            if (foundCategory.discount < 0) {
+                product.Cena = product.Cena - ((product.Cena * Number(Math.abs(foundCategory.discount))) / 100).toFixed(2);
+                res.send(product);
             } else if (foundCategory.discount > 0) {
-            // console.log('pozitivan');
-            product.Cena = Number(product.Cena) + Number(((product.Cena * Number(foundCategory.discount)) / 100).toFixed(2));
-            res.send(product);
+                product.Cena = Number(product.Cena) + Number(((product.Cena * Number(foundCategory.discount)) / 100).toFixed(2));
+                res.send(product);
             }
         } else {
-          // console.log('nema nista');
-          res.send(product);
+            res.send(product);
         }
 
 
