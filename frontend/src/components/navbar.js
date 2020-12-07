@@ -11,22 +11,30 @@ export default function Navbar(props) {
     useEffect(() => {
         document.querySelector('#nav-icon3').addEventListener('click', function(event){
             if (document.querySelector('#nav-icon3').classList.contains('open')) {
-                document.querySelector('#nav-icon3').classList.remove('open')
-                document.querySelector('.navbar-overlay').style.display = 'none'
+                document.querySelector('.navbar-overlay').style.display = 'none';
+                console.log('none',document.querySelector('.navbar-overlay'));
+                document.querySelector('#nav-icon3').classList.remove('open');
+                return null;
             } else {
+                console.log('block', document.querySelector('.navbar-overlay'));
+                document.querySelector('.navbar-overlay').style.display = 'block';
                 document.querySelector('#nav-icon3').classList.add('open');
-                document.querySelector('.navbar-overlay').style.display = 'block'
             }
         });
         var links = document.querySelectorAll(".nav-item a");
         links.forEach((item) => {
             item.addEventListener('click', (event) => {
+                console.log('for');
                 document.querySelector('#nav-icon3').click()
             })
-        })
+        });
         document.querySelector('.navbar-overlay').addEventListener('click', (event) => {
+            console.log('over');
             document.querySelector('#nav-icon3').click()
         })
+    }, [])
+    useEffect(() => {
+
     }, [cartItems]);
     // const listHeaders = () => {
     //     axios.get(`/api/users/header`)
