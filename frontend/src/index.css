@@ -1028,7 +1028,7 @@ tbody > tr:nth-child(odd) {
     display: inline-block;
 }
 
-.product-wrapper .action {
+.action {
     height: 40px;
     position: absolute;
     background: rgba(255, 0, 0, 0.7);
@@ -1040,7 +1040,7 @@ tbody > tr:nth-child(odd) {
     padding: 0 1.5rem;;
     font-size: 1.8rem;
 }
-.product-wrapper .action:after {
+.action:after {
     content: "";
     position: absolute;
     left: 0;
@@ -1051,7 +1051,7 @@ tbody > tr:nth-child(odd) {
     border-top: 20px solid transparent;
     border-bottom: 20px solid transparent;
 }
-.product-wrapper .action:before {
+.action:before {
     content: "";
     position: absolute;
     right: -20px;

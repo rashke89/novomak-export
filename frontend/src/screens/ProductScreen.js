@@ -16,6 +16,8 @@ function ProductScreen(props) {
   const { product, loading, error } = productDetails;
   const productReviewSave = useSelector((state) => state.productReviewSave);
   const { success: productSaveSuccess } = productReviewSave;
+  const {categories} = useSelector((state) => state.categoryList.categories);
+  const [hasAction, setHesAction] = useState(false)
   const dispatch = useDispatch();
   let history = useHistory();
   useEffect(() => {
@@ -36,6 +38,18 @@ function ProductScreen(props) {
       //
     };
   }, [productSaveSuccess]);
+  useEffect(() => {
+    if (categories?.length && product) {
+      let foundCategory = categories.find(item => item.name === product.Kategorija);
+      console.log(foundCategory);
+      if (foundCategory && foundCategory?.discount && foundCategory.discount < 0) {
+        setHesAction(true)
+      } else {
+        setHesAction(false)
+      }
+    }
+
+  }, [categories, product])
   const submitHandler = (e) => {
     e.preventDefault();
     // dispatch actions
@@ -69,6 +83,7 @@ function ProductScreen(props) {
           {product?.ID ? <div className="details row">
             <div className="details-image col-md-4">
               <img className="img-fluid" src={product.Slika} alt="product"></img>
+              {hasAction ?<div className="action">Akcijska cena</div>: ''}
             </div>
             <div className="details-info col-md-4">
               <ul>
