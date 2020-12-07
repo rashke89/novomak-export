@@ -19,6 +19,7 @@ import Footer from "./components/footer";
 import {listCategories} from "./actions/categoryAction";
 import HeaderScreen from "./screens/HeaderScreen";
 import AboutUsScreen from "./screens/AboutUsScreen";
+import Navbar from "./components/navbar";
 
 function App() {
   const userSignin = useSelector((state) => state.userSignin);
@@ -37,45 +38,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="grid-container">
-        <header className="header">
-          <div className="brand">
-            {/*<button onClick={openMenu}>&#9776;</button>*/}
-            <Link to="/">
-              <img src="http://www.novomak-export.com/wp-content/uploads/2013/06/novomak-logo2.png" alt=""/>
-            </Link>
-          </div>
-          <div className="header-links">
-            {/*<a >Korpa</a>*/}
-            <Link to="/kategorija/shop">shop</Link>
-            <Link to="/cart">korpa</Link>
-            <Link to="/o-nama">o nama</Link>
-            <Link to="/o-nama/kontakt">kontakt</Link>
-            {/*{userInfo ? (*/}
-            {/*  <Link to="/profile">{userInfo.name}</Link>*/}
-            {/*) : (*/}
-            {/*    <div></div>*/}
-            {/*)}*/}
-            {userInfo && userInfo.isAdmin && (
-              <div className="dropdown">
-                <a href="#">{userInfo.name}</a>
-                <ul className="dropdown-content">
-                  <li className="my-4">
-                    <Link to="/profile">Porudzbine</Link>
-                  </li>
-                  <li className="my-4">
-                    <Link to="/kategorije">Kategorije</Link>
-                  </li>
-                  <li className="my-4">
-                    <Link to="/products">Proizvodi</Link>
-                  </li>
-                  <li className="my-4">
-                    <Link to="/header">Header</Link>
-                  </li>
-                </ul>
-              </div>
-            )}
-          </div>
-        </header>
+        <Navbar/>
         {/*<aside className="sidebar">*/}
         {/*  <h3 className="my-3">Kategorije</h3>*/}
         {/*  <button className="sidebar-close-button" onClick={closeMenu}>*/}

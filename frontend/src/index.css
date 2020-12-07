@@ -1142,7 +1142,17 @@ tbody > tr:nth-child(odd) {
     width: max-content;
     margin: 0 auto;
 }
-
+.header-links .cart-item svg{
+    width: 20px;
+    margin: 0 5px;
+}
+.header-links .cart-item span{
+    background: red;
+    color: white;
+    font-size: 12px;
+    padding: 3px 5px;
+    border-radius: 50%;
+}
 @media only screen and (max-width: 768px) {
     .-carousel {
         margin: 0 -15px;
