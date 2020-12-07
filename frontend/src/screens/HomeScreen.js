@@ -372,7 +372,7 @@ function HomeScreen(props) {
                                                 <div className="product-brand px-3">{product.Proizvodjac}</div>
                                                 <div className="product-description px-3">{product.Specifikacija}</div>
                                                 <div className="product-price px-3">{formatPrice(product)} rsd</div>
-                                                {product.staraCena ? <div className="action">Aksijska cena</div> : ''}
+                                                {product.staraCena ? <div className="action">Akcijska cena</div> : ''}
                                             </Link>
                                         </div>
                                     </div>
@@ -479,7 +479,7 @@ function HomeScreen(props) {
                                                             <div className="product-brand px-3">{product.Proizvodjac}</div>
                                                             <div className="product-description px-3">{product.Specifikacija}</div>
                                                             <div className="product-price px-3">{formatPrice(product)} rsd</div>
-                                                            {product.staraCena ? <div className="action">Aksijska cena</div> : ''}
+                                                            {product.staraCena ? <div className="action">Akcijska cena</div> : ''}
                                                         </Link>
                                                     </div>
                                                 </div>
