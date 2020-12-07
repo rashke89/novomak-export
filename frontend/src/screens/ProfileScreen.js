@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {logout, update} from '../actions/userActions';
-import {listMyOrders} from '../actions/orderActions';
+import {deleteOrder, listMyOrders} from '../actions/orderActions';
 import {useDispatch, useSelector} from 'react-redux';
 import {listProducts} from "../actions/productActions";
 import Pagination from "react-js-pagination";
@@ -48,6 +48,10 @@ function ProfileScreen(props) {
         setPage(num);
         dispatch(listMyOrders(num, searchKeyword));
     };
+    const deleteHandler = (order) => {
+        dispatch(deleteOrder(order._id));
+        dispatch(listMyOrders(page, searchKeyword));
+    }
 
     return <div className="profile">
         <div className="profile-orders content-margined">
@@ -88,6 +92,7 @@ function ProfileScreen(props) {
                                     <td>{order.priceSum} rsd</td>
                                     <td>
                                         <Link to={"/order/" + order._id}>DETALJI</Link>
+                                        <button type="button" onClick={() => deleteHandler(order)} className="button secondary ml-3">Delete</button>
                                     </td>
                                 </tr>)}
                                 </tbody>
