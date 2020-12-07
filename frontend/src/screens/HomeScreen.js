@@ -34,16 +34,14 @@ function HomeScreen(props) {
     // const { pathname } = useLocation();
     //
     // useEffect(() => {
-    //     console.log(pathname);
-    // }, [pathname]);
+    //     console.log(randomProducts);
+    // }, [randomProducts]);
     useEffect(() => {
         // dispatch(listProducts(category));
         // dispatch(listCategories());
-
         if (categories?.length && category) {
             let findCategory;
             let newFilter;
-            console.log(filter);
             if (category !== 'shop') {
                 findCategory = categories.find(item => item._id === category);
                 newFilter  = {...filter, page: 1, Kategorija: findCategory.name}
@@ -98,7 +96,8 @@ function HomeScreen(props) {
     const formatPrice = (product) => {
         let foundCategory = categories.find(item => item.name === product.Kategorija);
         if (foundCategory && foundCategory?.discount) {
-            return product.Cena - ((product.Cena * Number(foundCategory.discount)) / 100).toFixed(2);
+            product.staraCena = product.Cena;
+            return product.Cena = product.Cena - ((product.Cena * Number(foundCategory.discount)) / 100).toFixed(2);
         }
         return product.Cena;
     };
@@ -373,6 +372,7 @@ function HomeScreen(props) {
                                                 <div className="product-brand px-3">{product.Proizvodjac}</div>
                                                 <div className="product-description px-3">{product.Specifikacija}</div>
                                                 <div className="product-price px-3">{formatPrice(product)} rsd</div>
+                                                {product.staraCena ? <div className="action">Aksijska cena</div> : ''}
                                             </Link>
                                         </div>
                                     </div>
@@ -453,35 +453,61 @@ function HomeScreen(props) {
                         </div>
 
                         <div id="carouselExampleIndicators1" className="carousel slide my-5" data-ride="carousel">
-                            <ol className="carousel-indicators">
-                                {randomProducts?.length ?
-                                    randomProducts.map((item, index) => {
-                                        return <li key={index} data-target="#carouselExampleIndicators1" data-slide-to="0" className={`${!index ? 'active' : ''}`}></li>
-                                    })
-                                    : ''}
-                            </ol>
+                            {/*<ol className="carousel-indicators">*/}
+                            {/*    {randomProducts?.length ?*/}
+                            {/*        randomProducts.map((item, index) => {*/}
+                            {/*            return <li key={index} data-target="#carouselExampleIndicators1" data-slide-to="0" className={`${!index ? 'active' : ''}`}></li>*/}
+                            {/*        })*/}
+                            {/*        : ''}*/}
+                            {/*</ol>*/}
                             <div className="carousel-inner row">
-                                {randomProducts?.length && categories ?
-                                    randomProducts.map((product, index) => {
-                                        return  <div className="col-lg-3 col-md-6 my-3 product-wrapper" key={product._id} onClick={event => history.push(`/proizvod/${product._id}`)}>
-                                            <div className="product">
-                                                <Link to={'/proizvod/' + product._id}>
-                                                    <div className="link">
-                                                        <div style={{'backgroundImage': `url(${product.Slika})`}} className="-bg-image">
+                                {randomProducts && categories ?
+                                    Object.keys(randomProducts).map((item, index) => {
+                                        return <div key={index} className={`carousel-item ${!index ? 'active' : ''}`}>
+                                            {randomProducts[item].map((product, index) => {
+                                                return  <div className="col-lg-3 col-md-6 my-3 product-wrapper" key={product._id} onClick={event => history.push(`/proizvod/${product._id}`)}>
+                                                    <div className="product">
+                                                        <Link to={'/proizvod/' + product._id}>
+                                                            <div className="link">
+                                                                <div style={{'backgroundImage': `url(${product.Slika})`}} className="-bg-image">
 
-                                                        </div>
+                                                                </div>
+                                                            </div>
+                                                            <div className="product-name px-3">
+                                                                {product.Naziv}
+                                                            </div>
+                                                            <div className="product-brand px-3">{product.Proizvodjac}</div>
+                                                            <div className="product-description px-3">{product.Specifikacija}</div>
+                                                            <div className="product-price px-3">{formatPrice(product)} rsd</div>
+                                                            {product.staraCena ? <div className="action">Aksijska cena</div> : ''}
+                                                        </Link>
                                                     </div>
-                                                    <div className="product-name px-3">
-                                                        {product.Naziv}
-                                                    </div>
-                                                    <div className="product-brand px-3">{product.Proizvodjac}</div>
-                                                    <div className="product-description px-3">{product.Specifikacija}</div>
-                                                    <div className="product-price px-3">{formatPrice(product)} rsd</div>
-                                                </Link>
-                                            </div>
+                                                </div>
+                                            })}
                                         </div>
                                     })
                                     : ''}
+                                {/*{randomProducts?.length && categories ?*/}
+                                {/*    randomProducts.map((product, index) => {*/}
+                                {/*        return  <div className="col-lg-3 col-md-6 my-3 product-wrapper" key={product._id} onClick={event => history.push(`/proizvod/${product._id}`)}>*/}
+                                {/*            <div className="product">*/}
+                                {/*                <Link to={'/proizvod/' + product._id}>*/}
+                                {/*                    <div className="link">*/}
+                                {/*                        <div style={{'backgroundImage': `url(${product.Slika})`}} className="-bg-image">*/}
+
+                                {/*                        </div>*/}
+                                {/*                    </div>*/}
+                                {/*                    <div className="product-name px-3">*/}
+                                {/*                        {product.Naziv}*/}
+                                {/*                    </div>*/}
+                                {/*                    <div className="product-brand px-3">{product.Proizvodjac}</div>*/}
+                                {/*                    <div className="product-description px-3">{product.Specifikacija}</div>*/}
+                                {/*                    <div className="product-price px-3">{formatPrice(product)} rsd</div>*/}
+                                {/*                </Link>*/}
+                                {/*            </div>*/}
+                                {/*        </div>*/}
+                                {/*    })*/}
+                                {/*    : ''}*/}
                             </div>
                             <a className="carousel-control-prev" href="#carouselExampleIndicators1" role="button" data-slide="prev">
                                 <div className="indi-custom">

@@ -1024,6 +1024,44 @@ tbody > tr:nth-child(odd) {
 #carouselExampleIndicators1 .carousel-control-prev {
     left: -60px;
 }
+#carouselExampleIndicators1 .product-wrapper {
+    display: inline-block;
+}
+
+.product-wrapper .action {
+    height: 40px;
+    position: absolute;
+    background: rgba(255, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    top: 10px;
+    padding: 0 1.5rem;;
+    font-size: 22px;
+}
+.product-wrapper .action:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+}
+.product-wrapper .action:before {
+    content: "";
+    position: absolute;
+    right: -20px;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-left: 20px solid rgba(255, 0, 0, 0.7);
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+}
 
 .about-us-wrapper .info-text {
     width: max-content;

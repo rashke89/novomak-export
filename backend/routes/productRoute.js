@@ -50,11 +50,25 @@ router.get('/:id', async (req, res) => {
     res.status(404).send({ message: 'Product Not Found.' });
   }
 });
-router.get('/random/sve', async (req, res) => {
+router.get('/marked/all', async (req, res) => {
   try {
     const product = await Product.find();
     if (product && product.length) {
-      res.send(product.filter(item => item.Istaknut === '1'));
+      let list = product.filter(item => item.Istaknut === '1');
+      let obj = {};
+      let num = 0;
+      for (let i = 0; i < list.length; i++) {
+        if (!(i%4)) {
+          num = num + 1;
+        }
+        if (obj[num]) {
+          obj[num] = [...obj[num], list[i]];
+        } else {
+          obj[num] = [list[i]];
+        }
+
+      }
+      res.send(obj);
     } else {
       res.status(404).send({ message: 'Product Not Found.' });
     }

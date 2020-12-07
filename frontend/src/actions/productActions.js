@@ -41,7 +41,7 @@ const randomProductsList = () => async (dispatch) => {
     try {
         dispatch({type: PRODUCT_LIST_REQUEST});
         const {data} = await axios.get(
-            `/api/products/random/sve`,);
+            `/api/products/marked/all`,);
         dispatch({type: PRODUCT_RANDOM_LIST_SUCCESS, payload: data});
     } catch (error) {
         console.log('error');
