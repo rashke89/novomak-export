@@ -20,6 +20,7 @@ import {listCategories} from "./actions/categoryAction";
 import HeaderScreen from "./screens/HeaderScreen";
 import AboutUsScreen from "./screens/AboutUsScreen";
 import Navbar from "./components/navbar";
+import ClientsScreen from "./screens/ClientsScreen";
 
 function App() {
   const userSignin = useSelector((state) => state.userSignin);
@@ -71,6 +72,7 @@ function App() {
             <Route path="/cart/:id?" component={CartScreen} />
             <Route path="/kategorija/:id" component={HomeScreen} />
             <Route path="/header" component={HeaderScreen} />
+            <Route path="/proizvodjaci" component={ClientsScreen} />
             <Route path="/o-nama" exact={true} component={AboutUsScreen} />
             <Route path="/o-nama/:contact" component={AboutUsScreen} />
             <Route path="/" exact={true} component={HomeScreen} />

@@ -10,6 +10,8 @@ import Carousel from "../components/carousel";
 import {WIDTH_LIST, HEIGHT_LIST, DIAMETER} from "../config";
 import {listCategories} from "../actions/categoryAction";
 import Cookie from "js-cookie";
+import {sliderList} from "../actions/userActions";
+import ClientSlider from "../components/clinet-slider";
 
 function HomeScreen(props) {
     const [searchKeyword, setSearchKeyword] = useState('');
@@ -462,13 +464,6 @@ function HomeScreen(props) {
                         </div>
 
                         <div id="carouselExampleIndicators1" className="carousel slide my-5" data-ride="carousel">
-                            {/*<ol className="carousel-indicators">*/}
-                            {/*    {randomProducts?.length ?*/}
-                            {/*        randomProducts.map((item, index) => {*/}
-                            {/*            return <li key={index} data-target="#carouselExampleIndicators1" data-slide-to="0" className={`${!index ? 'active' : ''}`}></li>*/}
-                            {/*        })*/}
-                            {/*        : ''}*/}
-                            {/*</ol>*/}
                             <div className="carousel-inner row">
                                 {randomProducts && categories ?
                                     Object.keys(randomProducts).map((item, index) => {
@@ -496,27 +491,6 @@ function HomeScreen(props) {
                                         </div>
                                     })
                                     : ''}
-                                {/*{randomProducts?.length && categories ?*/}
-                                {/*    randomProducts.map((product, index) => {*/}
-                                {/*        return  <div className="col-lg-3 col-md-6 my-3 product-wrapper" key={product._id} onClick={event => history.push(`/proizvod/${product._id}`)}>*/}
-                                {/*            <div className="product">*/}
-                                {/*                <Link to={'/proizvod/' + product._id}>*/}
-                                {/*                    <div className="link">*/}
-                                {/*                        <div style={{'backgroundImage': `url(${product.Slika})`}} className="-bg-image">*/}
-
-                                {/*                        </div>*/}
-                                {/*                    </div>*/}
-                                {/*                    <div className="product-name px-3">*/}
-                                {/*                        {product.Naziv}*/}
-                                {/*                    </div>*/}
-                                {/*                    <div className="product-brand px-3">{product.Proizvodjac}</div>*/}
-                                {/*                    <div className="product-description px-3">{product.Specifikacija}</div>*/}
-                                {/*                    <div className="product-price px-3">{formatPrice(product)} rsd</div>*/}
-                                {/*                </Link>*/}
-                                {/*            </div>*/}
-                                {/*        </div>*/}
-                                {/*    })*/}
-                                {/*    : ''}*/}
                             </div>
                             <a className="carousel-control-prev" href="#carouselExampleIndicators1" role="button" data-slide="prev">
                                 <div className="indi-custom">
@@ -533,57 +507,10 @@ function HomeScreen(props) {
                             </a>
                         </div>
 
-                        <div className="brand-wrapper">
-                            <h1 className="info-text">Zastupljeni brendovi</h1>
-                            <ul>
 
-                                <li><img className="alignnone size-full wp-image-4626"
-                                         src="http://www.novomak-export.com/wp-content/uploads/2013/06/goodyearlogo_kelena.jpg"
-                                         alt="goodyearlogo_kelena" width="250" height="50"/>
-                                </li>
-                                <li><img className="alignnone size-full wp-image-5045" src="http://www.novomak-export.com/wp-content/uploads/2013/06/dunlop-logo1.jpg" alt="dunlop-logo1"
-                                         width="200" height="45"/></li>
-                                <li><img
-                                    src="http://www.novomak-export.com/wp-content/uploads/2013/06/fulda.jpg" alt="fulda" width="188" height="30"/></li>
-                                <li><img className="alignnone size-full wp-image-4600"
-                                         src="http://www.novomak-export.com/wp-content/uploads/2013/06/savaLogo.png"
-                                         alt="savaLogo" width="115" height="30"/></li>
-                                <li><a href="http://www.novomak-export.com/wp-content/uploads/2013/06/Debica_DE-l.png"><img className="alignnone size-full wp-image-4602"
-                                                                                                                            src="http://www.novomak-export.com/wp-content/uploads/2013/06/Debica_DE-l.png"
-                                                                                                                            alt="Debica_DE-l" width="191" height="31"/></a></li>
-                                <li><img className="alignnone size-full wp-image-4624"
-                                         src="http://www.novomak-export.com/wp-content/uploads/2013/06/kelly-logo1.png"
-                                         alt="kelly-logo" width="232" height="40"/></li>
-                                <li><img className="alignnone size-full wp-image-4603"
-                                         src="http://www.novomak-export.com/wp-content/uploads/2013/06/Continental-logo.png"
-                                         alt="Continental-logo" width="184" height="30"/></li>
-                                <li><img className="alignnone size-full wp-image-4612"
-                                         src="http://www.novomak-export.com/wp-content/uploads/2013/06/Michelin_logo.png"
-                                         alt="Michelin_logo" width="200" height="63"/></li>
-                                <li><img className="alignnone size-full wp-image-4628"
-                                         src="http://www.novomak-export.com/wp-content/uploads/2013/06/bridgestone_logo.jpg"
-                                         alt="bridgestone_logo" width="233" height="37"/></li>
-                                <li><img className="alignnone size-full wp-image-4611"
-                                         src="http://www.novomak-export.com/wp-content/uploads/2013/06/firestone.png"
-                                         alt="firestone" width="212" height="34"/></li>
-                                <li><img
-                                    src="http://www.novomak-export.com/wp-content/uploads/2013/06/semperit-logo.png" alt="semperit-logo" width="258" height="31"/></li>
-                                <li><img
-                                    src="http://www.novomak-export.com/wp-content/uploads/2013/06/Barum_logo.png" alt="Barum_logo" width="178" height="31"/></li>
-                                <li><img className="alignnone size-full wp-image-4630"
-                                         src="http://www.novomak-export.com/wp-content/uploads/2013/06/Logo-Kormoran.jpg"
-                                         alt="Logo Kormoran" width="230" height="42"/></li>
-                                <li><img className="alignnone size-full wp-image-4616"
-                                         src="http://www.novomak-export.com/wp-content/uploads/2013/06/mitas.png"
-                                         alt="mitas" width="175" height="42"/></li>
-                                <li><img className="alignnone size-full wp-image-4618"
-                                         src="http://www.novomak-export.com/wp-content/uploads/2013/06/trayal_logo1.jpg"
-                                         alt="trayal_logo" width="159" height="33"/></li>
-                                <li><img
-                                    src="http://www.novomak-export.com/wp-content/uploads/2013/06/tigar-logo.jpg" alt="tigar-logo" width="150" height="33"/></li>
 
-                            </ul>
-                        </div>
+                            <ClientSlider/>
+
 
 
                     </div>}

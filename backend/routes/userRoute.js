@@ -3,6 +3,8 @@ import User from '../models/userModel';
 import {getToken, isAdmin, isAuth} from '../util';
 import headerModel from "../models/headerModel";
 import Order from "../models/orderModel";
+import clientModel from "../models/clientModel";
+import Product from "../models/productModel";
 
 const router = express.Router();
 
@@ -113,6 +115,40 @@ router.post('/header', async (req, res) => {
     // }
 });
 
+router.post('/client', async (req, res) => {
+    const headerId = req.body?.id;
+    if (headerId) {
+        const findClient = await clientModel.findById(headerId);
+        if (findClient) {
+            findClient.text = req.body.text;
+            findClient.button = req.body.button;
+            findClient.image = req.body.image;
+            findClient.link = req.body.link;
+            findClient.position = req.body.position;
+            const newClient = await findClient.save();
+            if (newClient) {
+                res.send({newClient});
+            } else {
+                res.status(401).send({message: 'Greska prilikom izmene proizvodjaca.'});
+            }
+        }else {
+            res.status(401).send({message: 'Greska, ovaj proizvodjac ne postoji.'});
+        }
+    } else {
+        const client = new clientModel({
+            text: req.body.text,
+            image: req.body.image,
+            link: req.body.link,
+        });
+        const newClient = await client.save();
+        if (newClient) {
+            res.send({...newClient});
+        } else {
+            res.status(401).send({message: 'Greska prilikom kreiranja proizvodjaca.'});
+        }
+    }
+});
+
 router.get('/createadmin', async (req, res) => {
     try {
         const user = new User({
@@ -135,7 +171,40 @@ router.get('/header', async (req, res) => {
         res.send({message: error.message});
     }
 });
-
+router.get('/client', async (req, res) => {
+    try {
+        const client = await clientModel.find();
+        res.send(client);
+    } catch (error) {
+        res.send({message: error.message});
+    }
+});
+router.get('/client/slider', async (req, res) => {
+    try {
+        const product = await clientModel.find();
+        if (product && product.length) {
+            let list = product;
+            let obj = {};
+            let num = 0;
+            for (let i = 0; i < list.length; i++) {
+                if (!(i % 4)) {
+                    num = num + 1;
+                }
+                if (obj[num]) {
+                    obj[num] = [...obj[num], list[i]];
+                } else {
+                    obj[num] = [list[i]];
+                }
+            }
+            res.send(obj);
+        } else {
+            res.status(404).send({message: 'Product Not Found.'});
+        }
+    } catch (e) {
+        console.log(e);
+        res.status(404).send({message: 'Product Not Found.'});
+    }
+});
 router.delete("/header/:id", async (req, res) => {
     const header = await headerModel.findOne({_id: req.params.id});
     if (header) {
@@ -143,6 +212,15 @@ router.delete("/header/:id", async (req, res) => {
         res.send(deletedHeader);
     } else {
         res.status(404).send("Order Not Found.")
+    }
+});
+router.delete("/client/:id", async (req, res) => {
+    const client = await clientModel.findOne({_id: req.params.id});
+    if (client) {
+        const deletedClient = await client.remove();
+        res.send(deletedClient);
+    } else {
+        res.status(404).send("Ovaj proizvodjac ne postoji")
     }
 });
 

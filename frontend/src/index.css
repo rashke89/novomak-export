@@ -72,8 +72,7 @@ button.btn-disabled {
 }
 
 .header-links a:hover {
-    color: #ff8000;
-    border-bottom: 3px solid #ff8000;
+    color: #007bff;
 }
 
 .main {
@@ -1026,6 +1025,18 @@ tbody > tr:nth-child(odd) {
 }
 #carouselExampleIndicators1 .product-wrapper {
     display: inline-block;
+}
+
+#carouselExampleIndicators2 {
+    min-height: 100px;
+}
+#carouselExampleIndicators2 .carousel-item {
+    transition-duration: 3s;
+    text-align: center;
+}
+#carouselExampleIndicators2 .col-lg-3 {
+    display: inline-block;
+    text-align: center;
 }
 
 .action {

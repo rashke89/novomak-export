@@ -3,8 +3,9 @@ import Cookie from 'js-cookie';
 import {
   USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS,
   USER_SIGNIN_FAIL, USER_REGISTER_REQUEST,
-  USER_REGISTER_SUCCESS, USER_REGISTER_FAIL, USER_LOGOUT, USER_UPDATE_REQUEST, USER_UPDATE_SUCCESS, USER_UPDATE_FAIL
+  USER_REGISTER_SUCCESS, USER_REGISTER_FAIL, USER_LOGOUT, USER_UPDATE_REQUEST, USER_UPDATE_SUCCESS, USER_UPDATE_FAIL, USER_SLIDER_LIST_SUCCESS
 } from "../constants/userConstants";
+import {PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_RANDOM_LIST_SUCCESS} from "../constants/productConstants";
 
 const update = ({ userId, name, email, password }) => async (dispatch, getState) => {
   const { userSignin: { userInfo } } = getState();
@@ -22,7 +23,17 @@ const update = ({ userId, name, email, password }) => async (dispatch, getState)
     dispatch({ type: USER_UPDATE_FAIL, payload: error.message });
   }
 }
-
+const clientSliderList = () => async (dispatch) => {
+  try {
+    // dispatch({type: PRODUCT_LIST_REQUEST});
+    const {data} = await Axios.get(
+        `/api/users/client/slider`,);
+    dispatch({type: USER_SLIDER_LIST_SUCCESS, payload: data});
+  } catch (error) {
+    console.log('error');
+    dispatch({type: PRODUCT_LIST_FAIL, payload: error.message});
+  }
+};
 const signin = (email, password) => async (dispatch) => {
   dispatch({ type: USER_SIGNIN_REQUEST, payload: { email, password } });
   try {
@@ -32,7 +43,7 @@ const signin = (email, password) => async (dispatch) => {
   } catch (error) {
     dispatch({ type: USER_SIGNIN_FAIL, payload: error.message });
   }
-}
+};
 
 const register = (name, email, password) => async (dispatch) => {
   dispatch({ type: USER_REGISTER_REQUEST, payload: { name, email, password } });
@@ -50,4 +61,4 @@ const logout = () => (dispatch) => {
   dispatch({ type: USER_LOGOUT })
 };
 
-export { signin, register, logout, update };
+export { signin, register, logout, update, clientSliderList };

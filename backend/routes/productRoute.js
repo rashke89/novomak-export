@@ -53,8 +53,6 @@ router.get('/:id', async (req, res) => {
         } else {
             res.send(product);
         }
-
-
     } else {
         res.status(404).send({message: 'Product Not Found.'});
     }
@@ -75,7 +73,6 @@ router.get('/marked/all', async (req, res) => {
                 } else {
                     obj[num] = [list[i]];
                 }
-
             }
             res.send(obj);
         } else {
@@ -85,7 +82,6 @@ router.get('/marked/all', async (req, res) => {
         console.log(e);
         res.status(404).send({message: 'Product Not Found.'});
     }
-
 });
 router.post('/:id/reviews', isAuth, async (req, res) => {
     const product = await Product.findById(req.params.id);

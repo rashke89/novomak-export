@@ -191,7 +191,7 @@ function ProductsScreen(props) {
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h2 className="modal-title" id="exampleModalLabel">Kreiraj proizvod</h2>
+                            <h2 className="modal-title" id="exampleModalLabel">{id ? 'Izmeni' : 'Kreiraj'} proizvod</h2>
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>

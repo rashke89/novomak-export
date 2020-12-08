@@ -122,7 +122,7 @@ function CategoriesScreen(props) {
                         <span className={`nav-link ${selectedCategory === 'diameters' && 'active'}`}>Precnik</span>
                     </li>
                 </ul>
-                <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={e => openModal({name: ''})}>
+                <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={e => openModal({name: '', id: ''})}>
                     Kreiraj kategoriju
                 </button>
             </div>
@@ -131,7 +131,7 @@ function CategoriesScreen(props) {
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h2 className="modal-title" id="exampleModalLabel">Kreiraj kategoriju</h2>
+                            <h2 className="modal-title" id="exampleModalLabel">{id ? 'Izmeni' : 'Kreiraj'} kategoriju</h2>
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={e => {
                                 dispatch({type: CATEGORY_SAVE_REQUEST, payload: ''});
                             }}>

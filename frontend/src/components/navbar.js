@@ -12,11 +12,8 @@ export default function Navbar(props) {
         document.querySelector('#nav-icon3').addEventListener('click', function(event){
             if (document.querySelector('#nav-icon3').classList.contains('open')) {
                 document.querySelector('.navbar-overlay').style.display = 'none';
-                console.log('none',document.querySelector('.navbar-overlay'));
                 document.querySelector('#nav-icon3').classList.remove('open');
-                return null;
             } else {
-                console.log('block', document.querySelector('.navbar-overlay'));
                 document.querySelector('.navbar-overlay').style.display = 'block';
                 document.querySelector('#nav-icon3').classList.add('open');
             }
@@ -24,15 +21,13 @@ export default function Navbar(props) {
         var links = document.querySelectorAll(".nav-item a");
         links.forEach((item) => {
             item.addEventListener('click', (event) => {
-                console.log('for');
                 document.querySelector('#nav-icon3').click()
             })
         });
         document.querySelector('.navbar-overlay').addEventListener('click', (event) => {
-            console.log('over');
             document.querySelector('#nav-icon3').click()
         })
-    }, [])
+    }, []);
     useEffect(() => {
 
     }, [cartItems]);
@@ -87,6 +82,9 @@ export default function Navbar(props) {
                         <li className="mb-5">
                             <Link to="/header">Header</Link>
                         </li>
+                        <li className="mb-5">
+                            <Link to="/proizvodjaci">Porizvodjaci</Link>
+                        </li>
                     </ul>
                 </div>
             )}
@@ -130,17 +128,20 @@ export default function Navbar(props) {
                     <Link to="/o-nama/kontakt">KONTAKT</Link>
                 </li>
                 {userInfo && userInfo.isAdmin ? <>
-                    <li className="nav-item dropdown">
+                    <li className="nav-item">
                         <Link to="/profile">PORUDZBINE</Link>
                     </li>
-                    <li className="nav-item dropdown">
+                    <li className="nav-item">
                         <Link to="/kategorije">KATEGORIJE</Link>
                     </li>
-                    <li className="nav-item dropdown">
+                    <li className="nav-item">
                         <Link to="/products">PROIZVODI</Link>
                     </li>
-                    <li className="nav-item dropdown">
+                    <li className="nav-item">
                         <Link to="/header">HEADER</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/proizvodjaci">PROIZVODJACI</Link>
                     </li></> : ''}
 
             </ul>
