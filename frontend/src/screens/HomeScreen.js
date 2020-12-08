@@ -94,8 +94,13 @@ function HomeScreen(props) {
         category && dispatch(listProducts(category, searchKeyword, sortOrder, num, filter));
     };
     const formatPrice = (product) => {
+        console.log(product);
+        if (product?.priceChanged) {
+            return product.Cena;
+        }
         let foundCategory = categories.find(item => item.name === product.Kategorija);
         if (foundCategory && foundCategory?.discount) {
+            product.priceChanged = true;
             if (foundCategory.discount < 0) {
                 product.staraCena = product.Cena;
                 return product.Cena = product.Cena - ((product.Cena * Number(Math.abs(foundCategory.discount))) / 100).toFixed(2);
