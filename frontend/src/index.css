@@ -1219,6 +1219,8 @@ tbody > tr:nth-child(odd) {
 .navbar-collapse ul {
     padding: 20px;
     text-align: center;
+    border-bottom: 5px solid #007bff;
+
 }
 .navbar-collapse ul li {
    font-size: 22px;
@@ -1303,6 +1305,17 @@ tbody > tr:nth-child(odd) {
     top: 50px;
     left: 0;
     display: none;
+}
+@media only screen and (max-width: 1500px) {
+    #carouselExampleIndicators1 .carousel-inner.row {
+        margin: 0;
+    }
+    #carouselExampleIndicators1 .carousel-control-next {
+        right: 0 !important;
+    }
+    #carouselExampleIndicators1 .carousel-control-prev {
+        left: 0;
+    }
 }
 @media only screen and (max-width: 768px) {
     .mobile-navbar {
@@ -1444,13 +1457,5 @@ tbody > tr:nth-child(odd) {
     .brand-wrapper ul {
         justify-content: center;
     }
-    #carouselExampleIndicators1 .carousel-inner.row {
-        margin: 0;
-    }
-    #carouselExampleIndicators1 .carousel-control-next {
-        right: 0 !important;
-    }
-    #carouselExampleIndicators1 .carousel-control-prev {
-        left: 0;
-    }
+
 }

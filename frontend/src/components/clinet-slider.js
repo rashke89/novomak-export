@@ -12,7 +12,7 @@ export default function ClientSlider(props) {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(clientSliderList())
-    }, [])
+    }, []);
 
     return <>
         {slider && Object.keys(slider).length ?
