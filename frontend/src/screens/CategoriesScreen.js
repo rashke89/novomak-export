@@ -8,6 +8,7 @@ import {
 } from '../actions/productActions';
 import {deleteCategory, listCategories, saveCategory} from "../actions/categoryAction";
 import {CATEGORY_SAVE_REQUEST} from "../constants/categoryConstants";
+import {listOrders} from "../actions/orderActions";
 
 function CategoriesScreen(props) {
     const [modalVisible, setModalVisible] = useState(false);
@@ -15,6 +16,7 @@ function CategoriesScreen(props) {
     const [name, setName] = useState('');
     const [image, setImage] = useState('');
     const [discount, setDiscount] = useState('');
+    const [usedCategories, setUsedCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('categories');
     const categoryList = useSelector((state) => state.categoryList.categories);
     const categorySave = useSelector((state) => state.categorySave);
@@ -57,6 +59,9 @@ function CategoriesScreen(props) {
     const openModal = (product) => {
         setId(product._id);
         setName(product.name);
+        if (product?.usedCategories)
+            setUsedCategories(product.usedCategories);
+
         if (product?.discount)
             setDiscount(product.discount);
         else
@@ -70,7 +75,8 @@ function CategoriesScreen(props) {
                 selectedCategory,
                 name,
                 discount,
-                image
+                image,
+                usedCategories
             })
         );
     };
@@ -97,6 +103,21 @@ function CategoriesScreen(props) {
             .catch((err) => {
                 console.log(err);
             });
+    };
+
+    const isChecked = (categoryName) => {
+        return usedCategories.findIndex(item => item === categoryName) >= 0;
+    };
+    const handleChangeMarks = (category) => {
+        dispatch(listCategories());
+        var usedCat = usedCategories;
+        var foundIndex = usedCat.findIndex(item => item === category.name);
+        if (foundIndex >= 0) {
+            usedCat.splice(foundIndex, 1)
+        } else {
+            usedCat.push(category.name);
+        }
+        setUsedCategories(usedCat);
     };
     return (
         <div className="content content-margined">
@@ -153,6 +174,18 @@ function CategoriesScreen(props) {
                                             />
 
                                         </div>
+                                        {selectedCategory === 'widths' || selectedCategory === 'heights' || selectedCategory === 'diameters' ? <div className={'col-md-12'}>
+                                            <div onChange={null} className="marked-inputs">
+                                                {usedCategories ? categories?.map(item => {
+                                                        return <div key={item._id} onChange={e => handleChangeMarks(item)} className='input-field'><input type="checkbox" value={item.name}
+
+                                                                                                                  name={item.name}
+                                                                                                                  checked={usedCategories.findIndex(o => o === item.name) >= 0}/> {item.name}</div>
+                                                    }
+                                                ) : ''}
+
+                                            </div>
+                                        </div> : ''}
                                         {selectedCategory === 'categories' && <div className="col-md-6">
                                             <label htmlFor="brand">Rabat (%)</label>
                                             <input
@@ -190,7 +223,8 @@ function CategoriesScreen(props) {
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" id="close-modal-btn" data-dismiss="modal" onClick={e => {
                                 dispatch({type: CATEGORY_SAVE_REQUEST, payload: ''});
-                            }}>Odustani</button>
+                            }}>Odustani
+                            </button>
                             <button type="submit" className="btn btn-primary" onClick={submitHandler}>
                                 {id ? 'Izmeni' : 'Kreiraj'}
                             </button>

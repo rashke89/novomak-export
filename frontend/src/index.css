@@ -566,6 +566,20 @@ button:focus, button:active {
 .form-modal input {
     width: 100%;
 }
+.form-modal .marked-inputs {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+.form-modal .marked-inputs .input-field {
+    margin: 10px 5px 10px 20px;
+}
+
+.form-modal select {
+    width: 100%;
+    padding: 1rem;
+    border: 0.1rem #c0c0c0 solid;
+    border-radius: 0.5rem;
+}
 
 .form-modal label {
     margin-top: 15px;

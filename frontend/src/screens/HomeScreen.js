@@ -96,7 +96,6 @@ function HomeScreen(props) {
         category && dispatch(listProducts(category, searchKeyword, sortOrder, num, filter));
     };
     const formatPrice = (product) => {
-        console.log(product);
         if (product?.priceChanged) {
             return product.Cena;
         }
@@ -207,7 +206,10 @@ function HomeScreen(props) {
                                         <div className="col-md-2 col-sm-6 my-3">
                                             <select name="Sirina" value={filter.Sirina} onChange={filterHandler}>
                                                 <option value="">-- Sirina --</option>
-                                                {widths?.map(item => {
+                                                {filter.Kategorija ?  widths?.map(item => {
+                                                    if (item.usedCategories.findIndex(o => o === filter.Kategorija) >= 0)
+                                                        return<option value={item.name} key={item.name}>{item.name}</option>;
+                                                }) : widths?.map(item => {
                                                     return <option value={item.name} key={item.name}>{item.name}</option>
                                                 })}
                                             </select>
@@ -215,7 +217,10 @@ function HomeScreen(props) {
                                         <div className="col-md-2 col-sm-6 my-3">
                                             <select name="Visina" value={filter.Visina} onChange={filterHandler}>
                                                 <option value="">-- Visina --</option>
-                                                {heights?.map(item => {
+                                                {filter.Kategorija ?  heights?.map(item => {
+                                                    if (item.usedCategories.findIndex(o => o === filter.Kategorija) >= 0)
+                                                        return<option value={item.name} key={item.name}>{item.name}</option>;
+                                                }) : heights?.map(item => {
                                                     return <option value={item.name} key={item.name}>{item.name}</option>
                                                 })}
                                             </select>
@@ -223,7 +228,10 @@ function HomeScreen(props) {
                                         <div className="col-md-2 col-sm-6 my-3">
                                             <select name="Precnik" value={filter.Precnik} onChange={filterHandler}>
                                                 <option value="">-- Precnik --</option>
-                                                {diameters?.map(item => {
+                                                {filter.Kategorija ?  diameters?.map(item => {
+                                                    if (item.usedCategories.findIndex(o => o === filter.Kategorija) >= 0)
+                                                        return<option value={item.name} key={item.name}>{item.name}</option>;
+                                                }) : diameters?.map(item => {
                                                     return <option value={item.name} key={item.name}>{item.name}</option>
                                                 })}
                                             </select>
@@ -295,7 +303,10 @@ function HomeScreen(props) {
                             <div className="col-sm-6 col-md-12">
                                 <select name="Sirina" value={filter.Sirina} onChange={filterHandler}>
                                     <option value="">-- Sirina --</option>
-                                    {widths?.map(item => {
+                                    {filter.Kategorija ?  widths?.map(item => {
+                                        if (item.usedCategories.findIndex(o => o === filter.Kategorija) >= 0)
+                                            return<option value={item.name} key={item.name}>{item.name}</option>;
+                                    }) : widths?.map(item => {
                                         return <option value={item.name} key={item.name}>{item.name}</option>
                                     })}
                                 </select>
@@ -303,7 +314,10 @@ function HomeScreen(props) {
                             <div className="col-sm-6 col-md-12">
                                 <select name="Visina" value={filter.Visina} onChange={filterHandler}>
                                     <option value="">-- Visina --</option>
-                                    {heights?.map(item => {
+                                    {filter.Kategorija ?  heights?.map(item => {
+                                        if (item.usedCategories.findIndex(o => o === filter.Kategorija) >= 0)
+                                            return<option value={item.name} key={item.name}>{item.name}</option>;
+                                    }) : heights?.map(item => {
                                         return <option value={item.name} key={item.name}>{item.name}</option>
                                     })}
                                 </select>
@@ -311,7 +325,10 @@ function HomeScreen(props) {
                             <div className="col-sm-6 col-md-12">
                                 <select name="Precnik" value={filter.Precnik} onChange={filterHandler}>
                                     <option value="">-- Precnik --</option>
-                                    {diameters?.map(item => {
+                                    {filter.Kategorija ?  diameters?.map(item => {
+                                        if (item.usedCategories.findIndex(o => o === filter.Kategorija) >= 0)
+                                            return<option value={item.name} key={item.name}>{item.name}</option>;
+                                    }) : diameters?.map(item => {
                                         return <option value={item.name} key={item.name}>{item.name}</option>
                                     })}
                                 </select>

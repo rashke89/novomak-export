@@ -7,6 +7,7 @@ import {
     deleteProdcut,
 } from '../actions/productActions';
 import Pagination from "react-js-pagination";
+import {listCategories} from "../actions/categoryAction";
 
 function ProductsScreen(props) {
     const [modalVisible, setModalVisible] = useState(false);
@@ -33,6 +34,8 @@ function ProductsScreen(props) {
     const [totalPerPage, setTotalPerPage] = useState(32);
     const [searchKeyword, setSearchKeyword] = useState('');
     const [marked, setMarked] = useState('0');
+    const {categories, diameters, manufacturers, heights, widths, seasons} = useSelector((state) => state.categoryList.categories);
+
 
     const productSave = useSelector((state) => state.productSave);
     const {
@@ -54,13 +57,13 @@ function ProductsScreen(props) {
             setModalVisible(false);
         }
         dispatch(listProducts('', searchKeyword, '', 1));
+        dispatch(listCategories())
         return () => {
             //
         };
     }, [successSave, successDelete]);
 
     const openModal = (product) => {
-        console.log(product.Istaknut);
         // setModalVisible(true);
         setId(product._id || '');
         setKey(product.Sifra || '');
@@ -162,7 +165,6 @@ function ProductsScreen(props) {
         });
     };
     const onChangeValue = (e) => {
-        console.log(e.target.value);
         setMarked(e.target.value)
     };
     return (
@@ -237,50 +239,80 @@ function ProductsScreen(props) {
                                                    className="w-100"
                                                    onChange={uploadFileHandler}></input>
                                             {uploading && <div>Uploading...</div>}
-                                            <label htmlFor="brand">Kategorija</label>
-                                            <input
-                                                type="text"
-                                                name="brand"
-                                                value={category}
-                                                id="brand"
-                                                onChange={(e) => setCategory(e.target.value)}
-                                            ></input>
+                                            <label htmlFor="category">Kategorija</label>
+                                            <select name="category" value={category} onChange={e => setCategory(e.target.value)}>
+                                                <option value=""></option>
+                                                {categories?.map(item => {
+                                                    return <option value={item.name} key={item.name}>{item.name}</option>
+                                                })}
+                                            </select>
+                                            {/*<input*/}
+                                            {/*    type="text"*/}
+                                            {/*    name="brand"*/}
+                                            {/*    value={category}*/}
+                                            {/*    id="brand"*/}
+                                            {/*    onChange={(e) => setCategory(e.target.value)}*/}
+                                            {/*></input>*/}
 
-                                            <label htmlFor="brand">Proizvodjac</label>
-                                            <input
-                                                type="text"
-                                                name="brand"
-                                                value={manufacturer}
-                                                id="brand"
-                                                onChange={(e) => setManufacturer(e.target.value)}
-                                            ></input>
+                                            <label htmlFor="manufacturer">Proizvodjac</label>
+                                            <select name="manufacturer" value={manufacturer} onChange={e => setManufacturer(e.target.value)}>
+                                                <option value=""></option>
+                                                {manufacturers?.map(item => {
+                                                    return <option value={item.name} key={item.name}>{item.name}</option>
+                                                })}
+                                            </select>
+                                            {/*<input*/}
+                                            {/*    type="text"*/}
+                                            {/*    name="brand"*/}
+                                            {/*    value={manufacturer}*/}
+                                            {/*    id="brand"*/}
+                                            {/*    onChange={(e) => setManufacturer(e.target.value)}*/}
+                                            {/*></input>*/}
                                         </div>
                                         <div className="col-md-6">
 
-                                            <label htmlFor="countInStock">Sirina</label>
-                                            <input
-                                                type="text"
-                                                name="countInStock"
-                                                value={width}
-                                                id="countInStock"
-                                                onChange={(e) => setWidth(e.target.value)}
-                                            ></input>
+                                            <label htmlFor="width">Sirina</label>
+                                            <select name="width" value={width} onChange={e => setWidth(e.target.value)}>
+                                                <option value=""></option>
+                                                {widths?.map(item => {
+                                                    return <option value={item.name} key={item.name}>{item.name}</option>
+                                                })}
+                                            </select>
+                                            {/*<input*/}
+                                            {/*    type="text"*/}
+                                            {/*    name="countInStock"*/}
+                                            {/*    value={width}*/}
+                                            {/*    id="countInStock"*/}
+                                            {/*    onChange={(e) => setWidth(e.target.value)}*/}
+                                            {/*></input>*/}
                                             <label htmlFor="countInStock">Visina</label>
-                                            <input
-                                                type="text"
-                                                name="countInStock"
-                                                value={height}
-                                                id="countInStock"
-                                                onChange={(e) => setHeight(e.target.value)}
-                                            ></input>
-                                            <label htmlFor="countInStock">Precnik</label>
-                                            <input
-                                                type="text"
-                                                name="countInStock"
-                                                value={diameter}
-                                                id="countInStock"
-                                                onChange={(e) => setDiameter(e.target.value)}
-                                            ></input>
+                                            <select name="countInStock" value={height} onChange={e => setHeight(e.target.value)}>
+                                                <option value=""></option>
+                                                {heights?.map(item => {
+                                                    return <option value={item.name} key={item.name}>{item.name}</option>
+                                                })}
+                                            </select>
+                                            {/*<input*/}
+                                            {/*    type="text"*/}
+                                            {/*    name="countInStock"*/}
+                                            {/*    value={height}*/}
+                                            {/*    id="countInStock"*/}
+                                            {/*    onChange={(e) => setHeight(e.target.value)}*/}
+                                            {/*></input>*/}
+                                            <label htmlFor="diameter">Precnik</label>
+                                            <select name="diameter" value={diameter} onChange={e => setDiameter(e.target.value)}>
+                                                <option value=""></option>
+                                                {diameters?.map(item => {
+                                                    return <option value={item.name} key={item.name}>{item.name}</option>
+                                                })}
+                                            </select>
+                                            {/*<input*/}
+                                            {/*    type="text"*/}
+                                            {/*    name="countInStock"*/}
+                                            {/*    value={diameter}*/}
+                                            {/*    id="countInStock"*/}
+                                            {/*    onChange={(e) => setDiameter(e.target.value)}*/}
+                                            {/*></input>*/}
                                             <label htmlFor="countInStock">Broj raspolozivih jedinica</label>
                                             <input
                                                 type="text"
@@ -289,14 +321,20 @@ function ProductsScreen(props) {
                                                 id="countInStock"
                                                 onChange={(e) => setCountInStock(e.target.value)}
                                             ></input>
-                                            <label htmlFor="name">Sezona</label>
-                                            <input
-                                                type="text"
-                                                name="category"
-                                                value={season}
-                                                id="category"
-                                                onChange={(e) => setSeason(e.target.value)}
-                                            ></input>
+                                            <label htmlFor="season">Sezona</label>
+                                            <select name="season" value={season} onChange={e => setSeason(e.target.value)}>
+                                                <option value=""></option>
+                                                {seasons?.map(item => {
+                                                    return <option value={item.name} key={item.name}>{item.name}</option>
+                                                })}
+                                            </select>
+                                            {/*<input*/}
+                                            {/*    type="text"*/}
+                                            {/*    name="category"*/}
+                                            {/*    value={season}*/}
+                                            {/*    id="category"*/}
+                                            {/*    onChange={(e) => setSeason(e.target.value)}*/}
+                                            {/*></input>*/}
                                             <label htmlFor="description">Opis</label>
                                             <textarea
                                                 name="description"

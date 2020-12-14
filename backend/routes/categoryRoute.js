@@ -111,6 +111,7 @@ router.put('/:category/:id', isAuth, async (req, res) => {
                     return res.status(500).send({message: `Greska prilikom izmene kategorije. Kategorija ne postoji. Naziv kategorije: ${req.body.name}`});
                 }
                 data.name = req.body.name;
+                data.usedCategories = req.body.usedCategories;
                 data.save().then((savedItem) => {
                     if (savedItem) {
                         return res
@@ -126,6 +127,7 @@ router.put('/:category/:id', isAuth, async (req, res) => {
                     return res.status(500).send({message: `Greska prilikom izmene kategorije. Kategorija ne postoji. Naziv kategorije: ${req.body.name}`});
                 }
                 data.name = req.body.name;
+                data.usedCategories = req.body.usedCategories;
                 data.save().then((savedItem) => {
                     if (savedItem) {
                         return res
@@ -141,6 +143,7 @@ router.put('/:category/:id', isAuth, async (req, res) => {
                     return res.status(500).send({message: `Greska prilikom izmene kategorije. Kategorija ne postoji. Naziv kategorije: ${req.body.name}`});
                 }
                 data.name = req.body.name;
+                data.usedCategories = req.body.usedCategories;
                 data.save().then((savedItem) => {
                     if (savedItem) {
                         return res
@@ -320,7 +323,7 @@ router.post('/', isAuth, async (req, res) => {
                 });
             return;
         case 'widths':
-            newItem = new widthModel({name});
+            newItem = new widthModel({name, usedCategories: req.body.usedCategories});
             newItem.save()
                 .then((savedItem) => {
                     if (savedItem) {
@@ -334,7 +337,7 @@ router.post('/', isAuth, async (req, res) => {
                 });
             return;
         case 'heights':
-            newItem = new heightModel({name});
+            newItem = new heightModel({name, usedCategories: req.body.usedCategories});
             newItem.save()
                 .then((savedItem) => {
                     if (savedItem) {
@@ -348,7 +351,7 @@ router.post('/', isAuth, async (req, res) => {
                 });
             return;
         case 'diameters':
-            newItem = new diameterModel({name});
+            newItem = new diameterModel({name, usedCategories: req.body.usedCategories});
             newItem.save()
                 .then((savedItem) => {
                     if (savedItem) {
