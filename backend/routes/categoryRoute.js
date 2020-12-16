@@ -65,6 +65,7 @@ router.put('/:category/:id', isAuth, async (req, res) => {
                 data.name = req.body.name;
                 data.discount = req.body.discount;
                 data.image = req.body.image;
+                data.order = req.body.order;
                 data.save().then((savedItem) => {
                     if (savedItem) {
                         return res
@@ -96,6 +97,7 @@ router.put('/:category/:id', isAuth, async (req, res) => {
                     return res.status(500).send({message: `Greska prilikom izmene kategorije. Kategorija ne postoji. Naziv kategorije: ${req.body.name}`});
                 }
                 data.name = req.body.name;
+                data.order = req.body.order;
                 data.save().then((savedItem) => {
                     if (savedItem) {
                         return res
@@ -279,7 +281,7 @@ router.post('/', isAuth, async (req, res) => {
     let newItem;
     switch (category) {
         case 'categories':
-            newItem = new categoryModel({name, discount: req.body.discount, image: req.body.image});
+            newItem = new categoryModel({name, discount: req.body.discount, image: req.body.image, order: req.body.order});
             newItem.save()
                 .then((savedItem) => {
                     if (savedItem) {
@@ -309,7 +311,7 @@ router.post('/', isAuth, async (req, res) => {
             return;
 
         case 'seasons':
-            newItem = new seasonModel({name});
+            newItem = new seasonModel({name, order: req.body.order});
             newItem.save()
                 .then((savedItem) => {
                     if (savedItem) {

@@ -3,7 +3,6 @@ import multer from 'multer';
 import multerS3 from 'multer-s3';
 import aws from 'aws-sdk';
 import config from '../config';
-import {parseString} from 'xml2js';
 
 const storage = multer.diskStorage({
   destination(req, file, cb) {
@@ -22,6 +21,9 @@ router.post('/header', upload.single('image'), (req, res) => {
   res.send(`/${req.file.path}`);
 });
 router.post('/category-image', upload.single('image'), (req, res) => {
+  res.send(`/${req.file.path}`);
+});
+router.post('/client', upload.single('image'), (req, res) => {
   res.send(`/${req.file.path}`);
 });
 

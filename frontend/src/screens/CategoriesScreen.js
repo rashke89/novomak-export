@@ -16,6 +16,7 @@ function CategoriesScreen(props) {
     const [name, setName] = useState('');
     const [image, setImage] = useState('');
     const [discount, setDiscount] = useState('');
+    const [order, setOrder] = useState('');
     const [usedCategories, setUsedCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('categories');
     const categoryList = useSelector((state) => state.categoryList.categories);
@@ -61,6 +62,7 @@ function CategoriesScreen(props) {
         setName(product.name);
         if (product?.usedCategories)
             setUsedCategories(product.usedCategories);
+        setOrder(product.order || '');
 
         if (product?.discount)
             setDiscount(product.discount);
@@ -76,7 +78,8 @@ function CategoriesScreen(props) {
                 name,
                 discount,
                 image,
-                usedCategories
+                usedCategories,
+                order
             })
         );
     };
@@ -103,10 +106,6 @@ function CategoriesScreen(props) {
             .catch((err) => {
                 console.log(err);
             });
-    };
-
-    const isChecked = (categoryName) => {
-        return usedCategories.findIndex(item => item === categoryName) >= 0;
     };
     const handleChangeMarks = (category) => {
         dispatch(listCategories());
@@ -143,7 +142,7 @@ function CategoriesScreen(props) {
                         <span className={`nav-link ${selectedCategory === 'diameters' && 'active'}`}>Precnik</span>
                     </li>
                 </ul>
-                <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={e => openModal({name: '', id: ''})}>
+                <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={e => openModal({name: '', id: '', image: '', order: ''})}>
                     Kreiraj kategoriju
                 </button>
             </div>
@@ -163,7 +162,7 @@ function CategoriesScreen(props) {
                             <div className="form-modal">
                                 <form onSubmit={submitHandler}>
                                     <div className="row">
-                                        <div className={`${selectedCategory === 'categories' ? 'col-md-6' : 'col-md-12'}`}>
+                                        <div className={`${selectedCategory === 'categories' || selectedCategory === 'seasons' ? 'col-md-6' : 'col-md-12'}`}>
                                             <label htmlFor="name">Ime</label>
                                             <input
                                                 type="text"
@@ -177,14 +176,24 @@ function CategoriesScreen(props) {
                                         {selectedCategory === 'widths' || selectedCategory === 'heights' || selectedCategory === 'diameters' ? <div className={'col-md-12'}>
                                             <div onChange={null} className="marked-inputs">
                                                 {usedCategories ? categories?.map(item => {
-                                                        return <div key={item._id} onChange={e => handleChangeMarks(item)} className='input-field'><input type="checkbox" value={item.name}
-
-                                                                                                                  name={item.name}
-                                                                                                                  checked={usedCategories.findIndex(o => o === item.name) >= 0}/> {item.name}</div>
+                                                        return <div key={item._id} onChange={e => handleChangeMarks(item)} className='input-field'>
+                                                            <input type="checkbox" value={item.name}
+                                                                   name={item.name}
+                                                                   checked={usedCategories.findIndex(o => o === item.name) >= 0}/> {item.name}</div>
                                                     }
                                                 ) : ''}
 
                                             </div>
+                                        </div> : ''}
+                                        {selectedCategory === 'categories' || selectedCategory === 'seasons' ? <div className={'col-md-6'}>
+                                            <label htmlFor="order">Redni Br</label>
+                                            <input
+                                                type="number"
+                                                name="order"
+                                                value={order}
+                                                id="order"
+                                                onChange={(e) => setOrder(e.target.value)}
+                                            ></input>
                                         </div> : ''}
                                         {selectedCategory === 'categories' && <div className="col-md-6">
                                             <label htmlFor="brand">Rabat (%)</label>

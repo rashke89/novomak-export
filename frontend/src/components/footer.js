@@ -30,7 +30,7 @@ export default function Footer(props) {
                     <h3 className="info-text">Glanve kategorije</h3>
                     <ul>
                         {categories?.length ?
-                        categories.map(item => {
+                        categories.sort((a, b) => a.order -b.order).map(item => {
                             return <li onClick={e => goToCategory(item)} key={item._id}>{item.name}</li>
                         }) :
                         ''}

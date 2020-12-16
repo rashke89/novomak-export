@@ -60,11 +60,9 @@ function categorySaveReducer(state = { category: {} }, action) {
     case CATEGORY_SAVE_SUCCESS:
         setTimeout(() => {
           document.querySelector('#close-modal-btn').click();
-        }, 3000);
-      console.log('ovo je action...',{ loading: false, success: true, category: action.payload });
+        }, 2000);
       return { loading: false, success: true, category: action.payload };
     case CATEGORY_SAVE_FAIL:
-      console.log(action);
       return { loading: false, success: false, category: action.payload };
     default:
       return state;

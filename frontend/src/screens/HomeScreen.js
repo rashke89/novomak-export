@@ -239,7 +239,7 @@ function HomeScreen(props) {
                                         <div className="col-md-3 col-sm-6 my-3">
                                             <select name="Kategorija" value={filter.Kategorija} onChange={filterHandler}>
                                                 <option value="">-- Kategorija --</option>
-                                                {categories?.map(item => {
+                                                {categories?.sort((a, b) => a.order -b.order).map(item => {
                                                     return <option value={item.name} key={item.name}>{item.name}</option>
                                                 })}
                                             </select>
@@ -295,7 +295,7 @@ function HomeScreen(props) {
                             <div className="col-sm-6 col-md-12">
                                 <select name="Kategorija" value={filter.Kategorija} onChange={filterHandler}>
                                     <option value="">-- Kategorija --</option>
-                                    {categories?.map(item => {
+                                    {categories?.sort((a, b) => a.order -b.order).map(item => {
                                         return <option value={item.name} key={item.name}>{item.name}</option>
                                     })}
                                 </select>
@@ -427,7 +427,7 @@ function HomeScreen(props) {
 
                         {!categories?.length ? '' :
 <>
-    {categories.map(item => {
+    {categories.sort((a, b) => a.order -b.order).map(item => {
         let image = item?.image ? item.image : 'https://le-cdn.websites.hibu.com/8f8b35766e8947e2be0e167cbf9a4001/dms3rep/multi/opt/shutterstock_262895021-640w.jpg';
         return <div key={item._id} className="category-bg-image" style={{"backgroundImage": `url('${image}')`}} onClick={e => goToCategory(item)}>
             <div className="layer">
