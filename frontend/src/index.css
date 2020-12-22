@@ -493,8 +493,14 @@ button:focus, button:active {
     flex-wrap: wrap;
     margin: 1rem;
     align-items: flex-start;
+    margin-top: 20px;
 }
+.main-categories .category-bg-image {
 
+    width: 100% !important;
+    height: 200px !important;;
+    max-height: 200px !important;;
+}
 .cart-list {
     flex: 1 60rem;
 }
