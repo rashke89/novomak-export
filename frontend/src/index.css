@@ -1321,6 +1321,51 @@ tbody > tr:nth-child(odd) {
     display: none;
 }
 
+/*Stevan adding*/
+.product-brand {
+    font-size: 1.8rem;
+    color: black;
+    font-weight: 600;
+}
+.carousel-inner .content h1 {
+    font-size: 42px;
+    border: 1px solid white;
+    background-color: hsl(210deg 100% 23% / 65%);
+    border-left: 10px solid #ffffff;
+    padding: 8px 20px;
+    color: white;
+    text-shadow: 2px 1px black;
+}
+.carousel-inner .content a {
+    color: #ffffff;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+    border: 2px solid #ffffff;
+    padding: 8px 15px;
+    background-color: hsl(210deg 100% 23%);
+    display: block;
+    margin-top: 15px;
+    font-size: 20px;
+    text-shadow: 2px 1px black;
+}
+.category-screen-wrapper .filter button, .category-screen-wrapper .filter input, .category-screen-wrapper .filter select {
+    border: 1px solid #4a4b5045;
+    margin: 5px 0;
+    background-color: #ffffff;
+    border-radius: inherit !important;
+}
+.header{
+    padding: .5rem 3%;
+
+    height: 55px;
+}
+.header-links a {
+    padding: 1rem;
+    font-size: 18px;
+    font-family: inherit;
+    text-transform: uppercase;
+}
 @media only screen and (max-width: 1500px) {
     #carouselExampleIndicators1 .carousel-inner.row {
         margin: 0;
