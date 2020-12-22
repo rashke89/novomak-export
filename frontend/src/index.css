@@ -1320,6 +1320,9 @@ tbody > tr:nth-child(odd) {
     left: 0;
     display: none;
 }
+body * {
+    font-family: 'Quicksand', sans-serif;
+}
 
 /*Stevan adding*/
 .product-brand {
