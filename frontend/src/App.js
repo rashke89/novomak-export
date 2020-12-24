@@ -71,6 +71,7 @@ function App() {
             <Route path="/proizvod/:id" component={ProductScreen} />
             <Route path="/cart/:id?" component={CartScreen} />
             <Route path="/kategorija/:id" component={HomeScreen} />
+            <Route path="/sezona/:seasonId" component={HomeScreen} />
             <Route path="/header" component={HeaderScreen} />
             <Route path="/proizvodjaci" component={ClientsScreen} />
             <Route path="/o-nama" exact={true} component={AboutUsScreen} />

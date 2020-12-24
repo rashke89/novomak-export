@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {updateFilter} from "../actions/productActions";
 
 export default function Footer(props) {
-    const {categories} = useSelector((state) => state.categoryList.categories);
+    const {categories, seasons} = useSelector((state) => state.categoryList.categories);
     const dispatch = useDispatch();
     let history = useHistory();
     // useEffect(() => {
@@ -22,6 +22,17 @@ export default function Footer(props) {
         dispatch(updateFilter({'Kategorija': category.name}));
         history.push(`/kategorija/${category._id}/${name}`);
     };
+    const goToSeason = (season) => {
+        let options = {
+            behavior: 'smooth'
+        };
+        let name = season.name.replace(/\/+/g, '').replace(/[/,+\/.+\/:+\/;+\/"+\/'+\/*+\/!+\/?+]+/g, '').replace(/\s+/g, '-').toLowerCase();
+        setTimeout(() => {
+            document.getElementById('home-section').scrollIntoView(options)
+        }, 500);
+        dispatch(updateFilter({'Sezona': season.name}));
+        history.push(`/sezona/${season._id}/${name}`);
+    };
 
     return <footer className="footer">
         <div className="container">
@@ -37,6 +48,16 @@ export default function Footer(props) {
                     </ul>
                 </div>
                 <div className="col-md-6">
+                    <h3 className="info-text">Sezone</h3>
+                    <ul>
+                        {seasons?.length ?
+                            seasons.sort((a, b) => a.order -b.order).map(item => {
+                                return <li onClick={e => goToSeason(item)} key={item._id}>{item.name}</li>
+                            }) :
+                            ''}
+                    </ul>
+                </div>
+                <div className="col-md-12">
                     <div className="contact">
                         <a href="tel:022/314-740">
                             <p>

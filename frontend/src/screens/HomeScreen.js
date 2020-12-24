@@ -17,6 +17,7 @@ function HomeScreen(props) {
     const [searchKeyword, setSearchKeyword] = useState('');
     const [sortOrder, setSortOrder] = useState('');
     const category = props.match.params.id ? props.match.params.id : '';
+    const seasonId = props.match.params.seasonId ? props.match.params.seasonId : '';
     const productList = useSelector((state) => state.productList);
     const filter = useSelector((state) => state.filter);
     const {categories, diameters, manufacturers, heights, widths, seasons} = useSelector((state) => state.categoryList.categories);
@@ -27,7 +28,6 @@ function HomeScreen(props) {
     let history = useHistory();
     useEffect(() => {
         dispatch(listProducts(category));
-        // dispatch(listCategories());
         return () => {
             //
         };
@@ -44,9 +44,21 @@ function HomeScreen(props) {
         if (categories?.length && category) {
             let findCategory;
             let newFilter;
-            if (category !== 'shop') {
+            if (category !== 'shop' ) {
                 findCategory = categories.find(item => item._id === category);
                 newFilter  = {...filter, page: 1, Kategorija: findCategory.name}
+            } else {
+                newFilter = {...filter, page: 1}
+            }
+            dispatch(updateFilter(newFilter));
+            dispatch(listProducts('', filter.searchKeyword, filter.sortOrder, filter.page, newFilter));
+        } else if (seasons?.length && seasonId) {
+            let findCategory;
+            let newFilter;
+            if (seasonId) {
+                console.log(seasonId);
+                findCategory = seasons.find(item => item._id === seasonId);
+                newFilter  = {...filter, page: 1, Sezona: findCategory.name}
             } else {
                 newFilter = {...filter, page: 1}
             }
@@ -56,11 +68,11 @@ function HomeScreen(props) {
         return () => {
             //
         };
-    }, [categories, category]);
+    }, [categories, category, seasonId]);
     useEffect(() => {
         if (!category)
             dispatch(randomProductsList());
-    }, [category])
+    }, [category]);
 
     useEffect(() => {
         if (Object.keys(filter).length) {
@@ -270,7 +282,7 @@ function HomeScreen(props) {
                         </div>
 
                     </section>}
-                    {categories?.length && category ? <div className="row category-screen-wrapper">
+                    {(categories?.length && category) || seasonId ? <div className="row category-screen-wrapper">
                         <div className="col-md-3 col-sm-12 filter">
                             <div className="col-sm-12">
                                 <h2 className="info-text">Filter</h2>

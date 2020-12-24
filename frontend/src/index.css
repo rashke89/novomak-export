@@ -106,7 +106,7 @@ button.btn-disabled {
 
 .footer .col-md-12 {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
@@ -115,7 +115,7 @@ button.btn-disabled {
 }
 
 .footer .contact {
-    text-align: right;
+    text-align: center;
 }
 
 .footer .contact p {
