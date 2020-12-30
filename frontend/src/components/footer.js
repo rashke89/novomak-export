@@ -36,8 +36,8 @@ export default function Footer(props) {
 
     return <footer className="footer">
         <div className="container">
-            <div className="row align-items-center">
-                <div className="col-md-6">
+            <div className="row center">
+                <div className="col-md-4">
                     <h3 className="info-text">Glanve kategorije</h3>
                     <ul>
                         {categories?.length ?
@@ -47,7 +47,7 @@ export default function Footer(props) {
                         ''}
                     </ul>
                 </div>
-                <div className="col-md-6">
+                <div className="col-md-4">
                     <h3 className="info-text">Sezone</h3>
                     <ul>
                         {seasons?.length ?
@@ -57,7 +57,7 @@ export default function Footer(props) {
                             ''}
                     </ul>
                 </div>
-                <div className="col-md-12">
+                <div className="col-md-4">
                     <div className="contact">
                         <a href="tel:022/314-740">
                             <p>

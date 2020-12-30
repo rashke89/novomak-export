@@ -434,7 +434,8 @@ function HomeScreen(props) {
 
                         </div>
                     </div> : <div className="home-screen-wrapper">
-                        <h1 className="info-text">Glavne kategorije</h1>
+                        <h1 className=" info-text title-title"> <strong className="pr-1">Naša</strong>Ponuda</h1>
+                        <h3 className=" text-center mt-2">Sve za vašeg <strong>"ljubimca" </strong> na jednom mestu</h3>
                         <div className="main-categories">
 
                         {!categories?.length ? '' :

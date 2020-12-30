@@ -7,9 +7,7 @@
   pointer-events: none;
 }
 
-.container {
-  max-width: 1440px;
-}
+
 .container .row {
   width: 100%;
 }
