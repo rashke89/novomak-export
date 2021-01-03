@@ -434,8 +434,8 @@ function HomeScreen(props) {
 
                         </div>
                     </div> : <div className="home-screen-wrapper">
-                        <h1 className=" info-text title-title"> <strong className="pr-1">Naša</strong>Ponuda</h1>
-                        <h3 className=" text-center mt-2">Sve za vašeg <strong>"ljubimca" </strong> na jednom mestu</h3>
+                        <h1 className=" info-text title-title"><strong className="pr-1">Naša</strong>Ponuda</h1>
+                        <h3 className=" text-center mt-3">Sve za vašeg <strong>"ljubimca" </strong> na jednom mestu</h3>
                         <div className="main-categories">
 
                         {!categories?.length ? '' :
@@ -490,7 +490,7 @@ function HomeScreen(props) {
                         {/*    </div>*/}
                         {/*</div>*/}
                         <div className="highlight-products">
-                            <h1 className="info-text">Istaknuti proizvodi</h1>
+                            <h1 className="info-text"><strong className="pr-1">Istaknuti</strong> proizvodi</h1>
                         </div>
 
                         <div id="carouselExampleIndicators1" className="carousel slide my-5" data-ride="carousel">

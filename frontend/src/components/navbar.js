@@ -40,16 +40,17 @@ export default function Navbar(props) {
     //             console.log(error);
     //         })
     // };
-    return <header className="header navbar">
+    return <header className="header navbar fixed-top">
         <div className="brand">
             <Link to="/">
                 <img src="http://www.novomak-export.com/wp-content/uploads/2013/06/novomak-logo2.png" alt=""/>
             </Link>
         </div>
         <div className="header-links">
-            <Link to="/kategorija/shop">shop</Link>
-            <Link to="/o-nama">o nama</Link>
-            <Link to="/o-nama/kontakt">kontakt</Link>
+            <Link  className="active"to="/">Početna</Link>
+            <Link to="/kategorija/shop">Shop</Link>
+            <Link to="/o-nama">O nama</Link>
+            <Link to="/o-nama/kontakt">Kontakt</Link>
             <Link to="/cart" className="cart-item">
                 korpa
                 <svg aria-hidden="true"
