@@ -102,7 +102,7 @@ function HomeScreen(props) {
         };
         setTimeout(() => {
             document.getElementById('home-section').scrollIntoView(options)
-        }, 500)
+        }, 800);
         setPage(num);
         dispatch(updateFilter({...filter, page: num}));
         category && dispatch(listProducts(category, searchKeyword, sortOrder, num, filter));
@@ -260,7 +260,7 @@ function HomeScreen(props) {
                                             <select name="Proizvodjac" value={filter.Proizvodjac} onChange={filterHandler}>
                                                 <option value="">-- Proizvodjac --</option>
                                                 {manufacturers?.map(item => {
-                                                    return <option value={item.name} key={item.name}>{item.name}</option>
+                                                    return <option value={item.name} key={item._id}>{item.name}</option>
                                                 })}
                                             </select>
                                         </div>
@@ -349,7 +349,7 @@ function HomeScreen(props) {
                                 <select name="Proizvodjac" value={filter.Proizvodjac} onChange={filterHandler}>
                                     <option value="">-- Proizvodjac --</option>
                                     {manufacturers?.map(item => {
-                                        return <option value={item.name} key={item.name}>{item.name}</option>
+                                        return <option value={item.name} key={item._id}>{item.name}</option>
                                     })}
                                 </select>
                             </div>

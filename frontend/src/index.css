@@ -505,7 +505,7 @@ button:focus, button:active {
     flex-wrap: wrap;
     margin: 1rem;
     align-items: flex-start;
-    margin-top: 20px;
+    margin-top: 45px;
 }
 
 .cart-list {

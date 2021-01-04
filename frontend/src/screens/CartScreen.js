@@ -31,7 +31,13 @@ function CartScreen(props) {
   useEffect(() => {
     if (productId) {
       dispatch(addToCart(productId, qty));
-    }
+    };
+    let options = {
+      behavior: 'smooth'
+    };
+    setTimeout(() => {
+      document.getElementsByClassName('cart')[0].scrollIntoView(options)
+    }, 500)
   }, []);
 
   // useEffect(() => {

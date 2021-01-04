@@ -8,6 +8,7 @@ export default function Navbar(props) {
     const { userInfo } = userSignin;
     const cart = useSelector(state => state.cart);
     const { cartItems } = cart;
+    const [activeLink, setActiveLink] = useState('0');
     useEffect(() => {
         document.querySelector('#nav-icon3').addEventListener('click', function(event){
             if (document.querySelector('#nav-icon3').classList.contains('open')) {
@@ -27,10 +28,30 @@ export default function Navbar(props) {
         document.querySelector('.navbar-overlay').addEventListener('click', (event) => {
             document.querySelector('#nav-icon3').click()
         })
+
     }, []);
     useEffect(() => {
-
-    }, [cartItems]);
+        console.log(window.location.pathname);
+        switch (window.location.pathname) {
+            case '/' :
+                setActiveLink(0);
+                break;
+            case '/kategorija/shop':
+                setActiveLink(1);
+                break;
+            case '/o-nama':
+                setActiveLink(2);
+                break;
+            case '/o-nama/kontakt':
+                setActiveLink(3);
+                break;
+            case '/cart':
+                setActiveLink(4);
+                break;
+            default:
+                console.log('ne postoji stranica.')
+        }
+    }, [activeLink]);
     // const listHeaders = () => {
     //     axios.get(`/api/users/header`)
     //         .then(data => {
@@ -40,18 +61,22 @@ export default function Navbar(props) {
     //             console.log(error);
     //         })
     // };
+    const onChooseLink = (link) => {
+        console.log(link);
+        setActiveLink(link);
+    };
     return <header className="header navbar fixed-top">
         <div className="brand">
-            <Link to="/">
+            <Link to="/" onClick={e => onChooseLink(0)}>
                 <img src="http://www.novomak-export.com/wp-content/uploads/2013/06/novomak-logo2.png" alt=""/>
             </Link>
         </div>
         <div className="header-links">
-            <Link  className="active"to="/">Početna</Link>
-            <Link to="/kategorija/shop">Shop</Link>
-            <Link to="/o-nama">O nama</Link>
-            <Link to="/o-nama/kontakt">Kontakt</Link>
-            <Link to="/cart" className="cart-item">
+            <Link  className={`${activeLink == 0 ? "active" : ""}`} to="/" onClick={e => onChooseLink(0)}>Početna</Link>
+            <Link className={`${activeLink == 1 ? "active" : ""}`} to="/kategorija/shop" onClick={e => onChooseLink(1)}>Shop</Link>
+            <Link className={`${activeLink == 2 ? "active" : ""}`} to="/o-nama" onClick={e => onChooseLink(2)}>O nama</Link>
+            <Link className={`${activeLink == 3 ? "active" : ""}`} to="/o-nama/kontakt" onClick={e => onChooseLink(3)}>Kontakt</Link>
+            <Link to="/cart" className={`${activeLink == 4 ? "active" : ""} cart-item`} onClick={e => onChooseLink(4)}>
                 korpa
                 <svg aria-hidden="true"
                      focusable="false"
