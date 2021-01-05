@@ -122,6 +122,7 @@ router.put('/:id', isAuth, async (req, res) => {
         product.Specifikacija = req.body.description;
         product.Cena = Number(req.body.price);
         product.Istaknut = Number(req.body.marked);
+        product.Akcija = Number(req.body.action);
 
         const updatedProduct = await product.save();
         if (updatedProduct) {
@@ -193,7 +194,8 @@ router.post('/new', isAuth, async (req, res) => {
         Slika: req.body.image,
         Specifikacija: req.body.description,
         Cena: Number(req.body.price),
-        Istaknut: Number(req.body.marked)
+        Istaknut: Number(req.body.marked),
+        Akcija: Number(req.body.action)
     });
     const newProduct = await product.save();
 

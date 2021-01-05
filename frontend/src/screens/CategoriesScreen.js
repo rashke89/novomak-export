@@ -127,19 +127,19 @@ function CategoriesScreen(props) {
                         <span className={`nav-link ${selectedCategory === 'categories' && 'active'}`}>Kategorije</span>
                     </li>
                     <li className="nav-item" onClick={e => onChoseCategory('manufacturers')}>
-                        <span className={`nav-link ${selectedCategory === 'manufacturers' && 'active'}`}>Proizvodjaci</span>
+                        <span className={`nav-link ${selectedCategory === 'manufacturers' && 'active'}`}>Proizvođači</span>
                     </li>
                     <li className="nav-item" onClick={e => onChoseCategory('seasons')}>
                         <span className={`nav-link ${selectedCategory === 'seasons' && 'active'}`}>Sezone</span>
                     </li>
                     <li className="nav-item" onClick={e => onChoseCategory('widths')}>
-                        <span className={`nav-link ${selectedCategory === 'widths' && 'active'}`}>Sirina</span>
+                        <span className={`nav-link ${selectedCategory === 'widths' && 'active'}`}>Širina</span>
                     </li>
                     <li className="nav-item" onClick={e => onChoseCategory('heights')}>
                         <span className={`nav-link ${selectedCategory === 'heights' && 'active'}`}>Visina</span>
                     </li>
                     <li className="nav-item" onClick={e => onChoseCategory('diameters')}>
-                        <span className={`nav-link ${selectedCategory === 'diameters' && 'active'}`}>Precnik</span>
+                        <span className={`nav-link ${selectedCategory === 'diameters' && 'active'}`}>Prečnik</span>
                     </li>
                 </ul>
                 <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={e => openModal({name: '', id: '', image: '', order: ''})}>

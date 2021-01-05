@@ -56,7 +56,6 @@ function HomeScreen(props) {
             let findCategory;
             let newFilter;
             if (seasonId) {
-                console.log(seasonId);
                 findCategory = seasons.find(item => item._id === seasonId);
                 newFilter  = {...filter, page: 1, Sezona: findCategory.name}
             } else {
@@ -72,6 +71,7 @@ function HomeScreen(props) {
     useEffect(() => {
         if (!category)
             dispatch(randomProductsList());
+
     }, [category]);
 
     useEffect(() => {
@@ -217,7 +217,7 @@ function HomeScreen(props) {
                                         </div>
                                         <div className="col-md-2 col-sm-6 my-3">
                                             <select name="Sirina" value={filter.Sirina} onChange={filterHandler}>
-                                                <option value="">-- Sirina --</option>
+                                                <option value="">-- Širina --</option>
                                                 {filter.Kategorija ?  widths?.map(item => {
                                                     if (item.usedCategories.findIndex(o => o === filter.Kategorija) >= 0)
                                                         return<option value={item.name} key={item.name}>{item.name}</option>;
@@ -239,7 +239,7 @@ function HomeScreen(props) {
                                         </div>
                                         <div className="col-md-2 col-sm-6 my-3">
                                             <select name="Precnik" value={filter.Precnik} onChange={filterHandler}>
-                                                <option value="">-- Precnik --</option>
+                                                <option value="">-- Prečnik --</option>
                                                 {filter.Kategorija ?  diameters?.map(item => {
                                                     if (item.usedCategories.findIndex(o => o === filter.Kategorija) >= 0)
                                                         return<option value={item.name} key={item.name}>{item.name}</option>;
@@ -258,7 +258,7 @@ function HomeScreen(props) {
                                         </div>
                                         <div className="col-md-3 col-sm-6 my-3">
                                             <select name="Proizvodjac" value={filter.Proizvodjac} onChange={filterHandler}>
-                                                <option value="">-- Proizvodjac --</option>
+                                                <option value="">-- Proizvođač --</option>
                                                 {manufacturers?.map(item => {
                                                     return <option value={item.name} key={item._id}>{item.name}</option>
                                                 })}
@@ -314,7 +314,7 @@ function HomeScreen(props) {
                             </div>
                             <div className="col-sm-6 col-md-12">
                                 <select name="Sirina" value={filter.Sirina} onChange={filterHandler}>
-                                    <option value="">-- Sirina --</option>
+                                    <option value="">-- Širina --</option>
                                     {filter.Kategorija ?  widths?.map(item => {
                                         if (item.usedCategories.findIndex(o => o === filter.Kategorija) >= 0)
                                             return<option value={item.name} key={item.name}>{item.name}</option>;
@@ -336,7 +336,7 @@ function HomeScreen(props) {
                             </div>
                             <div className="col-sm-6 col-md-12">
                                 <select name="Precnik" value={filter.Precnik} onChange={filterHandler}>
-                                    <option value="">-- Precnik --</option>
+                                    <option value="">-- Prečnik --</option>
                                     {filter.Kategorija ?  diameters?.map(item => {
                                         if (item.usedCategories.findIndex(o => o === filter.Kategorija) >= 0)
                                             return<option value={item.name} key={item.name}>{item.name}</option>;
@@ -347,7 +347,7 @@ function HomeScreen(props) {
                             </div>
                             <div className="col-sm-6 col-md-12">
                                 <select name="Proizvodjac" value={filter.Proizvodjac} onChange={filterHandler}>
-                                    <option value="">-- Proizvodjac --</option>
+                                    <option value="">-- Proizvođač --</option>
                                     {manufacturers?.map(item => {
                                         return <option value={item.name} key={item._id}>{item.name}</option>
                                     })}
@@ -412,7 +412,7 @@ function HomeScreen(props) {
                                                 <div className="product-brand px-3">{product.Proizvodjac}</div>
                                                 <div className="product-description px-3">{product.Specifikacija}</div>
                                                 <div className="product-price px-3">{formatPrice(product)} rsd</div>
-                                                {product.staraCena ? <div className="action">Akcijska cena</div> : ''}
+                                                {product.Akcija == 1 ? <div className="action">Akcijska cena</div> : ''}
                                             </Link>
                                         </div>
                                     </div>
@@ -513,7 +513,7 @@ function HomeScreen(props) {
                                                             <div className="product-brand px-3">{product.Proizvodjac}</div>
                                                             <div className="product-description px-3">{product.Specifikacija}</div>
                                                             <div className="product-price px-3">{formatPrice(product)} rsd</div>
-                                                            {product.staraCena ? <div className="action">Akcijska cena</div> : ''}
+                                                            {product.Akcija == 1 ? <div className="action">Akcijska cena</div> : ''}
                                                         </Link>
                                                     </div>
                                                 </div>

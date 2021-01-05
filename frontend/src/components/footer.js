@@ -30,7 +30,7 @@ export default function Footer(props) {
         setTimeout(() => {
             document.getElementById('home-section').scrollIntoView(options)
         }, 500);
-        dispatch(updateFilter({'Sezona': season.name}));
+        dispatch(updateFilter({'Sezona': season.name, page: 1}));
         history.push(`/sezona/${season._id}/${name}`);
     };
 

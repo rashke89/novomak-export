@@ -85,7 +85,7 @@ function ClientsScreen(props) {
     return (
         <div className="content content-margined">
             <div className="product-header mb-4">
-                <h3>Proizvodjaci</h3>
+                <h3>Proizvođači</h3>
                 <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={e => openModal({text: '', _id: '', link: '', image: ''})}>
                     Kreiraj proizvodjaca
                 </button>
@@ -95,7 +95,7 @@ function ClientsScreen(props) {
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h2 className="modal-title" id="exampleModalLabel">{id ? 'Izmeni' : 'Kreiraj'} proizvodjaca</h2>
+                            <h2 className="modal-title" id="exampleModalLabel">{id ? 'Izmeni' : 'Kreiraj'} proizvođača</h2>
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>

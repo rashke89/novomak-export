@@ -38,6 +38,7 @@ const prodctSchema_ = new mongoose.Schema({
   Specifikacija: { type: String, required: false },
   Cena: { type: Number, default: 0, required: false },
   Istaknut: { type: String, default: '0', required: false },
+  Akcija: { type: String, default: '0', required: false },
 });
 
 const productModel = mongoose.model('Product', prodctSchema_);

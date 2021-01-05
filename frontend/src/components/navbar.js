@@ -31,7 +31,6 @@ export default function Navbar(props) {
 
     }, []);
     useEffect(() => {
-        console.log(window.location.pathname);
         switch (window.location.pathname) {
             case '/' :
                 setActiveLink(0);
@@ -62,7 +61,6 @@ export default function Navbar(props) {
     //         })
     // };
     const onChooseLink = (link) => {
-        console.log(link);
         setActiveLink(link);
     };
     return <header className="header navbar fixed-top">
@@ -109,7 +107,7 @@ export default function Navbar(props) {
                             <Link to="/header">Header</Link>
                         </li>
                         <li className="mb-5">
-                            <Link to="/proizvodjaci">Porizvodjaci</Link>
+                            <Link to="/proizvodjaci">Porizvođači</Link>
                         </li>
                     </ul>
                 </div>
@@ -167,7 +165,7 @@ export default function Navbar(props) {
                         <Link to="/header">HEADER</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/proizvodjaci">PROIZVODJACI</Link>
+                        <Link to="/proizvodjaci">PROIZVOĐAČI</Link>
                     </li></> : ''}
 
             </ul>

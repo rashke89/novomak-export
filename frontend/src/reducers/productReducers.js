@@ -24,8 +24,8 @@ function productListReducer(state = { products: [] }, action) {
       return { loading: true, products: [] };
     case PRODUCT_LIST_SUCCESS:
       return { loading: false, products: action.payload.products, totalItems: action.payload.totalItems, sirina:  action.payload.sirina};
-      case PRODUCT_RANDOM_LIST_SUCCESS:
-        return { loading: false, randomProducts: action.payload};
+    case PRODUCT_RANDOM_LIST_SUCCESS:
+        return { loading: false, randomProducts: action.payload, ...state};
     case PRODUCT_LIST_FAIL:
       return { loading: false, error: action.payload };
     default:

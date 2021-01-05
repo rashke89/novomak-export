@@ -34,6 +34,7 @@ function ProductsScreen(props) {
     const [totalPerPage, setTotalPerPage] = useState(32);
     const [searchKeyword, setSearchKeyword] = useState('');
     const [marked, setMarked] = useState('0');
+    const [action, setAction] = useState('0');
     const {categories, diameters, manufacturers, heights, widths, seasons} = useSelector((state) => state.categoryList.categories);
 
 
@@ -79,6 +80,7 @@ function ProductsScreen(props) {
         setHeight(product.Visina || '');
         setDiameter(product.Precnik || '');
         setMarked(product.Istaknut);
+        setAction(product.Akcija);
     };
     const submitSearchHandler = (e) => {
         e.preventDefault();
@@ -104,6 +106,7 @@ function ProductsScreen(props) {
                 countInStock: countInStock || 0,
                 description,
                 marked,
+                action
             })
         );
     };
@@ -167,6 +170,9 @@ function ProductsScreen(props) {
     const onChangeValue = (e) => {
         setMarked(e.target.value)
     };
+    const onChangeAction = (e) => {
+        setAction(e.target.value)
+    };
     return (
         <div className="content content-margined">
             <div className="product-header mb-4">
@@ -203,7 +209,7 @@ function ProductsScreen(props) {
                                 <form onSubmit={submitHandler}>
                                     <div className="row">
                                         <div className="col-md-6">
-                                            <label htmlFor="name">Sifra</label>
+                                            <label htmlFor="name">Šifra</label>
                                             <input
                                                 type="text"
                                                 name="name"
@@ -254,7 +260,7 @@ function ProductsScreen(props) {
                                             {/*    onChange={(e) => setCategory(e.target.value)}*/}
                                             {/*></input>*/}
 
-                                            <label htmlFor="manufacturer">Proizvodjac</label>
+                                            <label htmlFor="manufacturer">Proizvođač</label>
                                             <select name="manufacturer" value={manufacturer} onChange={e => setManufacturer(e.target.value)}>
                                                 <option value=""></option>
                                                 {manufacturers?.map(item => {
@@ -271,7 +277,7 @@ function ProductsScreen(props) {
                                         </div>
                                         <div className="col-md-6">
 
-                                            <label htmlFor="width">Sirina</label>
+                                            <label htmlFor="width">Širina</label>
                                             <select name="width" value={width} onChange={e => setWidth(e.target.value)}>
                                                 <option value=""></option>
                                                 {widths?.map(item => {
@@ -299,7 +305,7 @@ function ProductsScreen(props) {
                                             {/*    id="countInStock"*/}
                                             {/*    onChange={(e) => setHeight(e.target.value)}*/}
                                             {/*></input>*/}
-                                            <label htmlFor="diameter">Precnik</label>
+                                            <label htmlFor="diameter">Prečnik</label>
                                             <select name="diameter" value={diameter} onChange={e => setDiameter(e.target.value)}>
                                                 <option value=""></option>
                                                 {diameters?.map(item => {
@@ -313,7 +319,7 @@ function ProductsScreen(props) {
                                             {/*    id="countInStock"*/}
                                             {/*    onChange={(e) => setDiameter(e.target.value)}*/}
                                             {/*></input>*/}
-                                            <label htmlFor="countInStock">Broj raspolozivih jedinica</label>
+                                            <label htmlFor="countInStock">Broj raspoloživih jedinica</label>
                                             <input
                                                 type="text"
                                                 name="countInStock"
@@ -349,6 +355,12 @@ function ProductsScreen(props) {
                                                 <label>Istaknut</label>
                                                 <input type="radio" value="1" name="gender" checked={marked === '1'} /> Da
                                                 <input type="radio" value="0" name="gender" checked={marked === '0'}/> Ne
+                                            </div>
+
+                                            <div onChange={onChangeAction} className="marked-inputs">
+                                                <label>Akcija</label>
+                                                <input type="radio" value="1" checked={action === '1'} /> Da
+                                                <input type="radio" value="0" checked={action === '0'}/> Ne
                                             </div>
                                         </div>
                                     </div>
@@ -458,7 +470,7 @@ function ProductsScreen(props) {
                                 ></input>
                             </li>
                             <li>
-                                <label htmlFor="countInStock">Broj raspolozivih jedinica</label>
+                                <label htmlFor="countInStock">Broj raspoloživih jedinica</label>
                                 <input
                                     type="text"
                                     name="countInStock"
@@ -509,11 +521,11 @@ function ProductsScreen(props) {
                 <table className="table">
                     <thead>
                     <tr>
-                        <th>Sifra</th>
+                        <th>Šifra</th>
                         <th>Ime</th>
                         <th>Cena</th>
                         <th>Kategorija</th>
-                        <th>Proizvodjac</th>
+                        <th>Proizvođač</th>
                         <th></th>
                     </tr>
                     </thead>
