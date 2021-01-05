@@ -273,7 +273,7 @@ function HomeScreen(props) {
                                             </select>
                                         </div>
                                         <div className="col-md-3 col-sm-12 my-3">
-                                            <button className="search-btn" type="button" onClick={handleSearch}>Pretrazi</button>
+                                            <button className="search-btn" type="button" onClick={handleSearch}>Pretraži</button>
                                         </div>
                                     </div>
                                 </div>
