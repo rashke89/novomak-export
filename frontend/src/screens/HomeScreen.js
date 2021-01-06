@@ -409,9 +409,9 @@ function HomeScreen(props) {
                                                 <div className="product-name px-3">
                                                     {product.Naziv}
                                                 </div>
-                                                <div className="product-brand px-3">{product.Proizvodjac}</div>
-                                                <div className="product-description px-3">{product.Specifikacija}</div>
-                                                <div className="product-price px-3">{formatPrice(product)} rsd</div>
+                                                <div className="product-brand px-1">{product.Proizvodjac}</div>
+                                                <div className="product-description px-1">{product.Specifikacija}</div>
+                                                <div className="product-price px-1">{formatPrice(product)} rsd</div>
                                                 {product.staraCena ? <div className="action">Akcijska cena</div> : ''}
                                             </Link>
                                         </div>
