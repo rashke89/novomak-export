@@ -521,7 +521,7 @@ function ProductsScreen(props) {
                 <table className="table">
                     <thead>
                     <tr>
-                        <th>Šifra</th>
+                        <th>Link</th>
                         <th>Ime</th>
                         <th>Cena</th>
                         <th>Kategorija</th>
@@ -532,7 +532,7 @@ function ProductsScreen(props) {
                     <tbody>
                     {products?.map((product) => (
                         <tr key={product._id}>
-                            <td className="align-center">{product.Sifra}</td>
+                            <td className="align-center"><a href={'https://novomak.herokuapp.com/proizvod/' + product._id} target="_blank">Link</a></td>
                             <td>{product.Naziv}</td>
                             <td>{product.Cena}</td>
                             <td>{product.Kategorija}</td>
