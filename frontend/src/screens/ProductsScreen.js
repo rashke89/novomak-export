@@ -173,6 +173,10 @@ function ProductsScreen(props) {
     const onChangeAction = (e) => {
         setAction(e.target.value)
     };
+    const copyLink = (id) => {
+        navigator.clipboard.writeText(`https://novomak.herokuapp.com/proizvod/${id}`);
+    };
+
     return (
         <div className="content content-margined">
             <div className="product-header mb-4">
@@ -532,7 +536,9 @@ function ProductsScreen(props) {
                     <tbody>
                     {products?.map((product) => (
                         <tr key={product._id}>
-                            <td className="align-center"><a href={'https://novomak.herokuapp.com/proizvod/' + product._id} target="_blank">Link</a></td>
+                            <td className="align-center"><a href={'https://novomak.herokuapp.com/proizvod/' + product._id} target="_blank">Link</a>
+                            <p className="copy-link" onClick={e => copyLink(product._id)}>COPY</p>
+                            </td>
                             <td>{product.Naziv}</td>
                             <td>{product.Cena}</td>
                             <td>{product.Kategorija}</td>

@@ -2,7 +2,10 @@ html {
     font-size: 62.5%; /* 16px * 62.5 = 10px = 1rem */
     box-sizing: border-box;
 }
-
+.copy-link:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
 body {
     font: 1.6rem Helvetica;
     height: 100vh;
