@@ -63,7 +63,7 @@ export default function Navbar(props) {
     const onChooseLink = (link) => {
         setActiveLink(link);
     };
-    return <header className="header navbar fixed-top">
+    return <header className="header navbar sticky">
         <div className="brand">
             <Link to="/" onClick={e => onChooseLink(0)}>
                 <img src="http://www.novomak-export.com/wp-content/uploads/2013/06/novomak-logo2.png" alt=""/>

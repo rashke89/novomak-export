@@ -409,10 +409,17 @@ function HomeScreen(props) {
                                                 <div className="product-name px-3">
                                                     {product.Naziv}
                                                 </div>
+<<<<<<< HEAD
                                                 <div className="product-brand px-3">{product.Proizvodjac}</div>
                                                 <div className="product-description px-3">{product.Specifikacija}</div>
                                                 <div className="product-price px-3">{formatPrice(product)} rsd</div>
                                                 {product.Akcija == 1 ? <div className="action">Akcijska cena</div> : ''}
+=======
+                                                <div className="product-brand px-1">{product.Proizvodjac}</div>
+                                                <div className="product-description px-1">{product.Specifikacija}</div>
+                                                <div className="product-price px-1">{formatPrice(product)} rsd</div>
+                                                {product.staraCena ? <div className="action">Akcijska cena</div> : ''}
+>>>>>>> a116778113f6951e0549d469a2043a38d33c7693
                                             </Link>
                                         </div>
                                     </div>
