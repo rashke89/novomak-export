@@ -30,7 +30,7 @@ export default function Carousel(props) {
         <div className="carousel-inner">
             {headers?.length ?
                 headers.map((item, index) => {
-                    return <div key={index} className={`carousel-item ${!index ? 'active' : ''}`} style={{'backgroundImage': `url('${config.formatImagePath(item.image)}')`}}>
+                    return <div key={index} className={`carousel-item ${!index ? 'active' : ''}`} style={{'backgroundImage': `url('${require(config.formatImagePath(item.image))}')`}}>
                         <div className="container h-100">
                             <div className="row h-100">
                                 <div className="col-md-12 h-100" style={{'justifyContent': item.position == 1 ? 'flex-end' : ''}}>
