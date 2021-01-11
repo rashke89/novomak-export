@@ -8,6 +8,7 @@ import {
 } from '../actions/productActions';
 import {deleteCategory, listCategories, saveCategory} from "../actions/categoryAction";
 import {CATEGORY_SAVE_REQUEST} from "../constants/categoryConstants";
+import * as config from "../config";
 
 function ClientsScreen(props) {
     const [modalVisible, setModalVisible] = useState(false);
@@ -175,7 +176,7 @@ function ClientsScreen(props) {
                         <tr key={product._id}>
                             <td>{product.text}</td>
                             <td>
-                                <img src={`${product.image}`} alt=""/>
+                                <img src={`${config.formatImagePath(product.image)}`} alt=""/>
                             </td>
                             <td>
                                 <button type="button" data-toggle="modal" data-target="#exampleModal" className="button" onClick={() => openModal(product)}>

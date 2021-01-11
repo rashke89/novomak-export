@@ -3,6 +3,7 @@ import {addToCart, clearCart, removeFromCart, updateCartItemQty} from '../action
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Axios from "axios";
+import * as config from "../config";
 let int = 5;
 function CartScreen(props) {
 
@@ -98,7 +99,7 @@ function CartScreen(props) {
             cartItems.map((item, id) =>
               <li key={id}>
                 <div className="cart-image">
-                  <img src={item.Slika} alt="product" />
+                  <img src={config.formatImagePath(item.Slika)} alt="product" />
                 </div>
                 <div className="cart-name mb-3">
                   <div>

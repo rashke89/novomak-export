@@ -5,6 +5,7 @@ import { detailsProduct, saveProductReview } from '../actions/productActions';
 import Rating from '../components/Rating';
 import { PRODUCT_REVIEW_SAVE_RESET } from '../constants/productConstants';
 import {addToCart} from "../actions/cartActions";
+import * as config from "../config";
 
 function ProductScreen(props) {
   const [qty, setQty] = useState(1);
@@ -81,7 +82,7 @@ function ProductScreen(props) {
         <>
           {product?.ID ? <div className="details row">
             <div className="details-image col-md-4">
-              <img className="img-fluid" src={product.Slika} alt="product"></img>
+              <img className="img-fluid" src={config.formatImagePath(product.Slika)} alt="product"></img>
               {hasAction ?<div className="action">Akcijska cena</div>: ''}
             </div>
             <div className="details-info col-md-4">

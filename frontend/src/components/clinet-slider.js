@@ -6,6 +6,7 @@ import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
 import {clientSliderList} from "../actions/userActions";
 import {Link} from "react-router-dom";
+import * as config from "../config";
 
 export default function ClientSlider(props) {
     const {slider} = useSelector((state) => state.slider);
@@ -25,7 +26,7 @@ export default function ClientSlider(props) {
                             return <div key={index} className={`carousel-item ${!index ? 'active' : ''}`}>
                                 {slider[item].map((product) => {
                                     return <div className="col-lg-3 col-md-6 my-3 img-fluid" key={product._id}>
-                                        <img src={`${product.image}`} alt=""/>
+                                        <img src={`${config.formatImagePath(product.image)}`} alt=""/>
                                     </div>
                                 })}
                             </div>

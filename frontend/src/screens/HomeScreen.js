@@ -7,7 +7,7 @@ import Rating from '../components/Rating';
 import {useHistory} from 'react-router-dom';
 import Pagination from "react-js-pagination";
 import Carousel from "../components/carousel";
-import {WIDTH_LIST, HEIGHT_LIST, DIAMETER} from "../config";
+import * as config from "../config";
 import {listCategories} from "../actions/categoryAction";
 import Cookie from "js-cookie";
 import {sliderList} from "../actions/userActions";
@@ -402,7 +402,7 @@ function HomeScreen(props) {
                                         <div className="product">
                                             <Link to={'/proizvod/' + product._id}>
                                                 <div className="link">
-                                                    <div style={{'backgroundImage': `url(${product.Slika})`}} className="-bg-image">
+                                                    <div style={{'backgroundImage': `url(${config.formatImagePath(product.Slika)})`}} className="-bg-image">
 
                                                     </div>
                                                 </div>
@@ -442,7 +442,7 @@ function HomeScreen(props) {
 <>
     {categories.sort((a, b) => a.order -b.order).map(item => {
         let image = item?.image ? item.image : 'https://le-cdn.websites.hibu.com/8f8b35766e8947e2be0e167cbf9a4001/dms3rep/multi/opt/shutterstock_262895021-640w.jpg';
-        return <div key={item._id} className="category-bg-image" style={{"backgroundImage": `url('${image}')`}} onClick={e => goToCategory(item)}>
+        return <div key={item._id} className="category-bg-image" style={{"backgroundImage": `url('${config.formatImagePath(image)}')`}} onClick={e => goToCategory(item)}>
             <div className="layer">
                 <h2>{item.name}</h2>
             </div>
@@ -503,7 +503,7 @@ function HomeScreen(props) {
                                                     <div className="product">
                                                         <Link to={'/proizvod/' + product._id}>
                                                             <div className="link">
-                                                                <div style={{'backgroundImage': `url(${product.Slika})`}} className="-bg-image">
+                                                                <div style={{'backgroundImage': `url(${config.formatImagePath(product.Slika)})`}} className="-bg-image">
 
                                                                 </div>
                                                             </div>
