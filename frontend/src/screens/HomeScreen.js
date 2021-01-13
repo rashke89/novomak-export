@@ -176,7 +176,7 @@ function HomeScreen(props) {
             <div id="home-section"></div>
 
             {loading ? (
-                <div>Ucitavanje...</div>
+                <div>Učitavanje...</div>
             ) : error ? (
                 <div>{error}</div>
             ) : (
@@ -185,7 +185,7 @@ function HomeScreen(props) {
                         <div className="row m-0">
                             <div className="col-md-12 p-0">
                                 <div className="container p-0">
-                                    <div className="row filter">
+                                    <div className="row filter bg-blue">
                                         <div className="col-sm-6 col-md-3 my-3">
                                             <form onSubmit={submitHandler} className="search-input">
                                                 <input
@@ -443,8 +443,9 @@ function HomeScreen(props) {
     {categories.sort((a, b) => a.order -b.order).map(item => {
         let image = item?.image ? item.image : 'https://le-cdn.websites.hibu.com/8f8b35766e8947e2be0e167cbf9a4001/dms3rep/multi/opt/shutterstock_262895021-640w.jpg';
         return <div key={item._id} className="category-bg-image" style={{"backgroundImage": `url('${config.formatImagePath(image)}')`}} onClick={e => goToCategory(item)}>
-            <div className="layer">
+            <div className="layer position-relative">
                 <h2>{item.name}</h2>
+    <img  className="vulco"src="https://www.novomak-export.com/wp-content/themes/novomak/images/vulco%20logo.png" alt=""/>
             </div>
         </div>
     })}

@@ -26,6 +26,9 @@ button.btn-disabled {
     width: 100%;
 }
 
+.bg-blue {
+    background-color: #005aab;
+}
 #root {
     height: 100%;
 }
@@ -474,9 +477,8 @@ a > .rating > span:last-child {
 
 .info-text {
     background: #cff1ff;
-    border: 2px solid #f6f674;
-    border-left: 4px solid #007bff;
-    padding: 7px;
+    border-left: 3px solid #007bff;
+    padding: 5px 7px;
 }
 
 .title-title {
@@ -919,7 +921,7 @@ tbody > tr:nth-child(odd) {
 
 /* filter */
 .filter-wrapper {
-    background-color: #005aab;
+
     min-width: 100vw;
     margin-left: -50vw;
     left: 50%;
@@ -927,6 +929,7 @@ tbody > tr:nth-child(odd) {
     padding: 0px !important;
     margin-top: -10px;
 }
+
 
 .filter-wrapper .search-input {
     position: relative;
@@ -950,6 +953,7 @@ tbody > tr:nth-child(odd) {
 }
 
 .filter {
+
     display: flex;
     position: relative;
     list-style-type: none;
@@ -976,7 +980,7 @@ tbody > tr:nth-child(odd) {
     padding: 5px;
     border-radius: 0.5rem;
     border: 0.1rem #c0c0c0 solid;
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     background-color: #f5f5f5;
     width: 100%;
 }
@@ -1029,7 +1033,7 @@ tbody > tr:nth-child(odd) {
 .carousel-inner .content h1 {
     font-size: 42px;
     border: 2px solid #F6F674 !important;
-    background-color: hsl(210deg 100% 23% / 65%);
+    background-color: hsl(210deg 100% 23% / 80%);
     border-left: 10px solid #ffffff;
     padding: 8px 20px;
     border-left: 5px solid #007bff !important;
@@ -1206,7 +1210,7 @@ tbody > tr:nth-child(odd) {
     text-shadow: 2px 1px #000;
     background-color: hsl(210deg 100% 23%/65%);
     border: 1px solid #edf076;
-    border-left-width: 10px;
+    border-left-width: 7px;
     padding: 8px 20px;
     color: #fff;
     text-shadow: 2px 1px #000;
@@ -1416,10 +1420,35 @@ body * {
 
 /*Stevan adding*/
 
+.info-box {
+    border-bottom: 1px solid #80808030;
+}
+
+.top a {
+    color: #005aab;
+    font-size: 13px;
+}
+
+.brand {
+    margin-top: 5px;
+}
+
+img.vulco {
+    width: 15%;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+.navbar {
+    padding: 0px ;
+    z-index: 99;
+}
+
 .carousel-inner .content h1 {
     font-size: 28px;
     border: 1px solid white;
-    background-color: hsl(210deg 100% 23% / 65%);
+    background-color: hsl(210deg 100% 23% / 80%);
     border-left: 10px solid #ffffff;
     padding: 8px 20px;
     color: white;
@@ -1453,13 +1482,13 @@ body * {
     padding: 26px 15px;
     font-size: 16px;
     font-family: inherit;
-    border-left: 2px solid #005aab;
 }
 
 .header-links a:hover {
     background-color: #005aab;
     color: #f6f674;
     border-left: 2px solid #f6f674;
+    border-right: 2px solid #f6f674;
 }
 
 a.active {
