@@ -64,38 +64,36 @@ function AboutUsScreen(props) {
                 Preduzeće Novomak export d.o.o. osnovano je 2000 godine,sa sedištem  u Staroj Pazovi ulica Kralja Petra I broj  78.
             </p>
             <h3>Osnovni principi poslovanja</h3>
-    <p>Osnovni principi poslovanja realizuju se uspešnom kombinacijom visoko profesionalnih i stručnih radnika, sa tehnički najsavremenijim voznim parkom (kamioni, dostavna vozila, putnički automobili), servisno-prodajnim objektima ,  sadržajno najkompletnijim lagerom robe, najsavremenijom opremom i <strong>mašinama u vulkanizerskim servisima za montažu, demontažu i balansiranje guma, kao i duvanje guma azotom.</strong></p>
-    <p>Izlazeći u susret zahtevima mnogobrojnih kupaca za pružanje usluga "na licu mesta" - Novomak export d.o.o. ima i<strong> mobilni vulkanizerski servis,</strong> kojim praktično pomaže kupcima u rešavanju problema sa gumama svih<strong> 24 časa</strong></p>
-    <p>Kao još jedan dokaz uspešnosti poslovanja i profesionalnog odnosa u radu, jeste dobijeni<strong> sertifikat uvedenog sistema menadžmenta kvalitetom prema ISO 9001:2008 i ISO 14001:2004, za delatnosti; uvoza, izvoza, veleprodaje, maloprodaje i servisa svih vrsta pneumatika i remenja.</strong></p>
-    <p>
-                U centru poslovne politike preduzeća NOVOMAK-EXPORT nalazi se kupac I korisnik usluga. Osnovni princip poslovanja zasniva se na permanentnom prilagođavanju zahteva kupaca I tržišta, pružanje usluga na vrhunskom nivou kao i prodaji guma visokog kvaliteta po najpovoljnijim uslovima kako trgovcima tako i krajnjim potrošačima.
-              </p>
+            <p>Osnovni principi poslovanja realizuju se uspešnom kombinacijom visoko profesionalnih i stručnih radnika, sa tehnički najsavremenijim voznim parkom (kamioni, dostavna vozila, putnički automobili), servisno-prodajnim objektima ,  sadržajno najkompletnijim lagerom robe, najsavremenijom opremom i <strong>mašinama u vulkanizerskim servisima za montažu, demontažu i balansiranje guma, kao i duvanje guma azotom.</strong></p>
+            <p>Izlazeći u susret zahtevima mnogobrojnih kupaca za pružanje usluga "na licu mesta" - Novomak export d.o.o. ima i<strong> mobilni vulkanizerski servis,</strong> kojim praktično pomaže kupcima u rešavanju problema sa gumama svih<strong> 24 časa</strong></p>
+            <p>Kao još jedan dokaz uspešnosti poslovanja i profesionalnog odnosa u radu, jeste dobijeni<strong> sertifikat uvedenog sistema menadžmenta kvalitetom prema ISO 9001:2008 i ISO 14001:2004, za delatnosti; uvoza, izvoza, veleprodaje, maloprodaje i servisa svih vrsta pneumatika i remenja.</strong></p>
 
-              <p>
-                Za pravna lica koja održavaju svoja vozila kod nas imamo odgovarajuće bonuse i popuste.
-              </p>
-    <p>Danas obuhvatamo najznačajnije robne marke proizvođača <strong>pneumatika</strong> i to:</p>
-                <ul>
-                    <li><strong><a href="http://www.conti-online.com/generator/www/start/com/en/index_en.html" target="_blank">Contintal</a></strong> (Continental, Semperit, Barum, General tire, Sportiva)</li>
-                    <li><strong><a href="http://www.bridgestone.com/regional/europe_cis/" target="_blank">Bridgestone</a></strong> (Bridgestone, Firestone, Dayton)</li>
-                    <li><strong><a href="http://www.michelin.com/fre" target="_blank">Michelin</a></strong> (Michelin, Tigar)</li>
-                    <li><strong><a href="http://www.pirelli.com/tyres/sr-rs/contact-us" target="_blank">Pirelli </a></strong></li>
-                    <li><strong><a href="http://www.mitas-tyres.com/rs/" target="_blank">Mitas</a></strong> (Mitas, Cultor)</li>
-                    <li><strong><a href="http://www.westlaketire.com/" target="_blank">West Lake </a></strong></li>
-                    <li><strong><a href="http://www.td-kama.com/en/" target="_blank">Kama</a></strong></li>
-                    <li><strong><a href="http://www.atgtire.com/" target="_blank">Alliance</a></strong> (Alliance, Galaxy, Primex)</li>
-                    <li><strong><a href="http://www.trelleborg.com/en" target="_blank">Trelleborg</a></strong></li>
-                </ul>
-        Kao i klinastog remenja:
-
-        <ul>
-            <li><strong><a href="http://www.optibelt.com/" target="_blank">Optibelt</a></strong></li>
-            <li><strong><a href="http://www.rubena.eu/" target="_blank">Rubena</a></strong></li>
-        </ul>
 
             </div>
             <div className="col-md-6 about-us-img">
               <img src="http://www.novomak-export.com/wp-content/uploads/2013/06/22215066_1818448731517684_794108681_n.jpg" className="img img-fluid about-us-img" alt=""/>
+            </div>
+
+            <div className="col-md-12 ">
+        <p>
+        U centru poslovne politike preduzeća NOVOMAK-EXPORT nalazi se kupac I korisnik usluga. Osnovni princip poslovanja zasniva se na permanentnom prilagođavanju zahteva kupaca I tržišta, pružanje usluga na vrhunskom nivou kao i prodaji guma visokog kvaliteta po najpovoljnijim uslovima kako trgovcima tako i krajnjim potrošačima.
+    </p>
+
+    <p>
+    Za pravna lica koja održavaju svoja vozila kod nas imamo odgovarajuće bonuse i popuste.
+    </p>
+    <p>Danas obuhvatamo najznačajnije robne marke proizvođača <strong>pneumatika</strong> i to:</p>
+    <ul>
+    <li><strong><a href="http://www.conti-online.com/generator/www/start/com/en/index_en.html" target="_blank">Contintal</a></strong> (Continental, Semperit, Barum, General tire, Sportiva)</li>
+    <li><strong><a href="http://www.bridgestone.com/regional/europe_cis/" target="_blank">Bridgestone</a></strong> (Bridgestone, Firestone, Dayton)</li>
+        <li><strong><a href="http://www.michelin.com/fre" target="_blank">Michelin</a></strong> (Michelin, Tigar)</li>
+        <li><strong><a href="http://www.pirelli.com/tyres/sr-rs/contact-us" target="_blank">Pirelli </a></strong></li>
+        <li><strong><a href="http://www.mitas-tyres.com/rs/" target="_blank">Mitas</a></strong> (Mitas, Cultor)</li>
+        <li><strong><a href="http://www.westlaketire.com/" target="_blank">West Lake </a></strong></li>
+    <li><strong><a href="http://www.td-kama.com/en/" target="_blank">Kama</a></strong></li>
+        <li><strong><a href="http://www.atgtire.com/" target="_blank">Alliance</a></strong> (Alliance, Galaxy, Primex)</li>
+        <li><strong><a href="http://www.trelleborg.com/en" target="_blank">Trelleborg</a></strong></li>
+        </ul>
             </div>
 
             <div className="col-md-12 quote-wrapper my-5">
@@ -227,6 +225,9 @@ function AboutUsScreen(props) {
                 </div>
 
               </div>
+
+
+
             </div>
           </div>
         </section>

@@ -70,14 +70,14 @@ export default function Navbar(props) {
         <div className="row">
 
         <div className="col-auto col-md-auto col-xl-4 pl-0 d-flex justify-content-start  info-box">
-        <a href="#" className="pr-2 py-1">064 33 22 878</a>
+        <a href="tel:022/314-740" className="pr-2 py-1">022 314 740</a>
     /
     <a href="#" className="pl-2 py-1" >novomakexport@yahoo.com</a>
     </div>
 
 
 
-        <div className="col-12 col-xl-4 box-form d-none d-xl-block info-box">
+        <div className="col-12 col-xl-3 box-form d-none d-xl-block info-box">
 
         </div>
 
@@ -85,7 +85,7 @@ export default function Navbar(props) {
 
 
 
-        <div className="col-auto ml-auto col-md-auto col-xl-4 d-flex justify-content-end">
+        <div className="col-auto ml-auto col-md-auto col-xl-5 d-flex justify-content-end">
 
     </div>
     </div>
@@ -98,7 +98,7 @@ export default function Navbar(props) {
             <div className=" navbar container">
                     <div className="brand">
                     <Link to="/" onClick={e => onChooseLink(0)}>
-                        <img  className="w-75"src="http://www.novomak-export.com/wp-content/uploads/2013/06/novomak-logo2.png" alt=""/>
+                        <img  className="w-75"src="http://media2.power-pixels.com/2021/01/novomak-logo2.png" alt=""/>
                     </Link>
                     </div>
                     <div className="header-links">
@@ -122,6 +122,9 @@ export default function Navbar(props) {
                     </svg>
                     {cartItems ? <span>{cartItems.length}</span> : ''}
                 </Link>
+
+                <a className="face-a"href="#" ><img  className="face"src="http://media2.power-pixels.com/2021/01/facebook-1.png" alt=""/></a>
+
                 {userInfo && userInfo.isAdmin && (
                 <div className="dropdown">
                     <a href="#">{userInfo.name}</a>

@@ -1478,11 +1478,21 @@ img.vulco {
 
     height: 70px;
 }
+
+
+.header-links a:last-child:hover{
+    background: transparent;
+    border: 2px solid transparent;
+}
+
 .header-links a {
     padding: 26px 15px;
     font-size: 16px;
     font-family: inherit;
+    border-left: 2px solid transparent;
+    border-right: 2px solid transparent;
 }
+
 
 .header-links a:hover {
     background-color: #005aab;
@@ -1495,6 +1505,7 @@ a.active {
     background-color: #005aab;
     color: #f6f674;
     border-left: 2px solid #f6f674;
+    border-right: 2px solid #f6f674;
 }
 .details-action {
     border: .1rem solid #8080803d;
@@ -1510,6 +1521,15 @@ a.active {
     color: #fff;
     font-size: 20px;
 }
+
+.face{
+    width: 30px;
+
+}
+
+
+
+
 .details-action ul li:nth-child(1) {
 
     font-size: 27px !important;
