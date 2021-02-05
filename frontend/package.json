@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "proxy": "https://novomak.herokuapp.com",
+  "proxy": "https://novomak-export-6gmdh.ondigitalocean.app/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
