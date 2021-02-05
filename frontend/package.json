@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "proxy": "https://novomak-export-6gmdh.ondigitalocean.app/",
+  "proxy": "https://novomak-export-6gmdh.ondigitalocean.app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -18,7 +18,6 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0"
   },
-
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
