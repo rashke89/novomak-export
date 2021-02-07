@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "proxy": "https://novomak-export-6gmdh.ondigitalocean.app",
+  "proxy": "https://novomak-export.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -27,6 +27,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+
   "browserslist": {
     "production": [
       ">0.2%",
