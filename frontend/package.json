@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "proxy": "https://novomak-export.com/novomak-export3:9000",
+  "proxy": "https://novomak-export.com/novomak-export3",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
