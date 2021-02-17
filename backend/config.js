@@ -15,11 +15,12 @@ export default {
   PORT: process.env.PORT || 5000,
   MONGODB_URL: () => {
     console.log('this is the PROCESS...', process);
-    if (process.env.MONGODB_URL) {
-      return process.env.MONGODB_URL;
-    } else {
-      return 'mongodb://localhost/amazona'
-    }
+    return 'mongodb+srv://novomak:novomak2020@cluster0.ivtbn.mongodb.net/amazona?retryWrites=true&w=majority'
+    // if (process.env.MONGODB_URL) {
+    //   return process.env.MONGODB_URL;
+    // } else {
+    //   return 'mongodb://localhost/amazona'
+    // }
   },
   JWT_SECRET: process.env.JWT_SECRET || 'somethingsecret',
   PAYPAL_CLIENT_ID: process.env.PAYPAL_CLIENT_ID || 'sb',
