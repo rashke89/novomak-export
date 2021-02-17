@@ -14,9 +14,9 @@ export default {
   mongooseOptions,
   PORT: process.env.PORT || 5000,
   MONGODB_URL: () => {
-    console.log(process.env);
+    console.log('this is the PROCESS...', process);
     if (process.env.MONGODB_URL) {
-      console.log(process.env.MONGODB_URL);
+      return process.env.MONGODB_URL;
     } else {
       return 'mongodb://localhost/amazona'
     }
