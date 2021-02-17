@@ -60,7 +60,9 @@ router.get('/:id', async (req, res) => {
 router.get('/marked/all', async (req, res) => {
     console.log('OVO JE MARKED ALL PRODUCTS API CALL...');
     try {
+        console.log('usop u try');
         const product = await Product.find();
+        console.log('ovo je product....', product);
         if (product && product.length) {
             let list = product.filter(item => item.Istaknut === '1');
             let obj = {};
