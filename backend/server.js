@@ -10,8 +10,8 @@ import orderRoute from './routes/orderRoute';
 import uploadRoute from './routes/uploadRoute';
 import xmlRoute from "./routes/xmlRoute";
 
-console.log('mongo URL: --->>', config.MONGODB_URL);
-const mongodbUrl = config.MONGODB_URL;
+console.log('mongo URL: --->>', config.MONGODB_URL());
+const mongodbUrl = config.MONGODB_URL();
 
 /* Mongo connection */
 mongoose
