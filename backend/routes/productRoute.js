@@ -58,7 +58,6 @@ router.get('/:id', async (req, res) => {
     }
 });
 router.get('/marked/all', async (req, res) => {
-    console.log('OVO JE MARKED ALL PRODUCTS API CALL...');
     try {
         const product = await Product.find();
         if (product && product.length) {
