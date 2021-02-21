@@ -71,7 +71,7 @@ function AboutUsScreen(props) {
 
             </div>
             <div className="col-md-6 about-us-img">
-              <img src="http://www.novomak-export.com/wp-content/uploads/2013/06/22215066_1818448731517684_794108681_n.jpg" className="img img-fluid about-us-img" alt=""/>
+              <img src="http://media2.power-pixels.com/2021/02/block-tires.jpg" className="img img-fluid about-us-img" alt="online prodaja guma"/>
             </div>
 
             <div className="col-md-12 ">

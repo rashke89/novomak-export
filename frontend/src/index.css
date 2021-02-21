@@ -1481,7 +1481,7 @@ img.vulco {
 
 
 .header-links a:last-child:hover{
-    background: transparent;
+    background: transparent !important;
     border: 2px solid transparent;
 }
 
