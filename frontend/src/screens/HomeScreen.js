@@ -221,7 +221,7 @@ function HomeScreen(props) {
                                                 {filter.Kategorija ?  widths?.map(item => {
                                                     if (item.usedCategories.findIndex(o => o === filter.Kategorija) >= 0)
                                                         return<option value={item.name} key={item.name}>{item.name}</option>;
-                                                }) : widths?.map(item => {
+                                                }) : widths?.sort((a, b) => a.name - b.name).map(item => {
                                                     return <option value={item.name} key={item.name}>{item.name}</option>
                                                 })}
                                             </select>
@@ -232,7 +232,7 @@ function HomeScreen(props) {
                                                 {filter.Kategorija ?  heights?.map(item => {
                                                     if (item.usedCategories.findIndex(o => o === filter.Kategorija) >= 0)
                                                         return<option value={item.name} key={item.name}>{item.name}</option>;
-                                                }) : heights?.map(item => {
+                                                }) : heights?.sort((a, b) => a.name - b.name).map(item => {
                                                     return <option value={item.name} key={item.name}>{item.name}</option>
                                                 })}
                                             </select>
@@ -243,7 +243,7 @@ function HomeScreen(props) {
                                                 {filter.Kategorija ?  diameters?.map(item => {
                                                     if (item.usedCategories.findIndex(o => o === filter.Kategorija) >= 0)
                                                         return<option value={item.name} key={item.name}>{item.name}</option>;
-                                                }) : diameters?.map(item => {
+                                                }) : diameters?.sort((a, b) => a.name - b.name).map(item => {
                                                     return <option value={item.name} key={item.name}>{item.name}</option>
                                                 })}
                                             </select>
@@ -318,7 +318,7 @@ function HomeScreen(props) {
                                     {filter.Kategorija ?  widths?.map(item => {
                                         if (item.usedCategories.findIndex(o => o === filter.Kategorija) >= 0)
                                             return<option value={item.name} key={item.name}>{item.name}</option>;
-                                    }) : widths?.map(item => {
+                                    }) : widths?.sort((a, b) => a.name - b.name).map(item => {
                                         return <option value={item.name} key={item.name}>{item.name}</option>
                                     })}
                                 </select>
@@ -329,7 +329,7 @@ function HomeScreen(props) {
                                     {filter.Kategorija ?  heights?.map(item => {
                                         if (item.usedCategories.findIndex(o => o === filter.Kategorija) >= 0)
                                             return<option value={item.name} key={item.name}>{item.name}</option>;
-                                    }) : heights?.map(item => {
+                                    }) : heights?.sort((a, b) => a.name - b.name).map(item => {
                                         return <option value={item.name} key={item.name}>{item.name}</option>
                                     })}
                                 </select>
@@ -340,7 +340,7 @@ function HomeScreen(props) {
                                     {filter.Kategorija ?  diameters?.map(item => {
                                         if (item.usedCategories.findIndex(o => o === filter.Kategorija) >= 0)
                                             return<option value={item.name} key={item.name}>{item.name}</option>;
-                                    }) : diameters?.map(item => {
+                                    }) : diameters?.sort((a, b) => a.name - b.name).map(item => {
                                         return <option value={item.name} key={item.name}>{item.name}</option>
                                     })}
                                 </select>

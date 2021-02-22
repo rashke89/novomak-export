@@ -29,23 +29,23 @@ axios.defaults.baseURL = 'https://novomak-export.com/novomak-export3';
 // axios.defaults.headers.post['Content-Type'] ='application/json;charset=utf-8';
 // axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 
-axios.interceptors.request.use(request => {
-  console.log(request);
-  // Edit request config
-  return request;
-}, error => {
-  console.log(error);
-  return Promise.reject(error);
-});
+// axios.interceptors.request.use(request => {
+//   console.log(request);
+//   // Edit request config
+//   return request;
+// }, error => {
+//   console.log(error);
+//   return Promise.reject(error);
+// });
 
-axios.interceptors.response.use(response => {
-  console.log(response);
-  // Edit response config
-  return response;
-}, error => {
-  console.log(error);
-  return Promise.reject(error);
-});
+// axios.interceptors.response.use(response => {
+//   console.log(response);
+//   // Edit response config
+//   return response;
+// }, error => {
+//   console.log(error);
+//   return Promise.reject(error);
+// });
 
 function App() {
   const userSignin = useSelector((state) => state.userSignin);
