@@ -26,6 +26,14 @@ button.btn-disabled {
     width: 100%;
 }
 
+.green {
+    color: green;
+}
+
+.blue{
+    color: #005aab;
+}
+
 .bg-blue {
     background-color: #005aab;
 }

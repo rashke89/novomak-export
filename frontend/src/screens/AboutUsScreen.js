@@ -61,12 +61,26 @@ function AboutUsScreen(props) {
             </div>
             <div className="col-md-6 about-us-text">
               <p>
-                Preduzeće Novomak export d.o.o. osnovano je 2000 godine,sa sedištem  u Staroj Pazovi ulica Kralja Petra I broj  78.
+                Preduzeće NOVOMAK  EXPORT DOO osnovano je 2000 godine sa sedištem u Staroj Pazovi  ulica Kalja Petra Prvog Karađorđevića 78.
             </p>
             <h3>Osnovni principi poslovanja</h3>
-            <p>Osnovni principi poslovanja realizuju se uspešnom kombinacijom visoko profesionalnih i stručnih radnika, sa tehnički najsavremenijim voznim parkom (kamioni, dostavna vozila, putnički automobili), servisno-prodajnim objektima ,  sadržajno najkompletnijim lagerom robe, najsavremenijom opremom i <strong>mašinama u vulkanizerskim servisima za montažu, demontažu i balansiranje guma, kao i duvanje guma azotom.</strong></p>
-            <p>Izlazeći u susret zahtevima mnogobrojnih kupaca za pružanje usluga "na licu mesta" - Novomak export d.o.o. ima i<strong> mobilni vulkanizerski servis,</strong> kojim praktično pomaže kupcima u rešavanju problema sa gumama svih<strong> 24 časa</strong></p>
-            <p>Kao još jedan dokaz uspešnosti poslovanja i profesionalnog odnosa u radu, jeste dobijeni<strong> sertifikat uvedenog sistema menadžmenta kvalitetom prema ISO 9001:2008 i ISO 14001:2004, za delatnosti; uvoza, izvoza, veleprodaje, maloprodaje i servisa svih vrsta pneumatika i remenja.</strong></p>
+            <p>- Osnovne principe poslovanja ostvarujemo uspešnom kombinacijom visoko-profesionalnih i stručnih radnika sa tehnički savremenom opremom i mašinama za vulkanizerske usluge</strong></p>
+            <p><strong> Montaža-demontaža</strong></p>
+            <p>(putničkih,SUV,poluteretnih,teretnih,poljoprivrednih,damper i industrijskih pneumatika)</p>
+            <p><strong> Balansiranje</strong></p>
+            <p>(putničkih,SUV,poluteretnih i teretnih pneumatika)</p>
+            <p><strong> Hotel za gume</strong></p>
+            <p>Od 2019 godine naši kupci svoje pneumatike mogu čuvati kod nas do sledeće zamene.</p>
+            <p><strong> Reglaža trapa </strong></p>
+            <p>EURO 2020 sa nemačkom tehnologijom I <strong className="green"> Hofmann </strong> opremom, za putnička,SUV, poluteretna I terena vozila.
+            </p>
+
+            <br/>
+            <p>Kao još jedan dokaz uspešnosti I profesionalnog odnosa u radu je dobijeni sertifikat
+              <strong className="blue"><i> TRUCK FORCE Koncerna GOODYEAR</i> </strong> uvoza,izvoza,veleprodaje,maloprodaje I servisa svih vrsta
+              teretnih  pneumatika u čijem timu smo od 2015 godine.
+
+            </p>
 
 
             </div>
@@ -76,21 +90,33 @@ function AboutUsScreen(props) {
 
             <div className="col-md-12 ">
         <p>
-        U centru poslovne politike preduzeća NOVOMAK-EXPORT nalazi se kupac I korisnik usluga. Osnovni princip poslovanja zasniva se na permanentnom prilagođavanju zahteva kupaca I tržišta, pružanje usluga na vrhunskom nivou kao i prodaji guma visokog kvaliteta po najpovoljnijim uslovima kako trgovcima tako i krajnjim potrošačima.
-    </p>
+          Od 2014 godine našu delatnost smo proširili otvaranjem samouslužne auto-perionice nemačke marke<strong className="blue">EHRLE</strong> ,tako da u našem servisu pored vulkanizerskih usluga,brzog servisa I reglaže trapa možete Vaše vozilo održavati čistim
+          Sva pravna kao I fizička lica mogu koristiti pored žetona I akceptora I KOD KLJUČ za samouslužno pranje vozila.
+
+        </p>
 
     <p>
     Za pravna lica koja održavaju svoja vozila kod nas imamo odgovarajuće bonuse i popuste.
     </p>
     <p>Danas obuhvatamo najznačajnije robne marke proizvođača <strong>pneumatika</strong> i to:</p>
     <ul>
-    <li><strong><a href="http://www.conti-online.com/generator/www/start/com/en/index_en.html" target="_blank">Contintal</a></strong> (Continental, Semperit, Barum, General tire, Sportiva)</li>
-    <li><strong><a href="http://www.bridgestone.com/regional/europe_cis/" target="_blank">Bridgestone</a></strong> (Bridgestone, Firestone, Dayton)</li>
-        <li><strong><a href="http://www.michelin.com/fre" target="_blank">Michelin</a></strong> (Michelin, Tigar)</li>
-        <li><strong><a href="http://www.pirelli.com/tyres/sr-rs/contact-us" target="_blank">Pirelli </a></strong></li>
-        <li><strong><a href="http://www.mitas-tyres.com/rs/" target="_blank">Mitas</a></strong> (Mitas, Cultor)</li>
-        <li><strong><a href="http://www.westlaketire.com/" target="_blank">West Lake </a></strong></li>
-    <li><strong><a href="http://www.td-kama.com/en/" target="_blank">Kama</a></strong></li>
+      <li><strong><a href="https://www.goodyear.com/en-US/international?expand=international" target="_blank">GOODYEAR</a></strong> (Goodyear,Dunlop,Fulda,Sava,Kelly)</li>
+    <li><strong><a href="http://www.conti-online.com/generator/www/start/com/en/index_en.html" target="_blank">CONTINENTAL</a></strong> (Continental,Uniroyal,Semperit,Viking,Barum,General)</li>
+    <li><strong><a href="http://www.bridgestone.com/regional/europe_cis/" target="_blank">BRIDGESTONE</a></strong> (Bridgestone, Firestone, Dayton)</li>
+        <li><strong><a href="http://www.michelin.com/fre" target="_blank">MICHELIN</a></strong> (Michelin,BF Godrich,Tigar)</li>
+        <li><strong><a href="http://www.pirelli.com/tyres/sr-rs/contact-us" target="_blank">Pirelli </a></strong>(Pirelli)</li>
+        <li><strong><a href="https://www.nexentire.com/international/" target="_blank">NEXEN </a></strong></li>
+        <li><strong><a href="https://www.lassa.com/" target="_blank">LASSA </a></strong></li>
+        <li><strong><a href="https://www.petlas.com/en/" target="_blank">PETLAS </a></strong></li>
+      <li><strong><a href="https://www.hankooktire.com/mea-en/" target="_blank">HANKOOK </a></strong></li>
+      <li><strong><a href="http://www.westlaketire.com/" target="_blank">WEST LAKE </a></strong>(Goodride)</li>
+
+
+    <li><strong><a href="http://www.td-kama.com/en/" target="_blank">KAMA</a></strong></li>
+      <li><strong><a href="http://www.triangletire.cn/" target="_blank">TRIANGLE</a></strong></li>
+      <li><strong><a href="http://en.miragetires.cn/" target="_blank">MIRAGE</a></strong></li>
+      <li><strong><a href="http://www.mitas-tyres.com/rs/" target="_blank">Mitas</a></strong> (Mitas, Cultor)</li>
+      <li><strong><a href="https://tyre.seha.com.tr/en/" target="_blank">SEHA,OZKA</a></strong></li>
         <li><strong><a href="http://www.atgtire.com/" target="_blank">Alliance</a></strong> (Alliance, Galaxy, Primex)</li>
         <li><strong><a href="http://www.trelleborg.com/en" target="_blank">Trelleborg</a></strong></li>
         </ul>
@@ -104,7 +130,7 @@ function AboutUsScreen(props) {
                       className=""></path>
               </svg>
               <blockquote>
-                Čast nam je što smo potpisali petogodišnji ugovor sa Vulco multinacionalnim franšiznim lancem brzih servisa-koncerna goodyear, kome veruju vozači automobila po celoj evropi.
+                ČAST NAM SE ŠTO SMO OD 2014 GODINE DEO TIMA VULCO  MULTINACIONALNOG FRANŠIZNOG LANCA BRZIH SERVISA KONCERNA <strong className="blue"><i>GOODYEAR</i> </strong>,KOME VERUJU VOZAČI ŠIROM EVROPE.
               </blockquote>
             </div>
           </div>
