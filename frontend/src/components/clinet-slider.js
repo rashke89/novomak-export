@@ -18,7 +18,7 @@ export default function ClientSlider(props) {
     return <>
         {slider && Object.keys(slider).length ?
             <div className="brand-wrapper">
-                <h1 className="info-text"><strong className="pr-1">Zastupljeni</strong> brendovi</h1>
+                <h1 className="info-text mb-4"><strong className="pr-1">Zastupljeni</strong> brendovi</h1>
                 <div id="carouselExampleSlidesOnly" className="carousel slide" data-ride="carousel">
                     <div className="carousel-inner row">
 

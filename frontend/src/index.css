@@ -27,11 +27,11 @@ button.btn-disabled {
 }
 
 .green {
-    color: green;
+    color: green !important;
 }
 
 .blue{
-    color: #005aab;
+    color: #005aab !important;
 }
 
 .bg-blue {
@@ -442,6 +442,12 @@ a > .rating > span:last-child {
 
 .back-to-result:hover {
     opacity: 0.8;
+    cursor: pointer;
+}
+
+svg.svg-inline--fa.fa-search.fa-w-16.fa-3x {
+    width: 45px !important;
+    padding-left: 10px;
     cursor: pointer;
 }
 
@@ -1280,8 +1286,7 @@ tbody > tr:nth-child(odd) {
     margin: 60px 0;
 }
 .brand-wrapper img{
-    -webkit-filter: grayscale(100%);
-    filter: grayscale(100%);
+
 }
 .brand-wrapper img:hover {
     -webkit-filter: none;
@@ -1609,6 +1614,15 @@ a.active {
 }
 @media only screen and (max-width: 768px) {
 
+    .about-us-text {
+        padding-right: 45px !important;
+    }
+
+    .brand {
+        width: 65%;
+        margin-left: 15px;
+    }
+
     .home-screen-wrapper {
         margin: 60px 0 0 -7px !important;
     }
@@ -1629,6 +1643,7 @@ a.active {
     .mobile-navbar {
         display: flex;
         align-items: center;
+        margin-right: 30px;
     }
     .cart-item:hover{
         color: #007bff;
@@ -1713,8 +1728,15 @@ a.active {
     }
 
     .footer .contact {
-        text-align: right;
+        text-align: center;
         margin-top: 20px;
+    }
+
+    .details-image img {
+
+        max-height: 500px;
+        margin-bottom: 25px;
+
     }
 
     .category-screen-wrapper {
@@ -1796,8 +1818,13 @@ a.active {
 
         width: 100vw !important;
         margin-right: 0px !important;
-        padding-right: 25px !important;
+        padding-right: 15px !important;
 
+    }
+
+    .brand-wrapper img {
+
+        padding-left: 30px;
     }
     .carousel-control-prev, .carousel-control-next { display: none }
     .main-categories {

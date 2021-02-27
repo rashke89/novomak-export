@@ -65,22 +65,17 @@ function AboutUsScreen(props) {
             </p>
             <h3>Osnovni principi poslovanja</h3>
             <p>- Osnovne principe poslovanja ostvarujemo uspešnom kombinacijom visoko-profesionalnih i stručnih radnika sa tehnički savremenom opremom i mašinama za vulkanizerske usluge</p>
-            <p><strong> Montaža-demontaža</strong></p>
-            <p>(putničkih,SUV,poluteretnih,teretnih,poljoprivrednih,damper i industrijskih pneumatika)</p>
-            <p><strong> Balansiranje</strong></p>
-            <p>(putničkih,SUV,poluteretnih i teretnih pneumatika)</p>
-            <p><strong> Hotel za gume</strong></p>
-            <p>Od 2019 godine naši kupci svoje pneumatike mogu čuvati kod nas do sledeće zamene.</p>
-            <p><strong> Reglaža trapa </strong></p>
-            <p>EURO 2020 sa nemačkom tehnologijom I <strong className="green"> Hofmann </strong> opremom, za putnička,SUV, poluteretna I terena vozila.
-            </p>
+            <p className="mb-0"><strong> Montaža-demontaža</strong></p>
+            <p className="mb-2">(putničkih, SUV, poluteretnih, teretnih, poljoprivrednih, damper i industrijskih pneumatika)</p>
+            <p  className="mb-0"><strong> Balansiranje</strong></p>
+            <p className="mb-2">(putničkih,SUV,poluteretnih i teretnih pneumatika)</p>
+            <p   className="mb-2"><strong> TPMS SENZORI PRITISKA u pneumaticima marke SCHRADER</strong> (nemačke schrader senzore programiramo i ugrađujemo)</p>
+            <p className="mb-0"><strong> Hotel za gume</strong></p>
+            <p  className="mb-2">Od 2019 godine naši kupci svoje pneumatike mogu čuvati kod nas do sledeće zamene.</p>
+            <p  className="mb-0"><strong> Reglaža trapa </strong></p>
+            <p>EURO 2020 sa nemačkom tehnologijom I <strong className="green"> Hofmann </strong> opremom, za putnička,SUV, poluteretna I terena vozila.</p>
 
-            <br/>
-            <p>Kao još jedan dokaz uspešnosti I profesionalnog odnosa u radu je dobijeni sertifikat
-              <strong className="blue"><i> TRUCK FORCE Koncerna GOODYEAR</i> </strong> uvoza,izvoza,veleprodaje,maloprodaje I servisa svih vrsta
-              teretnih  pneumatika u čijem timu smo od 2015 godine.
 
-            </p>
 
 
             </div>
@@ -88,22 +83,27 @@ function AboutUsScreen(props) {
               <img src="http://media2.power-pixels.com/2021/02/block-tires.jpg" className="img img-fluid about-us-img" alt="online prodaja guma"/>
             </div>
 
-            <div className="col-md-12 ">
-        <p>
-          Od 2014 godine našu delatnost smo proširili otvaranjem samouslužne auto-perionice nemačke marke<strong className="blue">EHRLE</strong> ,tako da u našem servisu pored vulkanizerskih usluga,brzog servisa I reglaže trapa možete Vaše vozilo održavati čistim
-          Sva pravna kao I fizička lica mogu koristiti pored žetona I akceptora I KOD KLJUČ za samouslužno pranje vozila.
+            <div className="col-md-12 about-us-text pt-3">
+              <p>Kao još jedan dokaz uspešnosti I profesionalnog odnosa u radu je dobijeni sertifikat
+                <strong className="blue"><i> TRUCK FORCE Koncerna GOODYEAR</i> </strong> uvoza, izvoza, veleprodaje, maloprodaje I servisa svih vrsta
+                teretnih  pneumatika u čijem timu smo od 2015 godine.
 
-        </p>
+              </p>
+              <p>
+                Od 2014 godine našu delatnost smo proširili otvaranjem samouslužne auto-perionice nemačke marke<strong className="blue">EHRLE</strong> ,tako da u našem servisu pored vulkanizerskih usluga, brzog servisa I reglaže trapa možete Vaše vozilo održavati čistim
+                Sva pravna kao I fizička lica mogu koristiti pored žetona I akceptora I KOD KLJUČ za samouslužno pranje vozila.
+
+              </p>
 
     <p>
     Za pravna lica koja održavaju svoja vozila kod nas imamo odgovarajuće bonuse i popuste.
     </p>
     <p>Danas obuhvatamo najznačajnije robne marke proizvođača <strong>pneumatika</strong> i to:</p>
     <ul>
-      <li><strong><a href="https://www.goodyear.com/en-US/international?expand=international" target="_blank">GOODYEAR</a></strong> (Goodyear,Dunlop,Fulda,Sava,Kelly)</li>
-    <li><strong><a href="http://www.conti-online.com/generator/www/start/com/en/index_en.html" target="_blank">CONTINENTAL</a></strong> (Continental,Uniroyal,Semperit,Viking,Barum,General)</li>
+      <li><strong><a href="https://www.goodyear.com/en-US/international?expand=international" target="_blank">GOODYEAR</a></strong> (Goodyear, Dunlop, Fulda, Sava, Kelly)</li>
+    <li><strong><a href="http://www.conti-online.com/generator/www/start/com/en/index_en.html" target="_blank">CONTINENTAL</a></strong> (Continental, Uniroyal, Semperit, Viking, Barum, General)</li>
     <li><strong><a href="http://www.bridgestone.com/regional/europe_cis/" target="_blank">BRIDGESTONE</a></strong> (Bridgestone, Firestone, Dayton)</li>
-        <li><strong><a href="http://www.michelin.com/fre" target="_blank">MICHELIN</a></strong> (Michelin,BF Godrich,Tigar)</li>
+        <li><strong><a href="http://www.michelin.com/fre" target="_blank">MICHELIN</a></strong> (Michelin,BF Godrich, Tigar)</li>
         <li><strong><a href="http://www.pirelli.com/tyres/sr-rs/contact-us" target="_blank">Pirelli </a></strong>(Pirelli)</li>
         <li><strong><a href="https://www.nexentire.com/international/" target="_blank">NEXEN </a></strong></li>
         <li><strong><a href="https://www.lassa.com/" target="_blank">LASSA </a></strong></li>
