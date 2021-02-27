@@ -32,7 +32,7 @@ function ProductScreen(props) {
       behavior: 'smooth'
     }
     setTimeout(() => {
-      document.getElementsByClassName('header')[0].scrollIntoView(options)
+      document.getElementsByClassName('details-image')[0].scrollIntoView(options)
     }, 500)
     dispatch(detailsProduct(props.match.params.id));
     return () => {

@@ -116,9 +116,9 @@ function HomeScreen(props) {
             product.priceChanged = true;
             if (foundCategory.discount < 0) {
                 product.staraCena = product.Cena;
-                return product.Cena = product.Cena - ((product.Cena * Number(Math.abs(foundCategory.discount))) / 100).toFixed(2);
+                return product.Cena = product.Cena - ((product.Cena * Number(Math.abs(foundCategory.discount))) / 100).toFixed(0);
             } else if(foundCategory.discount > 0) {
-                return product.Cena = Number(product.Cena) + Number(((product.Cena * Number(foundCategory.discount)) / 100).toFixed(2));
+                return product.Cena = Number(product.Cena) + Number(((product.Cena * Number(foundCategory.discount)) / 100).toFixed(0));
             }
         }
         return product.Cena;

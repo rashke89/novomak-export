@@ -44,10 +44,10 @@ router.get('/:id', async (req, res) => {
         let foundCategory = await categoryModel.findOne({name: product.Kategorija});
         if (foundCategory && foundCategory?.discount) {
             if (foundCategory.discount < 0) {
-                product.Cena = product.Cena - ((product.Cena * Number(Math.abs(foundCategory.discount))) / 100).toFixed(2);
+                product.Cena = product.Cena - ((product.Cena * Number(Math.abs(foundCategory.discount))) / 100).toFixed(0);
                 res.send(product);
             } else if (foundCategory.discount > 0) {
-                product.Cena = Number(product.Cena) + Number(((product.Cena * Number(foundCategory.discount)) / 100).toFixed(2));
+                product.Cena = Number(product.Cena) + Number(((product.Cena * Number(foundCategory.discount)) / 100).toFixed(0));
                 res.send(product);
             }
         } else {
