@@ -64,7 +64,7 @@ function AboutUsScreen(props) {
                 Preduzeće NOVOMAK  EXPORT DOO osnovano je 2000 godine sa sedištem u Staroj Pazovi  ulica Kalja Petra Prvog Karađorđevića 78.
             </p>
             <h3>Osnovni principi poslovanja</h3>
-            <p>- Osnovne principe poslovanja ostvarujemo uspešnom kombinacijom visoko-profesionalnih i stručnih radnika sa tehnički savremenom opremom i mašinama za vulkanizerske usluge</strong></p>
+            <p>- Osnovne principe poslovanja ostvarujemo uspešnom kombinacijom visoko-profesionalnih i stručnih radnika sa tehnički savremenom opremom i mašinama za vulkanizerske usluge</p>
             <p><strong> Montaža-demontaža</strong></p>
             <p>(putničkih,SUV,poluteretnih,teretnih,poljoprivrednih,damper i industrijskih pneumatika)</p>
             <p><strong> Balansiranje</strong></p>
