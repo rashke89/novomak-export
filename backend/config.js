@@ -14,7 +14,7 @@ export default {
   mongooseOptions,
   PORT: process.env.PORT || 5000,
   MONGODB_URL: () => {
-    console.log('this is the PROCESS...', process);
+    console.log('this is the PROCESS... --->>>', process);
     return     'mongodb://novomak:novomak2020@cluster0-shard-00-00.ivtbn.mongodb.net:27017,cluster0-shard-00-01.ivtbn.mongodb.net:27017,cluster0-shard-00-02.ivtbn.mongodb.net:27017/amazona?ssl=true&replicaSet=atlas-qbj3mx-shard-0&authSource=admin&retryWrites=true&w=majority'
 
     // 'mongodb://novomak:novomak2020@cluster0-shard-00-00.ivtbn.mongodb.net:27017,cluster0-shard-00-01.ivtbn.mongodb.net:27017,cluster0-shard-00-02.ivtbn.mongodb.net:27017/amazona?ssl=true&replicaSet=atlas-qbj3mx-shard-0&authSource=admin&retryWrites=true&w=majority'
