@@ -10,13 +10,13 @@ const transport = nodemailer.createTransport({
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-        user: 'novomak.export.prodaja@gmail.com', // generated ethereal user
+        user: 'novomak.prodaja@gmail.com', // generated ethereal user
         pass: 'novomak.export2020', // generated ethereal password
     },
 });
 
 let mailOption = {
-    from: 'novomak.export.prodaja@gmail.com',
+    from: 'novomak.prodaja@gmail.com',
     to: 'novomakexport@yahoo.com',
     subject: '',
     html: ``
