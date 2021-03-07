@@ -6,17 +6,17 @@ import mongoose from 'mongoose';
 
 const router = express.Router();
 const transport = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false, // true for 465, false for other ports
+    host: "mailcluster.loopia.se",
+    // port: 587,
+    // secure: false, // true for 465, false for other ports
     auth: {
-        user: 'novomak.prodaja@gmail.com', // generated ethereal user
+        user: 'novoma.primer@fiziomaximus.rs', // generated ethereal user
         pass: 'novomak.export2020', // generated ethereal password
     },
 });
 
 let mailOption = {
-    from: 'novomak.prodaja@gmail.com',
+    from: 'novoma.primer@fiziomaximus.rs',
     to: 'novomakexport@yahoo.com',
     subject: '',
     html: ``
