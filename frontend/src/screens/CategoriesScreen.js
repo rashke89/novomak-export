@@ -71,6 +71,7 @@ function CategoriesScreen(props) {
     };
     const submitHandler = (e) => {
         e.preventDefault();
+        console.log(discount);
         dispatch(
             saveCategory({
                 _id: id,
@@ -195,7 +196,7 @@ function CategoriesScreen(props) {
                                                 onChange={(e) => setOrder(e.target.value)}
                                             ></input>
                                         </div> : ''}
-                                        {selectedCategory === 'categories' && <div className="col-md-6">
+                                        <div className="col-md-6">
                                             <label htmlFor="brand">Rabat (%)</label>
                                             <input
                                                 type="number"
@@ -203,8 +204,8 @@ function CategoriesScreen(props) {
                                                 value={discount}
                                                 id="brand"
                                                 onChange={(e) => setDiscount(e.target.value)}
-                                            ></input>
-                                        </div>}
+                                            />
+                                        </div>
                                         {selectedCategory === 'categories' && <div className="col-md-6">
                                             <label htmlFor="image">Slika</label>
                                             <input

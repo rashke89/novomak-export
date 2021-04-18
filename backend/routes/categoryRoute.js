@@ -77,11 +77,14 @@ router.put('/:category/:id', isAuth, async (req, res) => {
             return;
         case 'manufacturers':
             foundCategory = await manufacturerModel.findById(categoryId, (error, data) => {
+                console.log(req.body);
                 if (error) {
                     return res.status(500).send({message: `Greska prilikom izmene kategorije. Kategorija ne postoji. Naziv kategorije: ${req.body.name}`});
                 }
                 data.name = req.body.name;
+                data.discount = req.body.discount;
                 data.save().then((savedItem) => {
+                    console.log(savedItem);
                     if (savedItem) {
                         return res
                             .status(200)
@@ -97,6 +100,7 @@ router.put('/:category/:id', isAuth, async (req, res) => {
                     return res.status(500).send({message: `Greska prilikom izmene kategorije. Kategorija ne postoji. Naziv kategorije: ${req.body.name}`});
                 }
                 data.name = req.body.name;
+                data.discount = req.body.discount;
                 data.order = req.body.order;
                 data.save().then((savedItem) => {
                     if (savedItem) {
@@ -113,6 +117,7 @@ router.put('/:category/:id', isAuth, async (req, res) => {
                     return res.status(500).send({message: `Greska prilikom izmene kategorije. Kategorija ne postoji. Naziv kategorije: ${req.body.name}`});
                 }
                 data.name = req.body.name;
+                data.discount = req.body.discount;
                 data.usedCategories = req.body.usedCategories;
                 data.save().then((savedItem) => {
                     if (savedItem) {
@@ -129,6 +134,7 @@ router.put('/:category/:id', isAuth, async (req, res) => {
                     return res.status(500).send({message: `Greska prilikom izmene kategorije. Kategorija ne postoji. Naziv kategorije: ${req.body.name}`});
                 }
                 data.name = req.body.name;
+                data.discount = req.body.discount;
                 data.usedCategories = req.body.usedCategories;
                 data.save().then((savedItem) => {
                     if (savedItem) {
@@ -145,6 +151,7 @@ router.put('/:category/:id', isAuth, async (req, res) => {
                     return res.status(500).send({message: `Greska prilikom izmene kategorije. Kategorija ne postoji. Naziv kategorije: ${req.body.name}`});
                 }
                 data.name = req.body.name;
+                data.discount = req.body.discount;
                 data.usedCategories = req.body.usedCategories;
                 data.save().then((savedItem) => {
                     if (savedItem) {

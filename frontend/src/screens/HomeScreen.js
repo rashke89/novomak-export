@@ -108,6 +108,7 @@ function HomeScreen(props) {
         category && dispatch(listProducts(category, searchKeyword, sortOrder, num, filter));
     };
     const formatPrice = (product) => {
+        return product.Cena;
         if (product?.priceChanged) {
             return product.Cena;
         }
