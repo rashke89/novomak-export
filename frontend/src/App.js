@@ -24,6 +24,7 @@ import ClientsScreen from "./screens/ClientsScreen";
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://novomak-export.com/novomak-export3';
+
 // axios.defaults.headers.common['Authorization'] = 'AUTH TOKEN';
 // axios.defaults.headers.post['Content-Type'] = 'application/json';
 // axios.defaults.headers.post['Content-Type'] ='application/json;charset=utf-8';
