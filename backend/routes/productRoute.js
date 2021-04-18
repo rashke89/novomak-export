@@ -35,33 +35,183 @@ router.post('/', async (req, res) => {
     const products = await Product.find({...category, ...searchKeyword, ...filter}).sort(
         sortOrder
     ).skip(32 * (page - 1)).limit(32);
+
+    const executeAllLongRunningTasks = async () => {
+        return await Promise.all(products.map(async (item) => {
+            let product = item;
+            let foundCategory = await categoryModel.findOne({name: product.Kategorija}, (err, data) => {
+                if (!data || !'discount' in data) return null;
+                if (data.discount < 0) {
+                    product.Cena = product.Cena - ((product.Cena * Number(Math.abs(data.discount))) / 100).toFixed(0);
+                } else if (data.discount > 0) {
+                    product.Cena = Number(product.Cena) + Number(((product.Cena * Number(data.discount)) / 100).toFixed(0));
+                }
+            });
+            let foundWidth = await widthModel.findOne({name: product.Sirina}, (err, data) => {
+                if (!data || !'discount' in data) return null;
+                if (data.discount < 0) {
+                    product.Cena = product.Cena - ((product.Cena * Number(Math.abs(data.discount))) / 100).toFixed(0);
+                } else if (data.discount > 0) {
+                    product.Cena = Number(product.Cena) + Number(((product.Cena * Number(data.discount)) / 100).toFixed(0));
+                }
+            });
+            let foundManufacturer = await manufacturerModel.findOne({name: product.Proizvodjac}, (err, data) => {
+                if (!data || !'discount' in data) return null;
+                if (data.discount < 0) {
+                    product.Cena = product.Cena - ((product.Cena * Number(Math.abs(data.discount))) / 100).toFixed(0);
+                } else if (data.discount > 0) {
+                    product.Cena = Number(product.Cena) + Number(((product.Cena * Number(data.discount)) / 100).toFixed(0));
+                }
+            });
+            let foundHeight = await heightModel.findOne({name: product.Visina}, (err, data) => {
+                if (!data || !'discount' in data) return null;
+                if (data.discount < 0) {
+                    product.Cena = product.Cena - ((product.Cena * Number(Math.abs(data.discount))) / 100).toFixed(0);
+                } else if (data.discount > 0) {
+                    product.Cena = Number(product.Cena) + Number(((product.Cena * Number(data.discount)) / 100).toFixed(0));
+                }
+            });
+            let foundDiameter = await diameterModel.findOne({name: product.Precnik}, (err, data) => {
+                if (!data || !'discount' in data) return null;
+                if (data.discount < 0) {
+                    product.Cena = product.Cena - ((product.Cena * Number(Math.abs(data.discount))) / 100).toFixed(0);
+                } else if (data.discount > 0) {
+                    product.Cena = Number(product.Cena) + Number(((product.Cena * Number(data.discount)) / 100).toFixed(0));
+                }
+            });
+            let foundSeason = await seasonModel.findOne({name: product.Sezona}, (err, data) => {
+                if (!data || !'discount' in data) return null;
+                if (data.discount < 0) {
+                    product.Cena = product.Cena - ((product.Cena * Number(Math.abs(data.discount))) / 100).toFixed(0);
+                } else if (data.discount > 0) {
+                    product.Cena = Number(product.Cena) + Number(((product.Cena * Number(data.discount)) / 100).toFixed(0));
+                }
+            });
+            return product;
+        }))
+    };
+
+    await executeAllLongRunningTasks();
     res.send({products, totalItems});
 });
 
 router.get('/:id', async (req, res) => {
     const product = await Product.findOne({_id: req.params.id});
     if (product) {
-        let foundCategory = await categoryModel.findOne({name: product.Kategorija});
-        if (foundCategory && foundCategory?.discount) {
-            if (foundCategory.discount < 0) {
-                product.Cena = product.Cena - ((product.Cena * Number(Math.abs(foundCategory.discount))) / 100).toFixed(0);
-                res.send(product);
-            } else if (foundCategory.discount > 0) {
-                product.Cena = Number(product.Cena) + Number(((product.Cena * Number(foundCategory.discount)) / 100).toFixed(0));
-                res.send(product);
+        let foundCategory = await categoryModel.findOne({name: product.Kategorija}, (err, data) => {
+            if (!data || !'discount' in data) return null;
+            if (data.discount < 0) {
+                product.Cena = product.Cena - ((product.Cena * Number(Math.abs(data.discount))) / 100).toFixed(0);
+            } else if (data.discount > 0) {
+                product.Cena = Number(product.Cena) + Number(((product.Cena * Number(data.discount)) / 100).toFixed(0));
             }
-        } else {
-            res.send(product);
-        }
+        });
+        let foundWidth = await widthModel.findOne({name: product.Sirina}, (err, data) => {
+            if (!data || !'discount' in data) return null;
+            if (data.discount < 0) {
+                product.Cena = product.Cena - ((product.Cena * Number(Math.abs(data.discount))) / 100).toFixed(0);
+            } else if (data.discount > 0) {
+                product.Cena = Number(product.Cena) + Number(((product.Cena * Number(data.discount)) / 100).toFixed(0));
+            }
+        });
+        let foundManufacturer = await manufacturerModel.findOne({name: product.Proizvodjac}, (err, data) => {
+            if (!data || !'discount' in data) return null;
+            if (data.discount < 0) {
+                product.Cena = product.Cena - ((product.Cena * Number(Math.abs(data.discount))) / 100).toFixed(0);
+            } else if (data.discount > 0) {
+                product.Cena = Number(product.Cena) + Number(((product.Cena * Number(data.discount)) / 100).toFixed(0));
+            }
+        });
+        let foundHeight = await heightModel.findOne({name: product.Visina}, (err, data) => {
+            if (!data || !'discount' in data) return null;
+            if (data.discount < 0) {
+                product.Cena = product.Cena - ((product.Cena * Number(Math.abs(data.discount))) / 100).toFixed(0);
+            } else if (data.discount > 0) {
+                product.Cena = Number(product.Cena) + Number(((product.Cena * Number(data.discount)) / 100).toFixed(0));
+            }
+        });
+        let foundDiameter = await diameterModel.findOne({name: product.Precnik}, (err, data) => {
+            if (!data || !'discount' in data) return null;
+            if (data.discount < 0) {
+                product.Cena = product.Cena - ((product.Cena * Number(Math.abs(data.discount))) / 100).toFixed(0);
+            } else if (data.discount > 0) {
+                product.Cena = Number(product.Cena) + Number(((product.Cena * Number(data.discount)) / 100).toFixed(0));
+            }
+        });
+        let foundSeason = await seasonModel.findOne({name: product.Sezona}, (err, data) => {
+            if (!data || !'discount' in data) return null;
+            if (data.discount < 0) {
+                product.Cena = product.Cena - ((product.Cena * Number(Math.abs(data.discount))) / 100).toFixed(0);
+            } else if (data.discount > 0) {
+                product.Cena = Number(product.Cena) + Number(((product.Cena * Number(data.discount)) / 100).toFixed(0));
+            }
+        });
+        res.send(product);
     } else {
         res.status(404).send({message: 'Product Not Found.'});
     }
 });
 router.get('/marked/all', async (req, res) => {
     try {
-        const product = await Product.find();
-        if (product && product.length) {
-            let list = product.filter(item => item.Istaknut === '1');
+        const productS = await Product.find({Istaknut: 1});
+
+        const executeAllLongRunningTasks = async () => {
+            return await Promise.all(productS.map(async (item) => {
+                let product = item;
+                let foundCategory = await categoryModel.findOne({name: product.Kategorija}, (err, data) => {
+                    if (!data || !'discount' in data) return null;
+                    if (data.discount < 0) {
+                        product.Cena = product.Cena - ((product.Cena * Number(Math.abs(data.discount))) / 100).toFixed(0);
+                    } else if (data.discount > 0) {
+                        product.Cena = Number(product.Cena) + Number(((product.Cena * Number(data.discount)) / 100).toFixed(0));
+                    }
+                });
+                let foundWidth = await widthModel.findOne({name: product.Sirina}, (err, data) => {
+                    if (!data || !'discount' in data) return null;
+                    if (data.discount < 0) {
+                        product.Cena = product.Cena - ((product.Cena * Number(Math.abs(data.discount))) / 100).toFixed(0);
+                    } else if (data.discount > 0) {
+                        product.Cena = Number(product.Cena) + Number(((product.Cena * Number(data.discount)) / 100).toFixed(0));
+                    }
+                });
+                let foundManufacturer = await manufacturerModel.findOne({name: product.Proizvodjac}, (err, data) => {
+                    if (!data || !'discount' in data) return null;
+                    if (data.discount < 0) {
+                        product.Cena = product.Cena - ((product.Cena * Number(Math.abs(data.discount))) / 100).toFixed(0);
+                    } else if (data.discount > 0) {
+                        product.Cena = Number(product.Cena) + Number(((product.Cena * Number(data.discount)) / 100).toFixed(0));
+                    }
+                });
+                let foundHeight = await heightModel.findOne({name: product.Visina}, (err, data) => {
+                    if (!data || !'discount' in data) return null;
+                    if (data.discount < 0) {
+                        product.Cena = product.Cena - ((product.Cena * Number(Math.abs(data.discount))) / 100).toFixed(0);
+                    } else if (data.discount > 0) {
+                        product.Cena = Number(product.Cena) + Number(((product.Cena * Number(data.discount)) / 100).toFixed(0));
+                    }
+                });
+                let foundDiameter = await diameterModel.findOne({name: product.Precnik}, (err, data) => {
+                    if (!data || !'discount' in data) return null;
+                    if (data.discount < 0) {
+                        product.Cena = product.Cena - ((product.Cena * Number(Math.abs(data.discount))) / 100).toFixed(0);
+                    } else if (data.discount > 0) {
+                        product.Cena = Number(product.Cena) + Number(((product.Cena * Number(data.discount)) / 100).toFixed(0));
+                    }
+                });
+                let foundSeason = await seasonModel.findOne({name: product.Sezona}, (err, data) => {
+                    if (!data || !'discount' in data) return null;
+                    if (data.discount < 0) {
+                        product.Cena = product.Cena - ((product.Cena * Number(Math.abs(data.discount))) / 100).toFixed(0);
+                    } else if (data.discount > 0) {
+                        product.Cena = Number(product.Cena) + Number(((product.Cena * Number(data.discount)) / 100).toFixed(0));
+                    }
+                });
+                return product;
+            }))
+        };
+        await executeAllLongRunningTasks();
+        if (productS && productS.length) {
+            let list = productS;
             let obj = {};
             let num = 0;
             for (let i = 0; i < list.length; i++) {

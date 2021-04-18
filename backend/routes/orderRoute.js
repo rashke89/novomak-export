@@ -96,7 +96,7 @@ router.post("/", async (req, res) => {
 });
 
 router.post("/submit", async (req, res) => {
-    console.log('order body submit...', req.body);
+    console.log('order body submit.....', req.body);
     req.body.cart.cartItems.map(item => {
         item.product = item;
         return item;
