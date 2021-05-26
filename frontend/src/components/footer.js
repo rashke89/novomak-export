@@ -38,7 +38,7 @@ export default function Footer(props) {
         <div className="container">
             <div className="row center">
                 <div className="col-md-4">
-                    <h3 className="info-text">Glanve kategorije</h3>
+                    <h3 className="info-text">Glavne kategorije</h3>
                     <ul>
                         {categories?.length ?
                         categories.sort((a, b) => a.order -b.order).map(item => {

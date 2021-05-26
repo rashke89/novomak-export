@@ -84,14 +84,15 @@ function AboutUsScreen(props) {
             </div>
 
             <div className="col-md-12 about-us-text pt-3">
-              <p>Kao još jedan dokaz uspešnosti I profesionalnog odnosa u radu je dobijeni sertifikat
-                <strong className="blue"><i> TRUCK FORCE Koncerna GOODYEAR</i> </strong> uvoza, izvoza, veleprodaje, maloprodaje I servisa svih vrsta
-                teretnih  pneumatika u čijem timu smo od 2015 godine.
 
-              </p>
               <p>
                 Od 2014 godine našu delatnost smo proširili otvaranjem samouslužne auto-perionice nemačke marke<strong className="blue">EHRLE</strong> ,tako da u našem servisu pored vulkanizerskih usluga, brzog servisa I reglaže trapa možete Vaše vozilo održavati čistim
                 Sva pravna kao I fizička lica mogu koristiti pored žetona I akceptora I KOD KLJUČ za samouslužno pranje vozila.
+
+              </p>
+              <p>Kao još jedan dokaz uspešnosti I profesionalnog odnosa u radu je dobijeni sertifikat
+                <strong className="blue"><i> TRUCK FORCE Koncerna GOODYEAR</i> </strong> uvoza, izvoza, veleprodaje, maloprodaje I servisa svih vrsta
+                teretnih  pneumatika u čijem timu smo od 2015 godine.
 
               </p>
 
